@@ -1,0 +1,238 @@
+<section class="cp-comparison" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <div class="cp-comparison__inner">
+    <h4>{{ section.settings.heading }}</h4>
+    <p class="cp-comparison__subheading">{{ section.settings.subheading }}</p>
+
+    <cp-tabs-component>
+      <div class="cp-comparison__tablist" role="tablist">
+        {%- for block in section.blocks -%}
+          <button
+            type="button"
+            role="tab"
+            ref="tabButtons[]"
+            class="cp-comparison__tab{% if forloop.first %} is-active{% endif %}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="cp-comparison-panel-{{ block.id }}"
+            on:click="/selectTab/{{ forloop.index0 }}"
+          >
+            <span>{{ block.settings.tab_label }}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <select class="cp-comparison__select" ref="mobileSelect" on:change="/selectTabFromSelect">
+        {%- for block in section.blocks -%}
+          <option value="{{ forloop.index0 }}">{{ block.settings.tab_label }}</option>
+        {%- endfor -%}
+      </select>
+
+      <div class="cp-comparison__panels">
+        {% content_for 'blocks' %}
+      </div>
+    </cp-tabs-component>
+  </div>
+</section>
+
+<script src="{{ 'cp-components.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .cp-comparison {
+    font-family: 'Sohne', sans-serif;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .cp-comparison__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cp-comparison__inner > h4 {
+    font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+    color: rgba(101, 91, 80, 1);
+    margin: 0;
+  }
+
+  .cp-comparison__subheading {
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 150%;
+    text-align: center;
+    color: rgba(101, 91, 80, 1);
+    margin: 12px 0 50px;
+  }
+
+  .cp-comparison__tablist {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    background: rgba(240, 235, 224, 1);
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .cp-comparison__tab {
+    flex: 1;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 16px 24px;
+    font-size: 16px;
+    color: rgba(30, 17, 13, 1);
+  }
+
+  .cp-comparison__tab.is-active {
+    background: #fff;
+  }
+
+  .cp-comparison__select {
+    display: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(194, 186, 174, 1);
+    margin-bottom: 20px;
+  }
+
+  .cp-comparison__panel[hidden] {
+    display: none;
+  }
+
+  .cp-comparison__header-row,
+  .cp-comparison__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    min-height: 70px;
+    border-bottom: 1px solid rgba(194, 186, 174, 0.3);
+  }
+
+  .cp-comparison__header-row {
+    border-bottom: none;
+    margin-top: 40px;
+  }
+
+  .cp-comparison__brand {
+    text-align: center;
+  }
+
+  .cp-comparison__brand p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgba(101, 91, 80, 1);
+    margin: 8px 0 0;
+  }
+
+  .cp-comparison__cell--label {
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-comparison__cell--value {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-comparison__check svg {
+    width: 20px;
+    height: 20px;
+    fill: rgba(13, 109, 238, 1);
+  }
+
+  .cp-comparison__cross svg {
+    width: 16px;
+    height: 16px;
+    fill: rgba(136, 128, 114, 1);
+  }
+
+  @media screen and (max-width: 991px) {
+    .cp-comparison__tablist {
+      display: none;
+    }
+
+    .cp-comparison__select {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-comparison__inner > h4 {
+      font-size: 28px;
+    }
+
+    .cp-comparison__header-row,
+    .cp-comparison__row {
+      min-height: 56px;
+    }
+
+    .cp-comparison__cell--label,
+    .cp-comparison__cell--value {
+      font-size: 13px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product comparison",
+  "blocks": [
+    { "type": "_cp-comparison-tab" }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How others stack up" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "See why families everywhere are choosing COSMO as their kid's first device." },
+    { "type": "text", "id": "cosmo_label", "label": "Cosmo product label", "default": "JrTrack 5" },
+    { "type": "image_picker", "id": "cosmo_logo", "label": "Cosmo logo" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#fdf9f2" }
+  ],
+  "presets": [
+    {
+      "name": "Product comparison",
+      "category": "Product",
+      "blocks": {
+        "tab-1": {
+          "type": "_cp-comparison-tab",
+          "settings": { "tab_label": "JrTrack vs. Apple Watch", "competitor_name": "Apple Watch", "competitor_price": "$249.99" },
+          "blocks": {
+            "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "check" } },
+            "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "check" } },
+            "r3": { "type": "_cp-comparison-row", "settings": { "feature_label": "Camera", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r4": { "type": "_cp-comparison-row", "settings": { "feature_label": "Approved contacts only", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r5": { "type": "_cp-comparison-row", "settings": { "feature_label": "Geofencing", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r6": { "type": "_cp-comparison-row", "settings": { "feature_label": "School Mode", "cosmo_status": "check", "competitor_status": "check" } }
+          },
+          "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+        },
+        "tab-2": {
+          "type": "_cp-comparison-tab",
+          "settings": { "tab_label": "JrTrack vs. Verizon Gizmo", "competitor_name": "Verizon Gizmo", "competitor_price": "$150.00" },
+          "blocks": {
+            "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "check" } },
+            "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "check" } },
+            "r3": { "type": "_cp-comparison-row", "settings": { "feature_label": "Multi-Network SIM", "cosmo_status": "check", "competitor_status": "cross" } }
+          },
+          "block_order": ["r1", "r2", "r3"]
+        },
+        "tab-3": {
+          "type": "_cp-comparison-tab",
+          "settings": { "tab_label": "JrTrack vs Fitbit Ace", "competitor_name": "Fitbit Ace", "competitor_price": "$79.95" },
+          "blocks": {
+            "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r3": { "type": "_cp-comparison-row", "settings": { "feature_label": "Activity Tracking", "cosmo_status": "check", "competitor_status": "check" } }
+          },
+          "block_order": ["r1", "r2", "r3"]
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3"]
+    }
+  ]
+}
+{% endschema %}

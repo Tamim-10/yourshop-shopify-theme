@@ -1,0 +1,34 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-hero__policy" {{ block.shopify_attributes }}>
+  {%- if block_settings.icon != blank -%}
+    {{ block_settings.icon | image_url: width: 32 | image_tag: loading: 'lazy', width: 16, height: 16, class: 'cp-hero__policy-icon' }}
+  {%- endif -%}
+  <span>{{ block_settings.label }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Policy item",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Free Shipping"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy item"
+    }
+  ]
+}
+{% endschema %}

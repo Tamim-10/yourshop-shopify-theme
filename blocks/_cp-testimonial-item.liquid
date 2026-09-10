@@ -1,0 +1,33 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-testimonials__slide" ref="slides[]" {{ block.shopify_attributes }}>
+  <div class="cp-testimonials__card">
+    <p>&ldquo;{{ block_settings.quote }}&rdquo;</p>
+    <div class="cp-testimonials__avatar">
+      {%- if block_settings.avatar != blank -%}
+        {{ block_settings.avatar | image_url: width: 120 | image_tag: loading: 'lazy', width: 58, height: 58 }}
+      {%- endif -%}
+      <div>
+        <p class="cp-testimonials__name">{{ block_settings.name }}</p>
+        <span>{{ block_settings.location }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "tag": null,
+  "settings": [
+    { "type": "textarea", "id": "quote", "label": "Quote" },
+    { "type": "image_picker", "id": "avatar", "label": "Avatar" },
+    { "type": "text", "id": "name", "label": "Name", "default": "Customer" },
+    { "type": "text", "id": "location", "label": "Location", "default": "USA" }
+  ],
+  "presets": [
+    { "name": "Testimonial" }
+  ]
+}
+{% endschema %}

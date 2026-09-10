@@ -1,0 +1,31 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-seen__logo" {{ block.shopify_attributes }}>
+  {%- if block_settings.image != blank -%}
+    {{ block_settings.image | image_url: width: 600 | image_tag: loading: 'lazy', style: 'width:' | append: block_settings.width | append: 'px', class: 'cp-seen__logo-image' }}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Logo item",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Logo"
+    },
+    {
+      "type": "number",
+      "id": "width",
+      "label": "Width (px)",
+      "default": 150
+    }
+  ],
+  "presets": [
+    { "name": "Logo item" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-adventure__slide" ref="slides[]" {{ block.shopify_attributes }}>
+  {%- if block_settings.image != blank -%}
+    {{ block_settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 500, 900' }}
+  {%- endif -%}
+  <p>{{ block_settings.caption }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Adventure slide",
+  "tag": null,
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "caption", "label": "Caption", "default": "Adventure" }
+  ],
+  "presets": [
+    { "name": "Adventure slide" }
+  ]
+}
+{% endschema %}

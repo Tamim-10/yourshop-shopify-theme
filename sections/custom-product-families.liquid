@@ -1,0 +1,187 @@
+<section class="cp-families" style="background-color: {{ section.settings.background_color | default: '#063470' }};">
+  <div class="cp-families__inner">
+    <h3 class="cp-families__heading">{{ section.settings.heading }}</h3>
+    <h5 class="cp-families__subheading">{{ section.settings.subheading }}</h5>
+
+    {%- if section.settings.cta_text != blank -%}
+      <div class="cp-families__cta">
+        <a href="{{ section.settings.cta_link }}">{{ section.settings.cta_text }}</a>
+      </div>
+    {%- endif -%}
+
+    <div class="cp-families__row">
+      <div class="cp-families__boxes">
+        {% content_for 'blocks' %}
+      </div>
+      {%- if section.settings.image != blank -%}
+        <div class="cp-families__media">
+          {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1400' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-families {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 88px;
+  }
+
+  .cp-families__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cp-families__heading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    text-align: center;
+    color: #fdf9f2;
+    margin: 0;
+  }
+
+  .cp-families__subheading {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    text-align: center;
+    color: #fdf9f2;
+    margin: 10px 0 0;
+  }
+
+  .cp-families__cta {
+    text-align: center;
+  }
+
+  .cp-families__cta a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 200px;
+    border: 2px solid #c2baae;
+    color: #fdf9f2;
+    margin-top: 25px;
+    text-decoration: none;
+  }
+
+  .cp-families__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .cp-families__boxes {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cp-families__box {
+    padding: 24px;
+  }
+
+  .cp-families__box h5 {
+    font-weight: 600;
+    font-size: 24px;
+    color: #fdf9f2;
+    margin: 0;
+  }
+
+  .cp-families__box-text {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: #fdf9f2;
+    margin-top: 8px;
+  }
+
+  .cp-families__box--highlight {
+    border-radius: 8px;
+    box-shadow: -64px 64px 120px 0px rgba(0, 0, 0, 0.04);
+    background-color: rgba(253, 249, 242, 1);
+  }
+
+  .cp-families__box--highlight h5,
+  .cp-families__box--highlight .cp-families__box-text {
+    color: rgba(66, 54, 46, 1);
+  }
+
+  .cp-families__media img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-families__heading {
+      font-size: 36px;
+    }
+
+    .cp-families__subheading {
+      font-size: 18px;
+    }
+
+    .cp-families__row {
+      grid-template-columns: 1fr;
+    }
+
+    .cp-families__media {
+      order: -1;
+    }
+
+    .cp-families__boxes {
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .cp-families__box {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+      background: #fff;
+      border-radius: 16px;
+    }
+
+    .cp-families__box h5,
+    .cp-families__box .cp-families__box-text {
+      color: rgba(66, 54, 46, 1);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom product families",
+  "blocks": [
+    { "type": "_cp-family-feature" }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Families get more with COSMO" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Discover all new features designed for the way you do family" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Full feature list" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#063470" }
+  ],
+  "presets": [
+    {
+      "name": "Custom product families",
+      "category": "Product",
+      "blocks": {
+        "f1": { "type": "_cp-family-feature", "settings": { "heading": "Messaging made easy", "text": "<p>Share the moments that matter most. Text, picture, video, and voice messaging is easier than ever with all-new voice-to-text and predictive text.</p>" } },
+        "f2": { "type": "_cp-family-feature", "settings": { "heading": "Focus Mode", "text": "<p>Connection without distraction. All-new Focus Mode gives parents flexible controls to set how and when your child's device is locked.</p>" } },
+        "f3": { "type": "_cp-family-feature", "settings": { "heading": "Apps & flexible parental controls", "text": "<p>Choose from a growing library of kid-safe apps. Plus, set daily time limits on any app. JrTrack is ready to safely grow with your child!</p>" } },
+        "f4": { "type": "_cp-family-feature", "settings": { "heading": "Parent Insights Dashboard", "text": "<p>Our all-new Parent Insights Dashboard keeps you in the know. See activity, app usage, full message history, and more in one simple spot.</p>", "highlight": true } },
+        "f5": { "type": "_cp-family-feature", "settings": { "heading": "HaloGPS + Active Tracking", "text": "<p>Feel the confidence with JrTrack 5. It's the only kids watch with real-time, up-to-the-second tracking, with all-new HaloGPS technology.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,149 @@
+<section class="cp-tracking" style="background-color: {{ section.settings.background_color | default: 'rgba(5, 43, 93, 1)' }};">
+  <div class="cp-tracking__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="cp-tracking__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h3 class="cp-tracking__heading">{{ section.settings.heading }}</h3>
+    <h5 class="cp-tracking__subheading">{{ section.settings.subheading }}</h5>
+
+    {%- if section.settings.image != blank -%}
+      <div class="cp-tracking__media">
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1400' }}
+      </div>
+    {%- endif -%}
+
+    <div class="cp-tracking__items">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-tracking {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 88px;
+  }
+
+  .cp-tracking__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .cp-tracking__eyebrow {
+    padding: 4px 10px;
+    background: rgba(13, 109, 238, 1);
+    border-radius: 2px;
+    display: table;
+    margin: 0 auto 16px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(253, 249, 242, 1);
+  }
+
+  .cp-tracking__heading {
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    color: rgba(253, 249, 242, 1);
+    margin: 0 0 8px;
+  }
+
+  .cp-tracking__subheading {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    color: rgba(194, 186, 174, 1);
+    margin: 0 0 40px;
+  }
+
+  .cp-tracking__media {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .cp-tracking__media img {
+    max-width: 70%;
+    height: auto;
+  }
+
+  .cp-tracking__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .cp-tracking__item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cp-tracking__item p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 150%;
+    color: rgba(253, 249, 242, 1);
+    margin: 0;
+  }
+
+  .cp-tracking__item p span {
+    color: rgba(253, 249, 242, 1);
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-tracking__media img {
+      max-width: 100%;
+    }
+
+    .cp-tracking__heading {
+      font-size: 20px;
+      color: rgba(194, 186, 174, 1);
+    }
+
+    .cp-tracking__subheading {
+      font-size: 42px;
+      color: rgba(253, 249, 242, 1);
+    }
+
+    .cp-tracking__items {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom product tracking",
+  "blocks": [
+    { "type": "_cp-tracking-item" }
+  ],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "NEW" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Precision GPS location tracking" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Faster. Smarter. Safer. From the inside out." },
+    { "type": "image_picker", "id": "image", "label": "Watch image" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#052b5d" }
+  ],
+  "presets": [
+    {
+      "name": "Custom product tracking",
+      "category": "Product",
+      "blocks": {
+        "t1": { "type": "_cp-tracking-item", "settings": { "lead_text": "Real-time active tracking", "text": "The only kids watch with real-time, up-to-the-second tracking, built for the speed of parenting." } },
+        "t2": { "type": "_cp-tracking-item", "settings": { "lead_text": "Unmatched accuracy", "text": "All-new HaloGPS puts the power of 115 GNSS satellite signals at your fingertips for amazing location accuracy." } },
+        "t3": { "type": "_cp-tracking-item", "settings": { "lead_text": "Advanced performance", "text": "Powered by a dedicated, state-of-the-art chip, HaloGPS offers dynamic position accuracy with longer battery life." } },
+        "t4": { "type": "_cp-tracking-item", "settings": { "lead_text": "Faster location lock", "text": "Find their real location in seconds, thanks to advanced assisted GPS (aGPS) technology with up to 92% faster location lock." } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    }
+  ]
+}
+{% endschema %}

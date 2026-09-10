@@ -1,0 +1,115 @@
+<section class="cp-faq" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <div class="cp-faq__inner">
+    {% content_for 'blocks' %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-faq {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 80px;
+  }
+
+  .cp-faq__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-faq {
+      padding-block: 45px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom product FAQ",
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" },
+    { "type": "accordion" }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fdf9f2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom product FAQ",
+      "category": "Product",
+      "blocks": {
+        "faq_accordion": {
+          "type": "accordion",
+          "settings": { "icon": "plus", "dividers": true },
+          "blocks": {
+            "row-1": {
+              "type": "_accordion-row",
+              "settings": { "open_by_default": true, "heading": "What's in the Box" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>JrTrack 5 watch, magnetic charging cable, quick start guide.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            },
+            "row-2": {
+              "type": "_accordion-row",
+              "settings": { "heading": "Full feature list" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<ul><li>True SMS texting, picture, video, and voice messaging</li><li>Approved contacts only</li><li>GPS tracking &amp; safezones</li><li>No social media or internet browsing</li><li>Mission control parent app</li><li>Kid-safe music</li><li>Enhanced parental controls &amp; optional apps</li><li>Reminders &amp; alarms</li><li>SOS Mode &amp; 911 calling (optional)</li><li>2 MP front-facing camera</li><li>IP68 water resistant to one meter</li><li>Pedometer &amp; activity goals</li><li>US, Canada, &amp; Mexico calling coverage</li><li>School mode (distraction-free!)</li><li>Reliable nationwide calling with FlexSIM technology</li></ul>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            },
+            "row-3": {
+              "type": "_accordion-row",
+              "settings": { "heading": "Data plans & coverage" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>JrTrack 5 uses FlexSIM technology for reliable nationwide coverage across the US, Canada, and Mexico. Data plans are managed monthly through the parent app.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            },
+            "row-4": {
+              "type": "_accordion-row",
+              "settings": { "heading": "COSMO guarantee" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>We think JrTrack stands out as the best buy for families: best safety features with our proprietary SafeCORE technology, best connection with real family-safe texting, and best value with premium features at a price that makes sense for families.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            }
+          },
+          "block_order": ["row-1", "row-2", "row-3", "row-4"]
+        }
+      },
+      "block_order": ["faq_accordion"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,614 @@
+{% render 'custom-product-fonts' %}
+
+{% liquid
+  assign product = closest.product
+  if request.visual_preview_mode and product == blank
+    assign product = collections.all.products.first
+  endif
+
+  assign variant = product.selected_or_first_available_variant
+  assign inventory_quantity = variant.inventory_quantity
+  assign inventory_policy = variant.inventory_policy
+
+  if variant.inventory_management == 'shopify'
+    assign inventory_managed = true
+  endif
+
+  assign can_add_to_cart = false
+  assign add_to_cart_text = 'products.product.unavailable' | t
+
+  if variant
+    if variant.available
+      assign can_add_to_cart = true
+      assign add_to_cart_text = section.settings.cart_button_text
+    elsif inventory_managed and inventory_quantity <= 0 and inventory_policy == 'deny'
+      assign add_to_cart_text = 'products.product.sold_out' | t
+    endif
+  endif
+
+  assign discount_percent = 0
+  if variant.compare_at_price > variant.price
+    assign discount_percent = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+  endif
+%}
+
+<section
+  class="cp-hero"
+  style="
+    background-color: {{ section.settings.background_color | default: '#fdf9f2' }};
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="cp-hero__inner">
+    {%- if product != blank -%}
+      <cp-gallery-component class="cp-hero__gallery">
+        <div class="cp-hero__gallery-main" ref="track">
+          {%- if product.media.size > 0 -%}
+            {%- for media in product.media -%}
+              <div class="cp-hero__gallery-slide" ref="slides[]" {% unless forloop.first %}hidden{% endunless %}>
+                {{
+                  media
+                  | image_url: width: 1200
+                  | image_tag: loading: forloop.first, class: 'cp-hero__gallery-image', widths: '400, 600, 900, 1200'
+                }}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <div class="cp-hero__gallery-slide" ref="slides[]">
+              {{ 'product-1' | placeholder_svg_tag: 'cp-hero__gallery-image' }}
+            </div>
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="cp-hero__gallery-thumbs">
+            {%- for media in product.media -%}
+              <button
+                type="button"
+                class="cp-hero__gallery-thumb{% if forloop.first %} is-active{% endif %}"
+                ref="thumbs[]"
+                on:click="/select/{{ forloop.index0 }}"
+                aria-label="View image {{ forloop.index }}"
+              >
+                {{ media | image_url: width: 200 | image_tag: loading: 'lazy', class: 'cp-hero__gallery-thumb-image' }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </cp-gallery-component>
+    {%- endif -%}
+
+    <div class="cp-hero__info">
+      <h1 class="cp-hero__title">{{ product.title | default: 'JrTrack 5 Kids Smart Watch' }}</h1>
+
+      {%- if section.settings.show_rating -%}
+        <div class="cp-hero__rating">
+          {%- if section.settings.rating_icon != blank -%}
+            {{ section.settings.rating_icon | image_url: width: 200 | image_tag: loading: 'lazy', class: 'cp-hero__rating-stars' }}
+          {%- endif -%}
+          <span class="cp-hero__rating-text">
+            {{ section.settings.rating_value }} ({{ section.settings.review_count }} reviews)
+          </span>
+        </div>
+      {%- endif -%}
+
+      <div class="cp-hero__price-row">
+        <h2 class="cp-hero__price">{{ variant.price | default: 12900 | money }}</h2>
+        {%- if discount_percent > 0 -%}
+          <span class="cp-hero__badge">{{ discount_percent }}% OFF</span>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.subheading != blank -%}
+        <h4 class="cp-hero__subheading">{{ section.settings.subheading }}</h4>
+      {%- endif -%}
+
+      <div class="cp-hero__description">
+        {%- if section.settings.description_source == 'product' -%}
+          {{ product.description }}
+        {%- else -%}
+          {{ section.settings.custom_description }}
+        {%- endif -%}
+      </div>
+
+      {% content_for 'block', type: '_hero-feature-list', id: 'hero-feature-list' %}
+
+      {%- if section.settings.mobile_policy_text != blank -%}
+        <div class="cp-hero__policies-mobile">{{ section.settings.mobile_policy_text }}</div>
+      {%- endif -%}
+      {% content_for 'block', type: '_hero-policy-list', id: 'hero-policy-list' %}
+
+      {%- if product != blank -%}
+        {%- assign product_form_id = 'CpHero-ProductForm-' | append: section.id -%}
+        <product-form-component
+          data-section-id="{{ section.id }}"
+          data-product-id="{{ product.id }}"
+          data-product-url="{{ product.url }}"
+          on:submit="/handleSubmit"
+          class="cp-hero__form"
+        >
+          <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+          {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" ref="variantId" value="{{ variant.id }}">
+            <span class="product-form-text__error hidden" ref="addToCartTextError">
+              <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
+            </span>
+            {% content_for 'block',
+              type: 'add-to-cart',
+              id: 'hero-add-to-cart',
+              can_add_to_cart: can_add_to_cart,
+              add_to_cart_text: add_to_cart_text
+            %}
+          {%- endform -%}
+        </product-form-component>
+      {%- endif -%}
+
+      {%- if section.settings.show_prime_banner -%}
+        <div class="cp-hero__divider"><hr><span>OR</span></div>
+        <div class="cp-hero__prime">
+          <div class="cp-hero__prime-badge">
+            <span>
+              Buy With
+              {%- if section.settings.prime_badge_image != blank -%}
+                {{ section.settings.prime_badge_image | image_url: width: 160 | image_tag: loading: 'lazy' }}
+              {%- else -%}
+                Prime
+              {%- endif -%}
+            </span>
+          </div>
+          <span class="cp-hero__prime-text">{{ section.settings.prime_text }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'cp-components.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .cp-hero {
+    font-family: 'Sohne', sans-serif;
+  }
+
+  .cp-hero__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .cp-hero__gallery-main {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .cp-hero__gallery-slide[hidden] {
+    display: none;
+  }
+
+  .cp-hero__gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+
+  .cp-hero__gallery-thumbs {
+    display: flex;
+    gap: 16px;
+    margin-top: 50px;
+  }
+
+  .cp-hero__gallery-thumb {
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  .cp-hero__gallery-thumb.is-active {
+    opacity: 1;
+  }
+
+  .cp-hero__gallery-thumb-image {
+    height: 80px;
+    width: auto;
+    border-radius: 16px;
+  }
+
+  .cp-hero__title {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 100%;
+    color: rgba(101, 91, 80, 1);
+    margin: 0;
+  }
+
+  .cp-hero__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .cp-hero__rating-stars {
+    height: 16px;
+    width: auto;
+  }
+
+  .cp-hero__rating-text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: rgba(136, 128, 114, 1);
+  }
+
+  .cp-hero__price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .cp-hero__price {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 100%;
+    color: rgba(101, 91, 80, 1);
+    margin: 0;
+  }
+
+  .cp-hero__badge {
+    background: radial-gradient(250.66% 702.32% at -38.16% 100%, #e6940e 17.59%, #c7800c 64.99%, #8c5a08 100%);
+    padding: 4px 10px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+
+  .cp-hero__subheading {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 130%;
+    color: rgba(101, 91, 80, 1);
+    margin: 0 0 16px;
+  }
+
+  .cp-hero__description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: rgba(66, 54, 46, 1);
+  }
+
+  .cp-hero__features {
+    background: rgba(240, 235, 224, 1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cp-hero__feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cp-hero__feature-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cp-hero__feature-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 160%;
+  }
+
+  .cp-hero__policies-mobile {
+    display: none;
+    margin: 20px 0;
+    font-size: 14px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-hero__policies {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .cp-hero__policy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-hero__policy-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cp-hero__form .add-to-cart-button {
+    width: 100%;
+    border-radius: 200px;
+    padding-block: 12px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .cp-hero__divider {
+    position: relative;
+    margin: 40px 0;
+  }
+
+  .cp-hero__divider hr {
+    margin: 0;
+    border-color: rgba(194, 186, 174, 0.4);
+  }
+
+  .cp-hero__divider span {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    padding: 0 20px;
+    background: rgba(253, 249, 242, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: rgba(136, 128, 114, 1);
+  }
+
+  .cp-hero__prime {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cp-hero__prime-badge {
+    background: rgba(72, 150, 247, 1);
+    min-width: 192px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    padding: 0 16px;
+  }
+
+  .cp-hero__prime-badge span {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cp-hero__prime-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .cp-hero__gallery-thumbs {
+      display: none;
+    }
+
+    .cp-hero__policies {
+      display: none;
+    }
+
+    .cp-hero__policies-mobile {
+      display: block;
+    }
+
+    .cp-hero__title {
+      font-size: 30px;
+    }
+
+    .cp-hero__price {
+      font-size: 28px;
+    }
+
+    .cp-hero__features {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom product hero",
+  "blocks": [
+    { "type": "_hero-feature-list" },
+    { "type": "_hero-policy-list" }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Real connection parents trust"
+    },
+    {
+      "type": "select",
+      "id": "description_source",
+      "label": "Description",
+      "options": [
+        { "value": "product", "label": "Use product description" },
+        { "value": "custom", "label": "Custom text" }
+      ],
+      "default": "product"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_description",
+      "label": "Custom description",
+      "default": "<p>JrTrack 5 is the all-in-one kids smart watch made for the moments that matter.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show rating",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "rating_icon",
+      "label": "Rating stars image"
+    },
+    {
+      "type": "text",
+      "id": "rating_value",
+      "label": "Rating value",
+      "default": "4.73"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review count",
+      "default": "571"
+    },
+    {
+      "type": "header",
+      "content": "Policies"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_policy_text",
+      "label": "Mobile policy text",
+      "default": "<p>Free Shipping | Hassle-Free Returns | 30 Day Stress-Free Money Back Guarantee</p>"
+    },
+    {
+      "type": "header",
+      "content": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "cart_button_text",
+      "label": "Button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "header",
+      "content": "Buy with Prime banner"
+    },
+    {
+      "type": "paragraph",
+      "content": "Decorative only. Add Amazon's own Buy with Prime script separately if you need real Prime checkout."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_prime_banner",
+      "label": "Show banner",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "prime_badge_image",
+      "label": "Prime logo"
+    },
+    {
+      "type": "text",
+      "id": "prime_text",
+      "label": "Prime text",
+      "default": "FREE delivery as soon as Tomorrow & easy returns for Prime members"
+    },
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fdf9f2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom product hero",
+      "category": "Product",
+      "blocks": {
+        "hero-feature-list": {
+          "type": "_hero-feature-list",
+          "static": true,
+          "blocks": {
+            "f1": { "type": "_hero-feature-item", "settings": { "label": "Precision HaloGPS" } },
+            "f2": { "type": "_hero-feature-item", "settings": { "label": "Real-time Active Tracking" } },
+            "f3": { "type": "_hero-feature-item", "settings": { "label": "Parent-controlled talk, text & data" } },
+            "f4": { "type": "_hero-feature-item", "settings": { "label": "Distraction-free Focus Mode" } },
+            "f5": { "type": "_hero-feature-item", "settings": { "label": "Flexible parental controls" } },
+            "f6": { "type": "_hero-feature-item", "settings": { "label": "Optional apps & music" } }
+          },
+          "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
+        },
+        "hero-policy-list": {
+          "type": "_hero-policy-list",
+          "static": true,
+          "blocks": {
+            "p1": { "type": "_hero-policy-item", "settings": { "label": "Free Shipping" } },
+            "p2": { "type": "_hero-policy-item", "settings": { "label": "Hassle-Free Returns" } },
+            "p3": { "type": "_hero-policy-item", "settings": { "label": "30 Day Money Back Guarantee" } }
+          },
+          "block_order": ["p1", "p2", "p3"]
+        },
+        "hero-add-to-cart": {
+          "type": "add-to-cart",
+          "static": true,
+          "settings": {
+            "style_class": "button-custom",
+            "custom_button_background": "rgba(13, 109, 238, 1)",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "rgba(13, 109, 238, 1)"
+          }
+        }
+      }
+    }
+  ]
+}
+{% endschema %}

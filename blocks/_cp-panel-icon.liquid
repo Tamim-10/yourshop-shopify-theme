@@ -1,0 +1,23 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-panel__icon-item" {{ block.shopify_attributes }}>
+  {%- if block_settings.icon != blank -%}
+    {{ block_settings.icon | image_url: width: 48 | image_tag: loading: 'lazy', width: 24, height: 24 }}
+  {%- endif -%}
+  <span>{{ block_settings.label }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Icon item",
+  "tag": null,
+  "settings": [
+    { "type": "image_picker", "id": "icon", "label": "Icon" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Feature" }
+  ],
+  "presets": [
+    { "name": "Icon item" }
+  ]
+}
+{% endschema %}

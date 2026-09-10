@@ -1,0 +1,117 @@
+<section class="cp-seen" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <div class="cp-seen__inner">
+    <h3 class="cp-seen__heading">{{ section.settings.heading }}</h3>
+    <div class="cp-seen__logos">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-seen {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 100px;
+  }
+
+  .cp-seen__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cp-seen__heading {
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: rgba(101, 91, 80, 1);
+    display: flex;
+    align-items: center;
+    margin: 0 0 60px;
+  }
+
+  .cp-seen__heading::before,
+  .cp-seen__heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(194, 186, 174, 0) 0%, #c2baae 100%);
+    margin: 0 20px;
+  }
+
+  .cp-seen__heading::after {
+    background: linear-gradient(270deg, rgba(194, 186, 174, 0) 0%, #c2baae 100%);
+  }
+
+  .cp-seen__logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .cp-seen__logo-image {
+    height: auto;
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-seen {
+      padding-block: 50px;
+    }
+
+    .cp-seen__logos {
+      justify-content: space-between;
+    }
+
+    .cp-seen__logo {
+      background: rgba(240, 235, 224, 1);
+      border-radius: 8px;
+      padding: 10px;
+      height: 60px;
+      width: calc(50% - 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom product as-seen-in",
+  "blocks": [
+    { "type": "_cp-logo-item" }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As seen in"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fdf9f2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom product as-seen-in",
+      "category": "Product",
+      "blocks": {
+        "l1": { "type": "_cp-logo-item", "settings": { "width": 159 } },
+        "l2": { "type": "_cp-logo-item", "settings": { "width": 293 } },
+        "l3": { "type": "_cp-logo-item", "settings": { "width": 120 } },
+        "l4": { "type": "_cp-logo-item", "settings": { "width": 215 } },
+        "l5": { "type": "_cp-logo-item", "settings": { "width": 58 } },
+        "l6": { "type": "_cp-logo-item", "settings": { "width": 170 } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "l5", "l6"]
+    }
+  ]
+}
+{% endschema %}

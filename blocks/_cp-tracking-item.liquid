@@ -1,0 +1,24 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-tracking__item" {{ block.shopify_attributes }}>
+  {%- if block_settings.icon != blank -%}
+    {{ block_settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', width: 32, height: 32 }}
+  {%- endif -%}
+  <p><span>{{ block_settings.lead_text }} – </span>{{ block_settings.text }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Tracking feature",
+  "tag": null,
+  "settings": [
+    { "type": "image_picker", "id": "icon", "label": "Icon" },
+    { "type": "text", "id": "lead_text", "label": "Bold lead-in", "default": "Real-time active tracking" },
+    { "type": "text", "id": "text", "label": "Description", "default": "Feature description." }
+  ],
+  "presets": [
+    { "name": "Tracking feature" }
+  ]
+}
+{% endschema %}

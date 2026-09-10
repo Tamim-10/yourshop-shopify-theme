@@ -1,0 +1,107 @@
+<section class="cp-press" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <div class="cp-press__inner">
+    <h3>{{ section.settings.heading }}</h3>
+    <div class="cp-press__items">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-press {
+    font-family: 'Sohne', sans-serif;
+    padding-top: 100px;
+  }
+
+  .cp-press__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cp-press__inner > h3 {
+    font-weight: 500;
+    font-size: 48px;
+    text-align: center;
+    color: rgba(101, 91, 80, 1);
+    margin: 0 0 50px;
+  }
+
+  .cp-press__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .cp-press__image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+  }
+
+  .cp-press__quote {
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 150%;
+    color: rgba(30, 17, 13, 1);
+    margin: 24px 0;
+  }
+
+  .cp-press__author {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-press__link {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(66, 54, 46, 1);
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-press__inner > h3 {
+      font-size: 28px;
+    }
+
+    .cp-press__items {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .cp-press__image {
+      height: 200px;
+      object-fit: cover;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product press",
+  "blocks": [
+    { "type": "_cp-press-item" }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "In the press" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#fdf9f2" }
+  ],
+  "presets": [
+    {
+      "name": "Product press",
+      "category": "Product",
+      "blocks": {
+        "p1": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } },
+        "p2": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } },
+        "p3": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    }
+  ]
+}
+{% endschema %}
