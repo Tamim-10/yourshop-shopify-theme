@@ -1,0 +1,123 @@
+<section class="cp-guarantee" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <div class="cp-guarantee__inner">
+    <h3>{{ section.settings.eyebrow }}</h3>
+    <h5>{{ section.settings.heading }}</h5>
+    <h6>{{ section.settings.text }}</h6>
+
+    <div class="cp-guarantee__items">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-guarantee {
+    font-family: 'Sohne', sans-serif;
+    padding-top: 100px;
+  }
+
+  .cp-guarantee__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cp-guarantee__inner h3 {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(136, 128, 114, 1);
+    margin: 0;
+  }
+
+  .cp-guarantee__inner h5 {
+    font-weight: 500;
+    font-size: 48px;
+    text-align: center;
+    color: rgba(101, 91, 80, 1);
+    margin: 16px 0;
+  }
+
+  .cp-guarantee__inner h6 {
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 150%;
+    text-align: center;
+    color: rgba(66, 54, 46, 1);
+    margin: 0;
+  }
+
+  .cp-guarantee__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .cp-guarantee__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .cp-guarantee__item span {
+    font-weight: 600;
+    font-size: 24px;
+    color: rgba(66, 54, 46, 1);
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-guarantee__inner h5 {
+      font-size: 28px;
+    }
+
+    .cp-guarantee__inner h6 {
+      font-size: 18px;
+    }
+
+    .cp-guarantee__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cp-guarantee__item img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .cp-guarantee__item span {
+      font-size: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product guarantee",
+  "blocks": [
+    { "type": "_cp-guarantee-item" }
+  ],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Cosmo guarantee" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Peace of mind from the moment you add to cart" },
+    { "type": "text", "id": "text", "label": "Text", "default": "COSMO has the best stress-free promise in the business, to make sure you get the connection you need. Guaranteed." },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#fdf9f2" }
+  ],
+  "presets": [
+    {
+      "name": "Product guarantee",
+      "category": "Product",
+      "blocks": {
+        "g1": { "type": "_cp-guarantee-item", "settings": { "label": "30-day money back guarantee" } },
+        "g2": { "type": "_cp-guarantee-item", "settings": { "label": "3 year extended warranty" } },
+        "g3": { "type": "_cp-guarantee-item", "settings": { "label": "Free loyalty upgrades" } },
+        "g4": { "type": "_cp-guarantee-item", "settings": { "label": "Reliable customer support" } }
+      },
+      "block_order": ["g1", "g2", "g3", "g4"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,175 @@
+<section class="cp-testimonials" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <h4 class="cp-testimonials__heading">{{ section.settings.heading }}</h4>
+
+  <div class="cp-testimonials__inner">
+    <cp-carousel-component class="cp-testimonials__carousel" data-loop="true" data-autoplay="{{ section.settings.autoplay_speed }}">
+      <div class="cp-testimonials__track" ref="track">
+        {% content_for 'blocks' %}
+      </div>
+      <div class="cp-testimonials__dots">
+        {%- for block in section.blocks -%}
+          <button type="button" ref="dots[]" class="cp-testimonials__dot{% if forloop.first %} is-active{% endif %}" on:click="/goToDot/{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    </cp-carousel-component>
+  </div>
+</section>
+
+<script src="{{ 'cp-components.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .cp-testimonials {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 140px;
+  }
+
+  .cp-testimonials__heading {
+    font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+    color: rgba(66, 54, 46, 1);
+    max-width: 720px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+  }
+
+  .cp-testimonials__inner {
+    padding-left: 11%;
+    overflow: hidden;
+  }
+
+  .cp-testimonials__track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .cp-testimonials__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cp-testimonials__slide {
+    flex: 0 0 45%;
+    scroll-snap-align: start;
+  }
+
+  .cp-testimonials__card {
+    background: linear-gradient(100.99deg, #fdf9f2 3.3%, rgba(240, 235, 224, 0.6) 98.94%);
+    box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(25px);
+    border-radius: 16px;
+    padding: 40px 60px;
+    margin: 20px;
+  }
+
+  .cp-testimonials__card p {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 160%;
+    color: rgba(66, 54, 46, 1);
+    margin: 0;
+  }
+
+  .cp-testimonials__avatar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .cp-testimonials__avatar img {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .cp-testimonials__name {
+    font-weight: 600;
+    font-size: 24px;
+    color: rgba(101, 91, 80, 1);
+    font-style: normal;
+    margin: 0;
+  }
+
+  .cp-testimonials__avatar span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-testimonials__dots {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .cp-testimonials__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    background-color: rgba(101, 91, 80, 0.3);
+    padding: 0;
+    transition: width 0.2s ease, background-color 0.2s ease;
+  }
+
+  .cp-testimonials__dot.is-active {
+    width: 30px;
+    background-color: rgba(13, 109, 238, 1);
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-testimonials {
+      padding-block: 70px;
+    }
+
+    .cp-testimonials__heading {
+      font-size: 28px;
+    }
+
+    .cp-testimonials__inner {
+      padding-left: 24px;
+    }
+
+    .cp-testimonials__slide {
+      flex: 0 0 90%;
+    }
+
+    .cp-testimonials__card {
+      padding: 24px;
+      margin: 12px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product testimonials",
+  "blocks": [
+    { "type": "_cp-testimonial-item" }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join thousands of families staying connected with COSMO" },
+    { "type": "range", "id": "autoplay_speed", "label": "Autoplay speed (ms)", "min": 0, "max": 8000, "step": 500, "default": 3000 },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#fdf9f2" }
+  ],
+  "presets": [
+    {
+      "name": "Product testimonials",
+      "category": "Product",
+      "blocks": {
+        "t1": { "type": "_cp-testimonial-item", "settings": { "quote": "I love having something where my boys can get exposure to and ownership of technology as a powerful tool for connection, without incurring a lot of the dangers that are out there today.", "name": "Erin E.", "location": "Texas" } },
+        "t2": { "type": "_cp-testimonial-item", "settings": { "quote": "It's given us a lot of freedom and confidence knowing they can go play and we can all stay in touch if I need them or they need me.", "name": "Marcus T.", "location": "Ohio" } },
+        "t3": { "type": "_cp-testimonial-item", "settings": { "quote": "The parent app makes it so easy to see exactly where my kids are without hovering. It's peace of mind without the guilt.", "name": "Priya K.", "location": "California" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    }
+  ]
+}
+{% endschema %}

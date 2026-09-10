@@ -1,0 +1,274 @@
+<section class="cp-hiw" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
+  <div class="cp-hiw__inner">
+    <p class="cp-hiw__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h3 class="cp-hiw__heading">{{ section.settings.heading }}</h3>
+
+    <div class="cp-hiw__panels">
+      {% content_for 'blocks' %}
+    </div>
+
+    {%- if section.settings.banner_heading != blank -%}
+      <div class="cp-hiw__banner">
+        {%- if section.settings.banner_video_url != blank -%}
+          <a href="{{ section.settings.banner_video_url }}" class="cp-hiw__banner-link" target="_blank" rel="noopener">
+        {%- endif -%}
+        <div class="cp-hiw__banner-content">
+          <div>
+            <h5>{{ section.settings.banner_heading }}</h5>
+            <p>{{ section.settings.banner_text }}</p>
+          </div>
+          <button type="button" class="cp-hiw__banner-button">
+            <span class="svg-wrapper">{{- 'icon-play.svg' | inline_asset_content -}}</span>
+            {{ section.settings.banner_button_text }}
+          </button>
+        </div>
+        {%- if section.settings.banner_video_url != blank -%}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .cp-hiw {
+    font-family: 'Sohne', sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-block: 88px;
+  }
+
+  .cp-hiw__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cp-hiw__eyebrow {
+    text-transform: capitalize;
+    text-align: center;
+    color: rgba(253, 249, 242, 1);
+  }
+
+  .cp-hiw__heading {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+    color: rgba(253, 249, 242, 1);
+    max-width: 720px;
+    margin: 12px auto 60px;
+  }
+
+  .cp-hiw__panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .cp-hiw__panel--reverse {
+    direction: rtl;
+  }
+
+  .cp-hiw__panel--reverse > * {
+    direction: ltr;
+  }
+
+  .cp-hiw__panel-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cp-hiw__panel-content h4 {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    color: rgba(253, 249, 242, 1);
+    margin: 0;
+  }
+
+  .cp-hiw__panel-text {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 150%;
+    color: rgba(253, 249, 242, 1);
+    margin: 24px 0;
+  }
+
+  .cp-hiw__panel-icons {
+    border: 1px solid rgba(240, 235, 224, 0.5);
+    box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(25px);
+    padding: 32px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .cp-hiw__panel .cp-panel__icon-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Sohne', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(253, 249, 242, 1);
+  }
+
+  .cp-hiw__store-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .cp-hiw__store-badges img {
+    width: 120px;
+  }
+
+  .cp-hiw__banner {
+    max-width: 990px;
+    margin: 60px auto 0;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #a3afbf;
+    backdrop-filter: blur(12px);
+  }
+
+  .cp-hiw__banner-link {
+    text-decoration: none;
+  }
+
+  .cp-hiw__banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .cp-hiw__banner-content h5 {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: rgba(253, 249, 242, 1);
+    margin: 0 0 8px;
+  }
+
+  .cp-hiw__banner-content p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(253, 249, 242, 1);
+    margin: 0;
+  }
+
+  .cp-hiw__banner-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(13, 109, 238, 1);
+    padding: 12px 24px;
+    border-radius: 200px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .cp-hiw__banner-button .svg-wrapper svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-hiw__panel,
+    .cp-hiw__panel--reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .cp-hiw__panel-icons {
+      grid-template-columns: 1fr;
+    }
+
+    .cp-hiw__heading {
+      font-size: 28px;
+    }
+
+    .cp-hiw__banner-content {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product how it works",
+  "blocks": [
+    { "type": "_cp-how-it-works-panel" }
+  ],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "how it works" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Cosmo keeps you close to what matters most" },
+    { "type": "image_picker", "id": "background_image", "label": "Background image" },
+    {
+      "type": "header",
+      "content": "Video banner"
+    },
+    { "type": "text", "id": "banner_heading", "label": "Banner heading", "default": "Meet JrTrack 5" },
+    { "type": "text", "id": "banner_text", "label": "Banner text", "default": "See how COSMO makes common-sense connection a breeze." },
+    { "type": "text", "id": "banner_button_text", "label": "Button text", "default": "Watch the video" },
+    { "type": "url", "id": "banner_video_url", "label": "Video link" }
+  ],
+  "presets": [
+    {
+      "name": "Product how it works",
+      "category": "Product",
+      "blocks": {
+        "panel-1": {
+          "type": "_cp-how-it-works-panel",
+          "settings": {
+            "heading": "Connection made for kids",
+            "text": "<p>JrTrack is the award-winning first device for kids that unlocks the best of childhood with connection and safety. It's all the essentials with none of the worry.</p>"
+          },
+          "blocks": {
+            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Calling" } },
+            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Messaging" } },
+            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Safety" } },
+            "i4": { "type": "_cp-panel-icon", "settings": { "label": "GPS" } },
+            "i5": { "type": "_cp-panel-icon", "settings": { "label": "Music" } },
+            "i6": { "type": "_cp-panel-icon", "settings": { "label": "Camera" } }
+          },
+          "block_order": ["i1", "i2", "i3", "i4", "i5", "i6"]
+        },
+        "panel-2": {
+          "type": "_cp-how-it-works-panel",
+          "settings": {
+            "heading": "Peace of mind for parents",
+            "text": "<p>COSMO gives parents all the tools for confident connection. Get the latest and manage everything in one simple place with the parent app.</p>",
+            "reverse_layout": true,
+            "show_store_badges": true
+          },
+          "blocks": {
+            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Real-time tracking" } },
+            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Parental controls" } },
+            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Approved contacts" } },
+            "i4": { "type": "_cp-panel-icon", "settings": { "label": "Insights dashboard" } }
+          },
+          "block_order": ["i1", "i2", "i3", "i4"]
+        }
+      },
+      "block_order": ["panel-1", "panel-2"]
+    }
+  ]
+}
+{% endschema %}

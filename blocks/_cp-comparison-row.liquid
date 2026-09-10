@@ -1,0 +1,63 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-comparison__row" {{ block.shopify_attributes }}>
+  <div class="cp-comparison__cell cp-comparison__cell--label">{{ block_settings.feature_label }}</div>
+  <div class="cp-comparison__cell cp-comparison__cell--value">
+    {%- case block_settings.cosmo_status -%}
+      {%- when 'check' -%}
+        <span class="svg-wrapper cp-comparison__check">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
+      {%- when 'cross' -%}
+        <span class="svg-wrapper cp-comparison__cross">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+      {%- else -%}
+        {{ block_settings.cosmo_text }}
+    {%- endcase -%}
+  </div>
+  <div class="cp-comparison__cell cp-comparison__cell--value">
+    {%- case block_settings.competitor_status -%}
+      {%- when 'check' -%}
+        <span class="svg-wrapper cp-comparison__check">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
+      {%- when 'cross' -%}
+        <span class="svg-wrapper cp-comparison__cross">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+      {%- else -%}
+        {{ block_settings.competitor_text }}
+    {%- endcase -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Comparison row",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "feature_label", "label": "Feature", "default": "Feature" },
+    {
+      "type": "select",
+      "id": "cosmo_status",
+      "label": "Cosmo value",
+      "options": [
+        { "value": "check", "label": "Checkmark" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "custom", "label": "Custom text" }
+      ],
+      "default": "check"
+    },
+    { "type": "text", "id": "cosmo_text", "label": "Cosmo custom text", "visible_if": "{{ block.settings.cosmo_status == 'custom' }}" },
+    {
+      "type": "select",
+      "id": "competitor_status",
+      "label": "Competitor value",
+      "options": [
+        { "value": "check", "label": "Checkmark" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "custom", "label": "Custom text" }
+      ],
+      "default": "cross"
+    },
+    { "type": "text", "id": "competitor_text", "label": "Competitor custom text", "visible_if": "{{ block.settings.competitor_status == 'custom' }}" }
+  ],
+  "presets": [
+    { "name": "Comparison row" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+<div class="cp-hero__policies" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Policy list",
+  "tag": null,
+  "blocks": [
+    { "type": "_hero-policy-item" }
+  ],
+  "settings": []
+}
+{% endschema %}

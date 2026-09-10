@@ -1,0 +1,60 @@
+{% liquid
+  assign block_settings = block.settings
+  assign product = closest.product
+  assign cosmo_price = block_settings.cosmo_price_override
+  if cosmo_price == blank and product != blank
+    assign cosmo_price = product.selected_or_first_available_variant.price | money
+  endif
+%}
+<div
+  class="cp-comparison__panel"
+  role="tabpanel"
+  ref="tabPanels[]"
+  id="cp-comparison-panel-{{ block.id }}"
+  hidden
+  {{ block.shopify_attributes }}
+>
+  <div class="cp-comparison__header-row">
+    <div class="cp-comparison__cell"></div>
+    <div class="cp-comparison__cell cp-comparison__brand">
+      {%- if section.settings.cosmo_logo != blank -%}
+        {{ section.settings.cosmo_logo | image_url: width: 260 | image_tag: loading: 'lazy', width: 113 }}
+      {%- endif -%}
+      <p>{{ section.settings.cosmo_label }}</p>
+    </div>
+    <div class="cp-comparison__cell cp-comparison__brand">
+      {%- if block_settings.competitor_logo != blank -%}
+        {{ block_settings.competitor_logo | image_url: width: 100 | image_tag: loading: 'lazy', width: 26 }}
+      {%- endif -%}
+      <p>{{ block_settings.competitor_name }}</p>
+    </div>
+  </div>
+
+  <div class="cp-comparison__row cp-comparison__row--price">
+    <div class="cp-comparison__cell cp-comparison__cell--label">Price</div>
+    <div class="cp-comparison__cell cp-comparison__cell--value">{{ cosmo_price }}</div>
+    <div class="cp-comparison__cell cp-comparison__cell--value">{{ block_settings.competitor_price }}</div>
+  </div>
+
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Comparison tab",
+  "tag": null,
+  "blocks": [
+    { "type": "_cp-comparison-row" }
+  ],
+  "settings": [
+    { "type": "text", "id": "tab_label", "label": "Tab label", "default": "JrTrack vs. Competitor" },
+    { "type": "text", "id": "competitor_name", "label": "Competitor name", "default": "Competitor" },
+    { "type": "image_picker", "id": "competitor_logo", "label": "Competitor logo" },
+    { "type": "text", "id": "competitor_price", "label": "Competitor price", "default": "$249.99" },
+    { "type": "text", "id": "cosmo_price_override", "label": "Cosmo price override", "info": "Leave blank to use the live product price." }
+  ],
+  "presets": [
+    { "name": "Comparison tab" }
+  ]
+}
+{% endschema %}

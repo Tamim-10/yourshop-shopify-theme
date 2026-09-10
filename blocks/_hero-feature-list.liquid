@@ -1,0 +1,14 @@
+<div class="cp-hero__features" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Feature list",
+  "tag": null,
+  "blocks": [
+    { "type": "_hero-feature-item" }
+  ],
+  "settings": []
+}
+{% endschema %}

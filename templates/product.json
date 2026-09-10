@@ -1,386 +1,269 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
-      "type": "product-information",
+      "type": "custom-product-hero",
       "blocks": {
-        "product_description_jV7NR4": {
-          "type": "product-description",
-          "name": "t:names.product_description",
-          "settings": {
-            "text": "{{ closest.product.description }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_pGyAWe": {
-          "type": "text",
-          "name": "t:names.heading",
-          "disabled": true,
-          "settings": {
-            "text": "<h2>New arrivals</h2>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "disclosures_g9mWze": {
-          "type": "disclosures",
-          "name": "t:names.disclosures",
-          "settings": {
-            "heading": "Disclosures",
-            "heading_preset": "h5",
-            "open_by_default": false,
-            "icon": "caret",
-            "disclosure_heading_preset": "h6",
-            "text_color": "",
-            "dividers": true,
-            "divider_color": "{{ settings.color_palette.color2 }}",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "media-gallery": {
-          "type": "_product-media-gallery",
+        "hero-feature-list": {
+          "type": "_hero-feature-list",
           "static": true,
-          "settings": {
-            "media_presentation": "grid",
-            "media_columns": "two",
-            "image_gap": 4,
-            "large_first_image": false,
-            "icons_style": "arrow",
-            "slideshow_controls_style": "counter",
-            "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
-            "thumbnail_radius": 0,
-            "aspect_ratio": "adapt",
-            "constrain_to_viewport": true,
-            "media_fit": "contain",
-            "media_radius": 0,
-            "extend_media": false,
-            "zoom": true,
-            "video_loop": false,
-            "hide_variants": true,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "product-details": {
-          "type": "_product-details",
-          "static": true,
-          "settings": {
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "details_position": "flex-start",
-            "gap": 28,
-            "sticky_details_desktop": true,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
           "blocks": {
-            "group_icgrde": {
-              "type": "group",
-              "name": "t:names.header",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
+            "f1": { "type": "_hero-feature-item", "settings": { "label": "Precision HaloGPS" } },
+            "f2": { "type": "_hero-feature-item", "settings": { "label": "Real-time Active Tracking" } },
+            "f3": { "type": "_hero-feature-item", "settings": { "label": "Parent-controlled talk, text & data" } },
+            "f4": { "type": "_hero-feature-item", "settings": { "label": "Distraction-free Focus Mode" } },
+            "f5": { "type": "_hero-feature-item", "settings": { "label": "Flexible parental controls" } },
+            "f6": { "type": "_hero-feature-item", "settings": { "label": "Optional apps & music" } }
+          },
+          "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
+        },
+        "hero-policy-list": {
+          "type": "_hero-policy-list",
+          "static": true,
+          "blocks": {
+            "p1": { "type": "_hero-policy-item", "settings": { "label": "Free Shipping" } },
+            "p2": { "type": "_hero-policy-item", "settings": { "label": "Hassle-Free Returns" } },
+            "p3": { "type": "_hero-policy-item", "settings": { "label": "30 Day Money Back Guarantee" } }
+          },
+          "block_order": ["p1", "p2", "p3"]
+        },
+        "hero-add-to-cart": {
+          "type": "add-to-cart",
+          "static": true,
+          "settings": {
+            "style_class": "button-custom",
+            "custom_button_background": "rgba(13, 109, 238, 1)",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "rgba(13, 109, 238, 1)"
+          }
+        }
+      }
+    },
+    "faq": {
+      "type": "custom-product-faq",
+      "blocks": {
+        "faq_accordion": {
+          "type": "accordion",
+          "settings": { "icon": "plus", "dividers": true },
+          "blocks": {
+            "row-1": {
+              "type": "_accordion-row",
+              "settings": { "open_by_default": true, "heading": "What's in the Box" },
               "blocks": {
-                "text_xrnftG": {
+                "text-1": {
                   "type": "text",
-                  "name": "t:names.product_title",
-                  "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "price_tVjtKg": {
-                  "type": "price",
-                  "settings": {
-                    "show_sale_price_first": true,
-                    "show_installments": false,
-                    "show_tax_info": false,
-                    "type_preset": "paragraph",
-                    "width": "100%",
-                    "alignment": "left",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "text_color": "",
-                    "padding-block-start": 4,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                  "settings": { "text": "<p>JrTrack 5 watch, magnetic charging cable, quick start guide.</p>", "width": "100%" }
                 }
               },
-              "block_order": [
-                "text_xrnftG",
-                "price_tVjtKg"
-              ]
+              "block_order": ["text-1"]
             },
-            "divider_VJhene": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "divider_color": "{{ settings.color_palette.color2 }}",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
-              "settings": {
-                "variant_style": "buttons",
-                "show_swatches": false,
-                "option_label_text_color": "",
-                "variant_style_class": "default",
-                "custom_variant_background": "{{ settings.color_palette.background }}",
-                "custom_variant_text": "{{ settings.color_palette.foreground }}",
-                "custom_variant_border": "{{ settings.color_palette.foreground }}",
-                "selected_variant_style_class": "default",
-                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
-                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
-                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "buy_buttons_eYQEYi": {
-              "type": "buy-buttons",
-              "settings": {
-                "stacking": true,
-                "text_color": "",
-                "show_pickup_availability": false,
-                "gift_card_form": true,
-                "recipient_button_style": "default",
-                "recipient_button_background": "{{ settings.color_palette.background }}",
-                "recipient_button_text": "{{ settings.color_palette.foreground }}",
-                "recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_style": "default",
-                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
-                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "input_style": "default",
-                "input_background_color": "{{ settings.color_palette.background }}",
-                "input_text_color": "{{ settings.color_palette.foreground }}",
-                "input_border_color": "{{ settings.color_palette.foreground }}",
-                "border_width": 1,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
+            "row-2": {
+              "type": "_accordion-row",
+              "settings": { "heading": "Full feature list" },
               "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "static": true,
+                "text-1": {
+                  "type": "text",
                   "settings": {
-                    "input_style": "default",
-                    "input_background_color": "{{ settings.color_palette.background }}",
-                    "input_text_color": "{{ settings.color_palette.foreground }}",
-                    "input_border_color": "{{ settings.color_palette.foreground }}",
-                    "border_width": 1,
-                    "border_radius": 0
-                  },
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true,
-                  "settings": {
-                    "style_class": "button",
-                    "custom_button_background": "{{ settings.color_palette.foreground }}",
-                    "custom_button_text": "{{ settings.color_palette.background }}",
-                    "custom_button_border": "{{ settings.color_palette.background }}"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "static": true,
-                  "settings": {},
-                  "blocks": {}
+                    "text": "<ul><li>True SMS texting, picture, video, and voice messaging</li><li>Approved contacts only</li><li>GPS tracking &amp; safezones</li><li>No social media or internet browsing</li><li>Mission control parent app</li><li>Kid-safe music</li><li>Enhanced parental controls &amp; optional apps</li><li>Reminders &amp; alarms</li><li>SOS Mode &amp; 911 calling (optional)</li><li>2 MP front-facing camera</li><li>IP68 water resistant to one meter</li><li>Pedometer &amp; activity goals</li><li>US, Canada, &amp; Mexico calling coverage</li><li>School mode (distraction-free!)</li><li>Reliable nationwide calling with FlexSIM technology</li></ul>",
+                    "width": "100%"
+                  }
                 }
               },
-              "block_order": []
+              "block_order": ["text-1"]
             },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "t:names.product_description",
-              "settings": {
-                "text": "<ol><li>This Product has {{ closest.product.metafields.custom.warranty.value }} year warranty with a {{ closest.product.metafields.custom.membership_plan.value.plan_name.value }}</li></ol>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+            "row-3": {
+              "type": "_accordion-row",
+              "settings": { "heading": "Data plans & coverage" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>JrTrack 5 uses FlexSIM technology for reliable nationwide coverage across the US, Canada, and Mexico. Data plans are managed monthly through the parent app.</p>",
+                    "width": "100%"
+                  }
+                }
               },
-              "blocks": {}
+              "block_order": ["text-1"]
+            },
+            "row-4": {
+              "type": "_accordion-row",
+              "settings": { "heading": "COSMO guarantee" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>We think JrTrack stands out as the best buy for families: best safety features with our proprietary SafeCORE technology, best connection with real family-safe texting, and best value with premium features at a price that makes sense for families.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
             }
           },
-          "block_order": [
-            "group_icgrde",
-            "divider_VJhene",
-            "variant_picker_R3rGDr",
-            "buy_buttons_eYQEYi",
-            "text_aEtTtq"
-          ]
+          "block_order": ["row-1", "row-2", "row-3", "row-4"]
         }
       },
-      "block_order": [
-        "product_description_jV7NR4",
-        "text_pGyAWe",
-        "disclosures_g9mWze"
-      ],
-      "settings": {
-        "content_width": "content-center-aligned",
-        "desktop_media_position": "left",
-        "equal_columns": false,
-        "limit_details_width": false,
-        "gap": 48,
-        "enable_sticky_add_to_cart": true,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
+      "block_order": ["faq_accordion"]
+    },
+    "seen_in": {
+      "type": "custom-product-seen-in",
+      "blocks": {
+        "l1": { "type": "_cp-logo-item", "settings": { "width": 159 } },
+        "l2": { "type": "_cp-logo-item", "settings": { "width": 293 } },
+        "l3": { "type": "_cp-logo-item", "settings": { "width": 120 } },
+        "l4": { "type": "_cp-logo-item", "settings": { "width": 215 } },
+        "l5": { "type": "_cp-logo-item", "settings": { "width": 58 } },
+        "l6": { "type": "_cp-logo-item", "settings": { "width": 170 } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "l5", "l6"]
+    },
+    "how_it_works": {
+      "type": "custom-product-how-it-works",
+      "blocks": {
+        "panel-1": {
+          "type": "_cp-how-it-works-panel",
+          "settings": {
+            "heading": "Connection made for kids",
+            "text": "<p>JrTrack is the award-winning first device for kids that unlocks the best of childhood with connection and safety. It's all the essentials with none of the worry.</p>"
+          },
+          "blocks": {
+            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Calling" } },
+            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Messaging" } },
+            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Safety" } },
+            "i4": { "type": "_cp-panel-icon", "settings": { "label": "GPS" } },
+            "i5": { "type": "_cp-panel-icon", "settings": { "label": "Music" } },
+            "i6": { "type": "_cp-panel-icon", "settings": { "label": "Camera" } }
+          },
+          "block_order": ["i1", "i2", "i3", "i4", "i5", "i6"]
+        },
+        "panel-2": {
+          "type": "_cp-how-it-works-panel",
+          "settings": {
+            "heading": "Peace of mind for parents",
+            "text": "<p>COSMO gives parents all the tools for confident connection. Get the latest and manage everything in one simple place with the parent app.</p>",
+            "reverse_layout": true,
+            "show_store_badges": true
+          },
+          "blocks": {
+            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Real-time tracking" } },
+            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Parental controls" } },
+            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Approved contacts" } },
+            "i4": { "type": "_cp-panel-icon", "settings": { "label": "Insights dashboard" } }
+          },
+          "block_order": ["i1", "i2", "i3", "i4"]
+        }
+      },
+      "block_order": ["panel-1", "panel-2"]
+    },
+    "tracking": {
+      "type": "custom-product-tracking",
+      "blocks": {
+        "t1": { "type": "_cp-tracking-item", "settings": { "lead_text": "Real-time active tracking", "text": "The only kids watch with real-time, up-to-the-second tracking, built for the speed of parenting." } },
+        "t2": { "type": "_cp-tracking-item", "settings": { "lead_text": "Unmatched accuracy", "text": "All-new HaloGPS puts the power of 115 GNSS satellite signals at your fingertips for amazing location accuracy." } },
+        "t3": { "type": "_cp-tracking-item", "settings": { "lead_text": "Advanced performance", "text": "Powered by a dedicated, state-of-the-art chip, HaloGPS offers dynamic position accuracy with longer battery life." } },
+        "t4": { "type": "_cp-tracking-item", "settings": { "lead_text": "Faster location lock", "text": "Find their real location in seconds, thanks to advanced assisted GPS (aGPS) technology with up to 92% faster location lock." } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    },
+    "families": {
+      "type": "custom-product-families",
+      "blocks": {
+        "f1": { "type": "_cp-family-feature", "settings": { "heading": "Messaging made easy", "text": "<p>Share the moments that matter most. Text, picture, video, and voice messaging is easier than ever with all-new voice-to-text and predictive text.</p>" } },
+        "f2": { "type": "_cp-family-feature", "settings": { "heading": "Focus Mode", "text": "<p>Connection without distraction. All-new Focus Mode gives parents flexible controls to set how and when your child's device is locked.</p>" } },
+        "f3": { "type": "_cp-family-feature", "settings": { "heading": "Apps & flexible parental controls", "text": "<p>Choose from a growing library of kid-safe apps. Plus, set daily time limits on any app. JrTrack is ready to safely grow with your child!</p>" } },
+        "f4": { "type": "_cp-family-feature", "settings": { "heading": "Parent Insights Dashboard", "text": "<p>Our all-new Parent Insights Dashboard keeps you in the know. See activity, app usage, full message history, and more in one simple spot.</p>", "highlight": true } },
+        "f5": { "type": "_cp-family-feature", "settings": { "heading": "HaloGPS + Active Tracking", "text": "<p>Feel the confidence with JrTrack 5. It's the only kids watch with real-time, up-to-the-second tracking, with all-new HaloGPS technology.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+    },
+    "mission_slider": {
+      "type": "custom-product-mission-slider",
+      "blocks": {
+        "m1": { "type": "_cp-mission-slide", "settings": { "lead_text": "Durable", "text": "JrTrack 5 is ready for what kids throw at it. It's certified IP68 and water resistant up to 1.5 meters (5 feet)." } },
+        "m2": { "type": "_cp-mission-slide", "settings": { "lead_text": "All day battery", "text": "No matter how long practice is, JrTrack 5 has you covered with all-day battery." } },
+        "m3": { "type": "_cp-mission-slide", "settings": { "lead_text": "Safety", "text": "JrTrack 5 offers the best safety in the industry through required parent-approved contacts, extensive calling range, and industry-leading real time location tracking." } },
+        "m4": { "type": "_cp-mission-slide", "settings": { "lead_text": "Easy charging", "text": "No need to worry about social media -- your kids don't have access to it. You'll also have the ability to turn on focus modes during activities like school or homework." } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4"]
+    },
+    "cta": {
+      "type": "custom-product-cta"
+    },
+    "adventure": {
+      "type": "custom-product-adventure",
+      "blocks": {
+        "a1": { "type": "_cp-adventure-slide", "settings": { "caption": "Neighborhood adventures" } },
+        "a2": { "type": "_cp-adventure-slide", "settings": { "caption": "School pickups" } },
+        "a3": { "type": "_cp-adventure-slide", "settings": { "caption": "Weekend sports" } },
+        "a4": { "type": "_cp-adventure-slide", "settings": { "caption": "Sleepovers" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"]
+    },
+    "testimonials": {
+      "type": "custom-product-testimonials",
+      "blocks": {
+        "t1": { "type": "_cp-testimonial-item", "settings": { "quote": "I love having something where my boys can get exposure to and ownership of technology as a powerful tool for connection, without incurring a lot of the dangers that are out there today.", "name": "Erin E.", "location": "Texas" } },
+        "t2": { "type": "_cp-testimonial-item", "settings": { "quote": "It's given us a lot of freedom and confidence knowing they can go play and we can all stay in touch if I need them or they need me.", "name": "Marcus T.", "location": "Ohio" } },
+        "t3": { "type": "_cp-testimonial-item", "settings": { "quote": "The parent app makes it so easy to see exactly where my kids are without hovering. It's peace of mind without the guilt.", "name": "Priya K.", "location": "California" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "guarantee": {
+      "type": "custom-product-guarantee",
+      "blocks": {
+        "g1": { "type": "_cp-guarantee-item", "settings": { "label": "30-day money back guarantee" } },
+        "g2": { "type": "_cp-guarantee-item", "settings": { "label": "3 year extended warranty" } },
+        "g3": { "type": "_cp-guarantee-item", "settings": { "label": "Free loyalty upgrades" } },
+        "g4": { "type": "_cp-guarantee-item", "settings": { "label": "Reliable customer support" } }
+      },
+      "block_order": ["g1", "g2", "g3", "g4"]
+    },
+    "press": {
+      "type": "custom-product-press",
+      "blocks": {
+        "p1": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } },
+        "p2": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } },
+        "p3": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "comparison": {
+      "type": "custom-product-comparison",
+      "blocks": {
+        "tab-1": {
+          "type": "_cp-comparison-tab",
+          "settings": { "tab_label": "JrTrack vs. Apple Watch", "competitor_name": "Apple Watch", "competitor_price": "$249.99" },
+          "blocks": {
+            "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "check" } },
+            "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "check" } },
+            "r3": { "type": "_cp-comparison-row", "settings": { "feature_label": "Camera", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r4": { "type": "_cp-comparison-row", "settings": { "feature_label": "Approved contacts only", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r5": { "type": "_cp-comparison-row", "settings": { "feature_label": "Geofencing", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r6": { "type": "_cp-comparison-row", "settings": { "feature_label": "School Mode", "cosmo_status": "check", "competitor_status": "check" } }
+          },
+          "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+        },
+        "tab-2": {
+          "type": "_cp-comparison-tab",
+          "settings": { "tab_label": "JrTrack vs. Verizon Gizmo", "competitor_name": "Verizon Gizmo", "competitor_price": "$150.00" },
+          "blocks": {
+            "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "check" } },
+            "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "check" } },
+            "r3": { "type": "_cp-comparison-row", "settings": { "feature_label": "Multi-Network SIM", "cosmo_status": "check", "competitor_status": "cross" } }
+          },
+          "block_order": ["r1", "r2", "r3"]
+        },
+        "tab-3": {
+          "type": "_cp-comparison-tab",
+          "settings": { "tab_label": "JrTrack vs Fitbit Ace", "competitor_name": "Fitbit Ace", "competitor_price": "$79.95" },
+          "blocks": {
+            "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "cross" } },
+            "r3": { "type": "_cp-comparison-row", "settings": { "feature_label": "Activity Tracking", "cosmo_status": "check", "competitor_status": "check" } }
+          },
+          "block_order": ["r1", "r2", "r3"]
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3"]
     },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
@@ -527,6 +410,18 @@
   },
   "order": [
     "main",
+    "faq",
+    "seen_in",
+    "how_it_works",
+    "tracking",
+    "families",
+    "mission_slider",
+    "cta",
+    "adventure",
+    "testimonials",
+    "guarantee",
+    "press",
+    "comparison",
     "product_recommendations_qggXJq"
   ]
 }

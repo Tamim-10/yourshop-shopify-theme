@@ -1,0 +1,162 @@
+<section class="cp-mission" style="background-color: {{ section.settings.background_color | default: '#063470' }};">
+  <div class="cp-mission__inner">
+    <div class="cp-mission__head">
+      <h3>{{ section.settings.heading }}</h3>
+      <div class="cp-mission__arrows">
+        <button type="button" class="cp-mission__arrow" on:click="#cp-mission-{{ section.id }}/prev" aria-label="Previous">
+          <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
+        </button>
+        <button type="button" class="cp-mission__arrow" on:click="#cp-mission-{{ section.id }}/next" aria-label="Next">
+          <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+        </button>
+      </div>
+    </div>
+
+    <cp-carousel-component id="cp-mission-{{ section.id }}" class="cp-mission__carousel" data-loop="true">
+      <div class="cp-mission__track" ref="track">
+        {% content_for 'blocks' %}
+      </div>
+    </cp-carousel-component>
+  </div>
+</section>
+
+<script src="{{ 'cp-components.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .cp-mission {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 48px 88px;
+  }
+
+  .cp-mission__inner {
+    max-width: 100%;
+    padding: 0 0 0 9%;
+    overflow: hidden;
+  }
+
+  .cp-mission__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 22%;
+  }
+
+  .cp-mission__head h3 {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    color: rgba(240, 235, 224, 1);
+    margin: 0;
+  }
+
+  .cp-mission__arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .cp-mission__arrow {
+    padding: 0;
+  }
+
+  .cp-mission__arrow .svg-wrapper svg {
+    width: 40px;
+    height: 40px;
+    fill: rgba(240, 235, 224, 1);
+  }
+
+  .cp-mission__track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 50px;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .cp-mission__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cp-mission__slide {
+    flex: 0 0 22%;
+    scroll-snap-align: start;
+  }
+
+  .cp-mission__slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    display: block;
+  }
+
+  .cp-mission__slide p {
+    color: rgba(194, 186, 174, 1);
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    margin-top: 20px;
+  }
+
+  .cp-mission__slide p span {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 700;
+    color: rgba(253, 249, 239, 1);
+  }
+
+  @media screen and (max-width: 989px) {
+    .cp-mission__slide {
+      flex: 0 0 45%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-mission__inner {
+      padding: 0 24px;
+    }
+
+    .cp-mission__head {
+      padding-right: 0;
+    }
+
+    .cp-mission__head h3 {
+      font-size: 28px;
+    }
+
+    .cp-mission__arrows {
+      display: none;
+    }
+
+    .cp-mission__slide {
+      flex: 0 0 80%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product mission slider",
+  "blocks": [
+    { "type": "_cp-mission-slide" }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for the mission" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#063470" }
+  ],
+  "presets": [
+    {
+      "name": "Product mission slider",
+      "category": "Product",
+      "blocks": {
+        "m1": { "type": "_cp-mission-slide", "settings": { "lead_text": "Durable", "text": "JrTrack 5 is ready for what kids throw at it. It's certified IP68 and water resistant up to 1.5 meters (5 feet)." } },
+        "m2": { "type": "_cp-mission-slide", "settings": { "lead_text": "All day battery", "text": "No matter how long practice is, JrTrack 5 has you covered with all-day battery." } },
+        "m3": { "type": "_cp-mission-slide", "settings": { "lead_text": "Safety", "text": "JrTrack 5 offers the best safety in the industry through required parent-approved contacts, extensive calling range, and industry-leading real time location tracking." } },
+        "m4": { "type": "_cp-mission-slide", "settings": { "lead_text": "Easy charging", "text": "No need to worry about social media -- your kids don't have access to it. You'll also have the ability to turn on focus modes during activities like school or homework." } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4"]
+    }
+  ]
+}
+{% endschema %}

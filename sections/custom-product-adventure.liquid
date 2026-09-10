@@ -1,0 +1,182 @@
+<section class="cp-adventure" style="background-color: {{ section.settings.background_color | default: '#fdf9f2' }};">
+  <div class="cp-adventure__inner">
+    <div class="cp-adventure__head">
+      <h4>{{ section.settings.heading }}</h4>
+      <div class="cp-adventure__arrows">
+        <button type="button" on:click="#cp-adventure-{{ section.id }}/prev" aria-label="Previous">
+          <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
+        </button>
+        <button type="button" on:click="#cp-adventure-{{ section.id }}/next" aria-label="Next">
+          <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+        </button>
+      </div>
+    </div>
+
+    <cp-carousel-component id="cp-adventure-{{ section.id }}" class="cp-adventure__carousel" data-loop="true">
+      <div class="cp-adventure__track" ref="track">
+        {% content_for 'blocks' %}
+      </div>
+    </cp-carousel-component>
+
+    {%- if section.settings.footer_text != blank -%}
+      <h6 class="cp-adventure__footer">{{ section.settings.footer_text }}</h6>
+    {%- endif -%}
+  </div>
+</section>
+
+<script src="{{ 'cp-components.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .cp-adventure {
+    font-family: 'Sohne', sans-serif;
+    padding-block: 120px 0;
+  }
+
+  .cp-adventure__inner {
+    padding-left: 11%;
+    overflow: hidden;
+  }
+
+  .cp-adventure__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15%;
+    margin-bottom: 24px;
+  }
+
+  .cp-adventure__head h4 {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.3;
+    background-image: linear-gradient(90deg, #655b50 0%, #42362e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+  }
+
+  .cp-adventure__arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .cp-adventure__arrows button {
+    padding: 0;
+  }
+
+  .cp-adventure__arrows .svg-wrapper svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cp-adventure__track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .cp-adventure__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cp-adventure__slide {
+    flex: 0 0 30%;
+    scroll-snap-align: start;
+    position: relative;
+  }
+
+  .cp-adventure__slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cp-adventure__slide p {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    color: rgba(253, 249, 242, 1);
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    margin: 0;
+  }
+
+  .cp-adventure__footer {
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 150%;
+    color: rgba(101, 91, 80, 1);
+    margin: 50px 0 0;
+    padding-right: 15%;
+  }
+
+  @media screen and (max-width: 989px) {
+    .cp-adventure__slide {
+      flex: 0 0 45%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-adventure {
+      padding-block: 60px 0;
+    }
+
+    .cp-adventure__inner {
+      padding-left: 24px;
+    }
+
+    .cp-adventure__head {
+      padding-right: 24px;
+    }
+
+    .cp-adventure__head h4 {
+      font-size: 28px;
+    }
+
+    .cp-adventure__arrows {
+      display: none;
+    }
+
+    .cp-adventure__slide {
+      flex: 0 0 80%;
+    }
+
+    .cp-adventure__footer {
+      padding-right: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product adventures",
+  "blocks": [
+    { "type": "_cp-adventure-slide" }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "All the adventures. None of the worry." },
+    { "type": "text", "id": "footer_text", "label": "Footer text", "default": "Change of plans? No problem. JT5 means flexibility and no stress for all the twists and turns of the day." },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#fdf9f2" }
+  ],
+  "presets": [
+    {
+      "name": "Product adventures",
+      "category": "Product",
+      "blocks": {
+        "a1": { "type": "_cp-adventure-slide", "settings": { "caption": "Neighborhood adventures" } },
+        "a2": { "type": "_cp-adventure-slide", "settings": { "caption": "School pickups" } },
+        "a3": { "type": "_cp-adventure-slide", "settings": { "caption": "Weekend sports" } },
+        "a4": { "type": "_cp-adventure-slide", "settings": { "caption": "Sleepovers" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"]
+    }
+  ]
+}
+{% endschema %}

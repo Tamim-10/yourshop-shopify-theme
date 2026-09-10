@@ -1,0 +1,22 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-families__box{% if block_settings.highlight %} cp-families__box--highlight{% endif %}" {{ block.shopify_attributes }}>
+  <h5>{{ block_settings.heading }}</h5>
+  <div class="cp-families__box-text">{{ block_settings.text }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Family feature",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Feature heading" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "checkbox", "id": "highlight", "label": "Highlight card", "default": false }
+  ],
+  "presets": [
+    { "name": "Family feature" }
+  ]
+}
+{% endschema %}

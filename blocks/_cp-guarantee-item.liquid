@@ -1,0 +1,23 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+<div class="cp-guarantee__item" {{ block.shopify_attributes }}>
+  {%- if block_settings.icon != blank -%}
+    {{ block_settings.icon | image_url: width: 96 | image_tag: loading: 'lazy', width: 48, height: 48 }}
+  {%- endif -%}
+  <span>{{ block_settings.label }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Guarantee item",
+  "tag": null,
+  "settings": [
+    { "type": "image_picker", "id": "icon", "label": "Icon" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Guarantee" }
+  ],
+  "presets": [
+    { "name": "Guarantee item" }
+  ]
+}
+{% endschema %}
