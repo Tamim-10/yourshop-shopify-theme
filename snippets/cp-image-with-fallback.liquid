@@ -1,0 +1,42 @@
+{%- comment -%}
+  Renders `image` (an image_picker setting) if set, otherwise falls back to
+  a bundled theme asset filename so blocks don't render blank before a
+  merchant has picked their own image in the theme editor.
+
+  Params:
+    image          - image_picker setting value (may be blank)
+    fallback       - theme asset filename, e.g. 'Fatherly-Logo.png'
+    width          - source width to request, defaults to 600
+    render_width   - width/height attribute on the tag, defaults to `width`
+    render_height  - height attribute, optional
+    class          - CSS class(es)
+    alt            - alt text, defaults to blank
+    style          - inline style attribute, optional
+{%- endcomment -%}
+{%- liquid
+  assign cp_width = width | default: 600
+  assign cp_render_width = render_width | default: cp_width
+-%}
+{%- if image != blank -%}
+  {{
+    image
+    | image_url: width: cp_width
+    | image_tag: loading: 'lazy', width: cp_render_width, height: render_height, class: class, alt: alt, style: style
+  }}
+{%- elsif fallback != blank -%}
+  {%- comment -%}
+    `image_tag` only accepts URLs produced by `image_url` (Shopify's product/file
+    CDN images) and raises "input to image_tag must be an image_url" for plain
+    `asset_url` strings, so theme-bundled fallback assets are rendered as a
+    hand-built <img> tag instead.
+  {%- endcomment -%}
+  <img
+    src="{{ fallback | asset_url }}"
+    loading="lazy"
+    width="{{ cp_render_width }}"
+    height="{{ render_height | default: cp_render_width }}"
+    {%- if class %} class="{{ class }}"{% endif %}
+    alt="{{ alt }}"
+    {%- if style %} style="{{ style }}"{% endif %}
+  >
+{%- endif -%}

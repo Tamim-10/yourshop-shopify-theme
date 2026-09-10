@@ -2,9 +2,13 @@
   assign block_settings = block.settings
 %}
 <div class="cp-tracking__item" {{ block.shopify_attributes }}>
-  {%- if block_settings.icon != blank -%}
-    {{ block_settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', width: 32, height: 32 }}
-  {%- endif -%}
+  {%- render 'cp-image-with-fallback',
+    image: block_settings.icon,
+    fallback: block_settings.fallback_image,
+    width: 64,
+    render_width: 32,
+    render_height: 32
+  -%}
   <p><span>{{ block_settings.lead_text }} – </span>{{ block_settings.text }}</p>
 </div>
 
@@ -15,7 +19,8 @@
   "settings": [
     { "type": "image_picker", "id": "icon", "label": "Icon" },
     { "type": "text", "id": "lead_text", "label": "Bold lead-in", "default": "Real-time active tracking" },
-    { "type": "text", "id": "text", "label": "Description", "default": "Feature description." }
+    { "type": "text", "id": "text", "label": "Description", "default": "Feature description." },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Tracking feature" }

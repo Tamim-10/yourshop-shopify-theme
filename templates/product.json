@@ -2,17 +2,20 @@
   "sections": {
     "main": {
       "type": "custom-product-hero",
+      "settings": {
+        "rating_icon_fallback": "Review-Stars.svg"
+      },
       "blocks": {
         "hero-feature-list": {
           "type": "_hero-feature-list",
           "static": true,
           "blocks": {
-            "f1": { "type": "_hero-feature-item", "settings": { "label": "Precision HaloGPS" } },
-            "f2": { "type": "_hero-feature-item", "settings": { "label": "Real-time Active Tracking" } },
-            "f3": { "type": "_hero-feature-item", "settings": { "label": "Parent-controlled talk, text & data" } },
-            "f4": { "type": "_hero-feature-item", "settings": { "label": "Distraction-free Focus Mode" } },
-            "f5": { "type": "_hero-feature-item", "settings": { "label": "Flexible parental controls" } },
-            "f6": { "type": "_hero-feature-item", "settings": { "label": "Optional apps & music" } }
+            "f1": { "type": "_hero-feature-item", "settings": { "label": "Precision HaloGPS", "fallback_image": "Pin.svg" } },
+            "f2": { "type": "_hero-feature-item", "settings": { "label": "Real-time Active Tracking", "fallback_image": "Tracking-1.svg" } },
+            "f3": { "type": "_hero-feature-item", "settings": { "label": "Parent-controlled talk, text & data", "fallback_image": "Message.svg" } },
+            "f4": { "type": "_hero-feature-item", "settings": { "label": "Distraction-free Focus Mode", "fallback_image": "Reviews.svg" } },
+            "f5": { "type": "_hero-feature-item", "settings": { "label": "Flexible parental controls", "fallback_image": "Parental-Controls.svg" } },
+            "f6": { "type": "_hero-feature-item", "settings": { "label": "Optional apps & music", "fallback_image": "Music.svg" } }
           },
           "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
         },
@@ -20,9 +23,9 @@
           "type": "_hero-policy-list",
           "static": true,
           "blocks": {
-            "p1": { "type": "_hero-policy-item", "settings": { "label": "Free Shipping" } },
-            "p2": { "type": "_hero-policy-item", "settings": { "label": "Hassle-Free Returns" } },
-            "p3": { "type": "_hero-policy-item", "settings": { "label": "30 Day Money Back Guarantee" } }
+            "p1": { "type": "_hero-policy-item", "settings": { "label": "Free Shipping", "fallback_image": "tick.svg" } },
+            "p2": { "type": "_hero-policy-item", "settings": { "label": "Hassle-Free Returns", "fallback_image": "tick.svg" } },
+            "p3": { "type": "_hero-policy-item", "settings": { "label": "30 Day Money Back Guarantee", "fallback_image": "tick.svg" } }
           },
           "block_order": ["p1", "p2", "p3"]
         },
@@ -107,12 +110,12 @@
     "seen_in": {
       "type": "custom-product-seen-in",
       "blocks": {
-        "l1": { "type": "_cp-logo-item", "settings": { "width": 159 } },
-        "l2": { "type": "_cp-logo-item", "settings": { "width": 293 } },
-        "l3": { "type": "_cp-logo-item", "settings": { "width": 120 } },
-        "l4": { "type": "_cp-logo-item", "settings": { "width": 215 } },
-        "l5": { "type": "_cp-logo-item", "settings": { "width": 58 } },
-        "l6": { "type": "_cp-logo-item", "settings": { "width": 170 } }
+        "l1": { "type": "_cp-logo-item", "settings": { "width": 159, "fallback_image": "safewise-3x.png" } },
+        "l2": { "type": "_cp-logo-item", "settings": { "width": 293, "fallback_image": "new-york-times-3x.png" } },
+        "l3": { "type": "_cp-logo-item", "settings": { "width": 120, "fallback_image": "new-york-live-3x.png" } },
+        "l4": { "type": "_cp-logo-item", "settings": { "width": 215, "fallback_image": "Parents-3x.png" } },
+        "l5": { "type": "_cp-logo-item", "settings": { "width": 58, "fallback_image": "pc-mag-3x.png" } },
+        "l6": { "type": "_cp-logo-item", "settings": { "width": 170, "fallback_image": "Fatherly-Logo.png" } }
       },
       "block_order": ["l1", "l2", "l3", "l4", "l5", "l6"]
     },
@@ -123,15 +126,16 @@
           "type": "_cp-how-it-works-panel",
           "settings": {
             "heading": "Connection made for kids",
-            "text": "<p>JrTrack is the award-winning first device for kids that unlocks the best of childhood with connection and safety. It's all the essentials with none of the worry.</p>"
+            "text": "<p>JrTrack is the award-winning first device for kids that unlocks the best of childhood with connection and safety. It's all the essentials with none of the worry.</p>",
+            "fallback_image": "large-watch.png"
           },
           "blocks": {
-            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Calling" } },
-            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Messaging" } },
-            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Safety" } },
-            "i4": { "type": "_cp-panel-icon", "settings": { "label": "GPS" } },
-            "i5": { "type": "_cp-panel-icon", "settings": { "label": "Music" } },
-            "i6": { "type": "_cp-panel-icon", "settings": { "label": "Camera" } }
+            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Calling", "fallback_image": "iocn-11.svg" } },
+            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Messaging", "fallback_image": "icon-12.svg" } },
+            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Safety", "fallback_image": "icon-13.svg" } },
+            "i4": { "type": "_cp-panel-icon", "settings": { "label": "GPS", "fallback_image": "icon-14.svg" } },
+            "i5": { "type": "_cp-panel-icon", "settings": { "label": "Music", "fallback_image": "icon-15.svg" } },
+            "i6": { "type": "_cp-panel-icon", "settings": { "label": "Camera", "fallback_image": "icon-16.svg" } }
           },
           "block_order": ["i1", "i2", "i3", "i4", "i5", "i6"]
         },
@@ -141,13 +145,16 @@
             "heading": "Peace of mind for parents",
             "text": "<p>COSMO gives parents all the tools for confident connection. Get the latest and manage everything in one simple place with the parent app.</p>",
             "reverse_layout": true,
-            "show_store_badges": true
+            "show_store_badges": true,
+            "fallback_image": "large-mobile-new.png",
+            "fallback_app_store_badge": "Store-download-button.png",
+            "fallback_play_store_badge": "Store-download-button-1.png"
           },
           "blocks": {
-            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Real-time tracking" } },
-            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Parental controls" } },
-            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Approved contacts" } },
-            "i4": { "type": "_cp-panel-icon", "settings": { "label": "Insights dashboard" } }
+            "i1": { "type": "_cp-panel-icon", "settings": { "label": "Real-time tracking", "fallback_image": "icon-56.svg" } },
+            "i2": { "type": "_cp-panel-icon", "settings": { "label": "Parental controls", "fallback_image": "icon-12.svg" } },
+            "i3": { "type": "_cp-panel-icon", "settings": { "label": "Approved contacts", "fallback_image": "icon-13.svg" } },
+            "i4": { "type": "_cp-panel-icon", "settings": { "label": "Insights dashboard", "fallback_image": "icon-16.svg" } }
           },
           "block_order": ["i1", "i2", "i3", "i4"]
         }
@@ -156,16 +163,22 @@
     },
     "tracking": {
       "type": "custom-product-tracking",
+      "settings": {
+        "image_fallback": "watch-large-2.png"
+      },
       "blocks": {
-        "t1": { "type": "_cp-tracking-item", "settings": { "lead_text": "Real-time active tracking", "text": "The only kids watch with real-time, up-to-the-second tracking, built for the speed of parenting." } },
-        "t2": { "type": "_cp-tracking-item", "settings": { "lead_text": "Unmatched accuracy", "text": "All-new HaloGPS puts the power of 115 GNSS satellite signals at your fingertips for amazing location accuracy." } },
-        "t3": { "type": "_cp-tracking-item", "settings": { "lead_text": "Advanced performance", "text": "Powered by a dedicated, state-of-the-art chip, HaloGPS offers dynamic position accuracy with longer battery life." } },
-        "t4": { "type": "_cp-tracking-item", "settings": { "lead_text": "Faster location lock", "text": "Find their real location in seconds, thanks to advanced assisted GPS (aGPS) technology with up to 92% faster location lock." } }
+        "t1": { "type": "_cp-tracking-item", "settings": { "lead_text": "Real-time active tracking", "text": "The only kids watch with real-time, up-to-the-second tracking, built for the speed of parenting.", "fallback_image": "icon-91.svg" } },
+        "t2": { "type": "_cp-tracking-item", "settings": { "lead_text": "Unmatched accuracy", "text": "All-new HaloGPS puts the power of 115 GNSS satellite signals at your fingertips for amazing location accuracy.", "fallback_image": "icon-92.svg" } },
+        "t3": { "type": "_cp-tracking-item", "settings": { "lead_text": "Advanced performance", "text": "Powered by a dedicated, state-of-the-art chip, HaloGPS offers dynamic position accuracy with longer battery life.", "fallback_image": "icon-93.svg" } },
+        "t4": { "type": "_cp-tracking-item", "settings": { "lead_text": "Faster location lock", "text": "Find their real location in seconds, thanks to advanced assisted GPS (aGPS) technology with up to 92% faster location lock.", "fallback_image": "icon-94.svg" } }
       },
       "block_order": ["t1", "t2", "t3", "t4"]
     },
     "families": {
       "type": "custom-product-families",
+      "settings": {
+        "image_fallback": "Frame-48754.png"
+      },
       "blocks": {
         "f1": { "type": "_cp-family-feature", "settings": { "heading": "Messaging made easy", "text": "<p>Share the moments that matter most. Text, picture, video, and voice messaging is easier than ever with all-new voice-to-text and predictive text.</p>" } },
         "f2": { "type": "_cp-family-feature", "settings": { "heading": "Focus Mode", "text": "<p>Connection without distraction. All-new Focus Mode gives parents flexible controls to set how and when your child's device is locked.</p>" } },
@@ -178,60 +191,67 @@
     "mission_slider": {
       "type": "custom-product-mission-slider",
       "blocks": {
-        "m1": { "type": "_cp-mission-slide", "settings": { "lead_text": "Durable", "text": "JrTrack 5 is ready for what kids throw at it. It's certified IP68 and water resistant up to 1.5 meters (5 feet)." } },
-        "m2": { "type": "_cp-mission-slide", "settings": { "lead_text": "All day battery", "text": "No matter how long practice is, JrTrack 5 has you covered with all-day battery." } },
-        "m3": { "type": "_cp-mission-slide", "settings": { "lead_text": "Safety", "text": "JrTrack 5 offers the best safety in the industry through required parent-approved contacts, extensive calling range, and industry-leading real time location tracking." } },
-        "m4": { "type": "_cp-mission-slide", "settings": { "lead_text": "Easy charging", "text": "No need to worry about social media -- your kids don't have access to it. You'll also have the ability to turn on focus modes during activities like school or homework." } }
+        "m1": { "type": "_cp-mission-slide", "settings": { "lead_text": "Durable", "text": "JrTrack 5 is ready for what kids throw at it. It's certified IP68 and water resistant up to 1.5 meters (5 feet).", "fallback_image": "fff.jpg" } },
+        "m2": { "type": "_cp-mission-slide", "settings": { "lead_text": "All day battery", "text": "No matter how long practice is, JrTrack 5 has you covered with all-day battery.", "fallback_image": "fff.jpg" } },
+        "m3": { "type": "_cp-mission-slide", "settings": { "lead_text": "Safety", "text": "JrTrack 5 offers the best safety in the industry through required parent-approved contacts, extensive calling range, and industry-leading real time location tracking.", "fallback_image": "fff.jpg" } },
+        "m4": { "type": "_cp-mission-slide", "settings": { "lead_text": "Easy charging", "text": "No need to worry about social media -- your kids don't have access to it. You'll also have the ability to turn on focus modes during activities like school or homework.", "fallback_image": "fff.jpg" } }
       },
       "block_order": ["m1", "m2", "m3", "m4"]
     },
     "cta": {
-      "type": "custom-product-cta"
+      "type": "custom-product-cta",
+      "settings": {
+        "background_image_fallback": "Frame-48756.jpg",
+        "background_image_mobile_fallback": "mob-good.png"
+      }
     },
     "adventure": {
       "type": "custom-product-adventure",
       "blocks": {
-        "a1": { "type": "_cp-adventure-slide", "settings": { "caption": "Neighborhood adventures" } },
-        "a2": { "type": "_cp-adventure-slide", "settings": { "caption": "School pickups" } },
-        "a3": { "type": "_cp-adventure-slide", "settings": { "caption": "Weekend sports" } },
-        "a4": { "type": "_cp-adventure-slide", "settings": { "caption": "Sleepovers" } }
+        "a1": { "type": "_cp-adventure-slide", "settings": { "caption": "Neighborhood adventures", "fallback_image": "Frame-364.png" } },
+        "a2": { "type": "_cp-adventure-slide", "settings": { "caption": "School pickups", "fallback_image": "IMG.png" } },
+        "a3": { "type": "_cp-adventure-slide", "settings": { "caption": "Weekend sports", "fallback_image": "IMG.png" } },
+        "a4": { "type": "_cp-adventure-slide", "settings": { "caption": "Sleepovers", "fallback_image": "IMG.png" } }
       },
       "block_order": ["a1", "a2", "a3", "a4"]
     },
     "testimonials": {
       "type": "custom-product-testimonials",
       "blocks": {
-        "t1": { "type": "_cp-testimonial-item", "settings": { "quote": "I love having something where my boys can get exposure to and ownership of technology as a powerful tool for connection, without incurring a lot of the dangers that are out there today.", "name": "Erin E.", "location": "Texas" } },
-        "t2": { "type": "_cp-testimonial-item", "settings": { "quote": "It's given us a lot of freedom and confidence knowing they can go play and we can all stay in touch if I need them or they need me.", "name": "Marcus T.", "location": "Ohio" } },
-        "t3": { "type": "_cp-testimonial-item", "settings": { "quote": "The parent app makes it so easy to see exactly where my kids are without hovering. It's peace of mind without the guilt.", "name": "Priya K.", "location": "California" } }
+        "t1": { "type": "_cp-testimonial-item", "settings": { "quote": "I love having something where my boys can get exposure to and ownership of technology as a powerful tool for connection, without incurring a lot of the dangers that are out there today.", "name": "Erin E.", "location": "Texas", "fallback_image": "Ellipse-6.png" } },
+        "t2": { "type": "_cp-testimonial-item", "settings": { "quote": "It's given us a lot of freedom and confidence knowing they can go play and we can all stay in touch if I need them or they need me.", "name": "Marcus T.", "location": "Ohio", "fallback_image": "Ellipse-6.png" } },
+        "t3": { "type": "_cp-testimonial-item", "settings": { "quote": "The parent app makes it so easy to see exactly where my kids are without hovering. It's peace of mind without the guilt.", "name": "Priya K.", "location": "California", "fallback_image": "Ellipse-6.png" } }
       },
       "block_order": ["t1", "t2", "t3"]
     },
     "guarantee": {
       "type": "custom-product-guarantee",
       "blocks": {
-        "g1": { "type": "_cp-guarantee-item", "settings": { "label": "30-day money back guarantee" } },
-        "g2": { "type": "_cp-guarantee-item", "settings": { "label": "3 year extended warranty" } },
-        "g3": { "type": "_cp-guarantee-item", "settings": { "label": "Free loyalty upgrades" } },
-        "g4": { "type": "_cp-guarantee-item", "settings": { "label": "Reliable customer support" } }
+        "g1": { "type": "_cp-guarantee-item", "settings": { "label": "30-day money back guarantee", "fallback_image": "30D-Guarantee.svg" } },
+        "g2": { "type": "_cp-guarantee-item", "settings": { "label": "3 year extended warranty", "fallback_image": "Reviews-3.svg" } },
+        "g3": { "type": "_cp-guarantee-item", "settings": { "label": "Free loyalty upgrades", "fallback_image": "download-3.svg" } },
+        "g4": { "type": "_cp-guarantee-item", "settings": { "label": "Reliable customer support", "fallback_image": "Headphones-Customer-Support--Streamline-Streamline-3.0.svg" } }
       },
       "block_order": ["g1", "g2", "g3", "g4"]
     },
     "press": {
       "type": "custom-product-press",
       "blocks": {
-        "p1": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } },
-        "p2": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } },
-        "p3": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name" } }
+        "p1": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name", "fallback_image": "Image-Placeholder.jpg", "fallback_logo": "Layer_1.png" } },
+        "p2": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name", "fallback_image": "Image-Placeholder-1.jpg", "fallback_logo": "layer-4.png" } },
+        "p3": { "type": "_cp-press-item", "settings": { "quote": "Sem enim felis a cubilia quisque a fringilla tempus a urna tempor ullamcorper adipiscing", "author": "author name", "fallback_image": "Image-Placeholder-1.png", "fallback_logo": "Layer_1_2.png" } }
       },
       "block_order": ["p1", "p2", "p3"]
     },
     "comparison": {
       "type": "custom-product-comparison",
+      "settings": {
+        "cosmo_logo_fallback": "cosmo-logo.png"
+      },
       "blocks": {
         "tab-1": {
           "type": "_cp-comparison-tab",
-          "settings": { "tab_label": "JrTrack vs. Apple Watch", "competitor_name": "Apple Watch", "competitor_price": "$249.99" },
+          "settings": { "tab_label": "JrTrack vs. Apple Watch", "competitor_name": "Apple Watch", "competitor_price": "$249.99", "fallback_logo": "apple-logo.png" },
           "blocks": {
             "r1": { "type": "_cp-comparison-row", "settings": { "feature_label": "Phone", "cosmo_status": "check", "competitor_status": "check" } },
             "r2": { "type": "_cp-comparison-row", "settings": { "feature_label": "GPS Tracking", "cosmo_status": "check", "competitor_status": "check" } },

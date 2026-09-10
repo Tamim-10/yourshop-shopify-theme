@@ -1,8 +1,19 @@
+{%- liquid
+  assign cta_bg_desktop_url = section.settings.background_image | image_url: width: 2000
+  if cta_bg_desktop_url == blank and section.settings.background_image_fallback != blank
+    assign cta_bg_desktop_url = section.settings.background_image_fallback | asset_url
+  endif
+
+  assign cta_bg_mobile_url = section.settings.background_image_mobile | image_url: width: 1200
+  if cta_bg_mobile_url == blank and section.settings.background_image_mobile_fallback != blank
+    assign cta_bg_mobile_url = section.settings.background_image_mobile_fallback | asset_url
+  endif
+-%}
 <section
   class="cp-cta"
   style="
-    --cp-cta-bg-desktop: url({{ section.settings.background_image | image_url: width: 2000 }});
-    --cp-cta-bg-mobile: url({{ section.settings.background_image_mobile | image_url: width: 1200 }});
+    --cp-cta-bg-desktop: url({{ cta_bg_desktop_url }});
+    --cp-cta-bg-mobile: url({{ cta_bg_mobile_url }});
   "
 >
   <div class="cp-cta__inner">
@@ -97,7 +108,9 @@
   "name": "Custom product CTA banner",
   "settings": [
     { "type": "image_picker", "id": "background_image", "label": "Background image (desktop)" },
+    { "type": "text", "id": "background_image_fallback", "label": "Fallback desktop image filename", "visible_if": "{{ false }}" },
     { "type": "image_picker", "id": "background_image_mobile", "label": "Background image (mobile)" },
+    { "type": "text", "id": "background_image_mobile_fallback", "label": "Fallback mobile image filename", "visible_if": "{{ false }}" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Life's good when you're connected" },
     { "type": "text", "id": "text", "label": "Text", "default": "COSMO keeps you close to what matters most" },
     { "type": "text", "id": "button_text", "label": "Button text", "default": "Add to cart" },

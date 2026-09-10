@@ -1,4 +1,10 @@
-<section class="cp-hiw" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
+{%- liquid
+  assign hiw_bg_url = section.settings.background_image | image_url: width: 2000
+  if hiw_bg_url == blank
+    assign hiw_bg_url = section.settings.background_image_fallback | default: '2.jpg' | asset_url
+  endif
+-%}
+<section class="cp-hiw" style="background-image: url({{ hiw_bg_url }});">
   <div class="cp-hiw__inner">
     <p class="cp-hiw__eyebrow">{{ section.settings.eyebrow }}</p>
     <h3 class="cp-hiw__heading">{{ section.settings.heading }}</h3>
@@ -220,6 +226,7 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "how it works" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Cosmo keeps you close to what matters most" },
     { "type": "image_picker", "id": "background_image", "label": "Background image" },
+    { "type": "text", "id": "background_image_fallback", "label": "Fallback background asset filename", "visible_if": "{{ false }}" },
     {
       "type": "header",
       "content": "Video banner"

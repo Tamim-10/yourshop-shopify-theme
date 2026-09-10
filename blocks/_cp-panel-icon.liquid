@@ -2,9 +2,13 @@
   assign block_settings = block.settings
 %}
 <div class="cp-panel__icon-item" {{ block.shopify_attributes }}>
-  {%- if block_settings.icon != blank -%}
-    {{ block_settings.icon | image_url: width: 48 | image_tag: loading: 'lazy', width: 24, height: 24 }}
-  {%- endif -%}
+  {%- render 'cp-image-with-fallback',
+    image: block_settings.icon,
+    fallback: block_settings.fallback_image,
+    width: 48,
+    render_width: 24,
+    render_height: 24
+  -%}
   <span>{{ block_settings.label }}</span>
 </div>
 
@@ -14,7 +18,8 @@
   "tag": null,
   "settings": [
     { "type": "image_picker", "id": "icon", "label": "Icon" },
-    { "type": "text", "id": "label", "label": "Label", "default": "Feature" }
+    { "type": "text", "id": "label", "label": "Label", "default": "Feature" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Icon item" }

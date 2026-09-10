@@ -5,9 +5,13 @@
   <div class="cp-testimonials__card">
     <p>&ldquo;{{ block_settings.quote }}&rdquo;</p>
     <div class="cp-testimonials__avatar">
-      {%- if block_settings.avatar != blank -%}
-        {{ block_settings.avatar | image_url: width: 120 | image_tag: loading: 'lazy', width: 58, height: 58 }}
-      {%- endif -%}
+      {%- render 'cp-image-with-fallback',
+        image: block_settings.avatar,
+        fallback: block_settings.fallback_image,
+        width: 120,
+        render_width: 58,
+        render_height: 58
+      -%}
       <div>
         <p class="cp-testimonials__name">{{ block_settings.name }}</p>
         <span>{{ block_settings.location }}</span>
@@ -24,7 +28,8 @@
     { "type": "textarea", "id": "quote", "label": "Quote" },
     { "type": "image_picker", "id": "avatar", "label": "Avatar" },
     { "type": "text", "id": "name", "label": "Name", "default": "Customer" },
-    { "type": "text", "id": "location", "label": "Location", "default": "USA" }
+    { "type": "text", "id": "location", "label": "Location", "default": "USA" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Testimonial" }

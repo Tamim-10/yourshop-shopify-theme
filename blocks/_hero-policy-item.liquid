@@ -2,9 +2,14 @@
   assign block_settings = block.settings
 %}
 <div class="cp-hero__policy" {{ block.shopify_attributes }}>
-  {%- if block_settings.icon != blank -%}
-    {{ block_settings.icon | image_url: width: 32 | image_tag: loading: 'lazy', width: 16, height: 16, class: 'cp-hero__policy-icon' }}
-  {%- endif -%}
+  {%- render 'cp-image-with-fallback',
+    image: block_settings.icon,
+    fallback: block_settings.fallback_image,
+    width: 32,
+    render_width: 16,
+    render_height: 16,
+    class: 'cp-hero__policy-icon'
+  -%}
   <span>{{ block_settings.label }}</span>
 </div>
 
@@ -23,6 +28,12 @@
       "id": "label",
       "label": "Label",
       "default": "Free Shipping"
+    },
+    {
+      "type": "text",
+      "id": "fallback_image",
+      "label": "Fallback asset filename",
+      "visible_if": "{{ false }}"
     }
   ],
   "presets": [

@@ -3,9 +3,11 @@
 %}
 <div class="cp-hiw__panel{% if block_settings.reverse_layout %} cp-hiw__panel--reverse{% endif %}" {{ block.shopify_attributes }}>
   <div class="cp-hiw__panel-media">
-    {%- if block_settings.image != blank -%}
-      {{ block_settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1400' }}
-    {%- endif -%}
+    {%- render 'cp-image-with-fallback',
+      image: block_settings.image,
+      fallback: block_settings.fallback_image,
+      width: 1400
+    -%}
   </div>
   <div class="cp-hiw__panel-content">
     <h4>{{ block_settings.heading }}</h4>
@@ -15,12 +17,18 @@
     </div>
     {%- if block_settings.show_store_badges -%}
       <div class="cp-hiw__store-badges">
-        {%- if block_settings.app_store_badge != blank -%}
-          {{ block_settings.app_store_badge | image_url: width: 240 | image_tag: loading: 'lazy', width: 120 }}
-        {%- endif -%}
-        {%- if block_settings.play_store_badge != blank -%}
-          {{ block_settings.play_store_badge | image_url: width: 240 | image_tag: loading: 'lazy', width: 120 }}
-        {%- endif -%}
+        {%- render 'cp-image-with-fallback',
+          image: block_settings.app_store_badge,
+          fallback: block_settings.fallback_app_store_badge,
+          width: 240,
+          render_width: 120
+        -%}
+        {%- render 'cp-image-with-fallback',
+          image: block_settings.play_store_badge,
+          fallback: block_settings.fallback_play_store_badge,
+          width: 240,
+          render_width: 120
+        -%}
       </div>
     {%- endif -%}
   </div>
@@ -40,7 +48,10 @@
     { "type": "checkbox", "id": "reverse_layout", "label": "Image on right", "default": false },
     { "type": "checkbox", "id": "show_store_badges", "label": "Show app store badges", "default": false },
     { "type": "image_picker", "id": "app_store_badge", "label": "App Store badge" },
-    { "type": "image_picker", "id": "play_store_badge", "label": "Google Play badge" }
+    { "type": "image_picker", "id": "play_store_badge", "label": "Google Play badge" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback image asset filename", "visible_if": "{{ false }}" },
+    { "type": "text", "id": "fallback_app_store_badge", "label": "Fallback App Store badge filename", "visible_if": "{{ false }}" },
+    { "type": "text", "id": "fallback_play_store_badge", "label": "Fallback Play Store badge filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Feature panel" }

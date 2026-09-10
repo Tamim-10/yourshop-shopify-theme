@@ -17,15 +17,21 @@
   <div class="cp-comparison__header-row">
     <div class="cp-comparison__cell"></div>
     <div class="cp-comparison__cell cp-comparison__brand">
-      {%- if section.settings.cosmo_logo != blank -%}
-        {{ section.settings.cosmo_logo | image_url: width: 260 | image_tag: loading: 'lazy', width: 113 }}
-      {%- endif -%}
+      {%- render 'cp-image-with-fallback',
+        image: section.settings.cosmo_logo,
+        fallback: section.settings.cosmo_logo_fallback,
+        width: 260,
+        render_width: 113
+      -%}
       <p>{{ section.settings.cosmo_label }}</p>
     </div>
     <div class="cp-comparison__cell cp-comparison__brand">
-      {%- if block_settings.competitor_logo != blank -%}
-        {{ block_settings.competitor_logo | image_url: width: 100 | image_tag: loading: 'lazy', width: 26 }}
-      {%- endif -%}
+      {%- render 'cp-image-with-fallback',
+        image: block_settings.competitor_logo,
+        fallback: block_settings.fallback_logo,
+        width: 100,
+        render_width: 26
+      -%}
       <p>{{ block_settings.competitor_name }}</p>
     </div>
   </div>
@@ -51,7 +57,8 @@
     { "type": "text", "id": "competitor_name", "label": "Competitor name", "default": "Competitor" },
     { "type": "image_picker", "id": "competitor_logo", "label": "Competitor logo" },
     { "type": "text", "id": "competitor_price", "label": "Competitor price", "default": "$249.99" },
-    { "type": "text", "id": "cosmo_price_override", "label": "Cosmo price override", "info": "Leave blank to use the live product price." }
+    { "type": "text", "id": "cosmo_price_override", "label": "Cosmo price override", "info": "Leave blank to use the live product price." },
+    { "type": "text", "id": "fallback_logo", "label": "Fallback logo asset filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Comparison tab" }

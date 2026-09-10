@@ -2,9 +2,11 @@
   assign block_settings = block.settings
 %}
 <div class="cp-adventure__slide" ref="slides[]" {{ block.shopify_attributes }}>
-  {%- if block_settings.image != blank -%}
-    {{ block_settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 500, 900' }}
-  {%- endif -%}
+  {%- render 'cp-image-with-fallback',
+    image: block_settings.image,
+    fallback: block_settings.fallback_image,
+    width: 900
+  -%}
   <p>{{ block_settings.caption }}</p>
 </div>
 
@@ -14,7 +16,8 @@
   "tag": null,
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "text", "id": "caption", "label": "Caption", "default": "Adventure" }
+    { "type": "text", "id": "caption", "label": "Caption", "default": "Adventure" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Adventure slide" }

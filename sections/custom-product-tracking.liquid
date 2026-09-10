@@ -6,11 +6,13 @@
     <h3 class="cp-tracking__heading">{{ section.settings.heading }}</h3>
     <h5 class="cp-tracking__subheading">{{ section.settings.subheading }}</h5>
 
-    {%- if section.settings.image != blank -%}
-      <div class="cp-tracking__media">
-        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1400' }}
-      </div>
-    {%- endif -%}
+    <div class="cp-tracking__media">
+      {%- render 'cp-image-with-fallback',
+        image: section.settings.image,
+        fallback: section.settings.image_fallback,
+        width: 1400
+      -%}
+    </div>
 
     <div class="cp-tracking__items">
       {% content_for 'blocks' %}
@@ -130,6 +132,7 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "Precision GPS location tracking" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Faster. Smarter. Safer. From the inside out." },
     { "type": "image_picker", "id": "image", "label": "Watch image" },
+    { "type": "text", "id": "image_fallback", "label": "Fallback image asset filename", "visible_if": "{{ false }}" },
     { "type": "color", "id": "background_color", "label": "Background color", "default": "#052b5d" }
   ],
   "presets": [

@@ -2,9 +2,13 @@
   assign block_settings = block.settings
 %}
 <div class="cp-guarantee__item" {{ block.shopify_attributes }}>
-  {%- if block_settings.icon != blank -%}
-    {{ block_settings.icon | image_url: width: 96 | image_tag: loading: 'lazy', width: 48, height: 48 }}
-  {%- endif -%}
+  {%- render 'cp-image-with-fallback',
+    image: block_settings.icon,
+    fallback: block_settings.fallback_image,
+    width: 96,
+    render_width: 48,
+    render_height: 48
+  -%}
   <span>{{ block_settings.label }}</span>
 </div>
 
@@ -14,7 +18,8 @@
   "tag": null,
   "settings": [
     { "type": "image_picker", "id": "icon", "label": "Icon" },
-    { "type": "text", "id": "label", "label": "Label", "default": "Guarantee" }
+    { "type": "text", "id": "label", "label": "Label", "default": "Guarantee" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "visible_if": "{{ false }}" }
   ],
   "presets": [
     { "name": "Guarantee item" }

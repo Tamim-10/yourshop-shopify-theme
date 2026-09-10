@@ -83,9 +83,12 @@
 
       {%- if section.settings.show_rating -%}
         <div class="cp-hero__rating">
-          {%- if section.settings.rating_icon != blank -%}
-            {{ section.settings.rating_icon | image_url: width: 200 | image_tag: loading: 'lazy', class: 'cp-hero__rating-stars' }}
-          {%- endif -%}
+          {%- render 'cp-image-with-fallback',
+            image: section.settings.rating_icon,
+            fallback: section.settings.rating_icon_fallback,
+            width: 200,
+            class: 'cp-hero__rating-stars'
+          -%}
           <span class="cp-hero__rating-text">
             {{ section.settings.rating_value }} ({{ section.settings.review_count }} reviews)
           </span>
@@ -110,6 +113,28 @@
           {{ section.settings.custom_description }}
         {%- endif -%}
       </div>
+
+      {%- liquid
+        assign warranty_years = product.metafields.custom.warranty.value
+        assign membership_plan = product.metafields.custom.membership_plan.value.plan_name.value
+        assign has_warranty_data = false
+        if warranty_years != blank or membership_plan != blank
+          assign has_warranty_data = true
+        endif
+      -%}
+      {%- if section.settings.show_warranty_info and has_warranty_data -%}
+        <div class="cp-hero__warranty">
+          {%- if warranty_years != blank -%}
+            <span>{{ warranty_years }} year warranty</span>
+          {%- endif -%}
+          {%- if warranty_years != blank and membership_plan != blank -%}
+            <span class="cp-hero__warranty-divider">&middot;</span>
+          {%- endif -%}
+          {%- if membership_plan != blank -%}
+            <span>Includes {{ membership_plan }} membership</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
 
       {% content_for 'block', type: '_hero-feature-list', id: 'hero-feature-list' %}
 
@@ -149,11 +174,11 @@
           <div class="cp-hero__prime-badge">
             <span>
               Buy With
-              {%- if section.settings.prime_badge_image != blank -%}
-                {{ section.settings.prime_badge_image | image_url: width: 160 | image_tag: loading: 'lazy' }}
-              {%- else -%}
-                Prime
-              {%- endif -%}
+              {%- render 'cp-image-with-fallback',
+                image: section.settings.prime_badge_image,
+                fallback: 'Layer_1.svg',
+                width: 160
+              -%}
             </span>
           </div>
           <span class="cp-hero__prime-text">{{ section.settings.prime_text }}</span>
@@ -284,6 +309,21 @@
     font-size: 18px;
     line-height: 150%;
     color: rgba(66, 54, 46, 1);
+  }
+
+  .cp-hero__warranty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(101, 91, 80, 1);
+  }
+
+  .cp-hero__warranty-divider {
+    color: rgba(194, 186, 174, 1);
   }
 
   .cp-hero__features {
@@ -468,6 +508,17 @@
     },
     {
       "type": "header",
+      "content": "Product data"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_warranty_info",
+      "label": "Show warranty & membership line",
+      "default": true,
+      "info": "Reads product.metafields.custom.warranty and product.metafields.custom.membership_plan. Hidden automatically if neither is set on the product."
+    },
+    {
+      "type": "header",
       "content": "Rating"
     },
     {
@@ -480,6 +531,12 @@
       "type": "image_picker",
       "id": "rating_icon",
       "label": "Rating stars image"
+    },
+    {
+      "type": "text",
+      "id": "rating_icon_fallback",
+      "label": "Fallback rating icon filename",
+      "visible_if": "{{ false }}"
     },
     {
       "type": "text",

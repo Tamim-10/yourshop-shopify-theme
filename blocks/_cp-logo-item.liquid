@@ -1,10 +1,14 @@
 {% liquid
   assign block_settings = block.settings
+  assign inline_style = 'width:' | append: block_settings.width | append: 'px'
 %}
 <div class="cp-seen__logo" {{ block.shopify_attributes }}>
-  {%- if block_settings.image != blank -%}
-    {{ block_settings.image | image_url: width: 600 | image_tag: loading: 'lazy', style: 'width:' | append: block_settings.width | append: 'px', class: 'cp-seen__logo-image' }}
-  {%- endif -%}
+  {%- render 'cp-image-with-fallback',
+    image: block_settings.image,
+    fallback: block_settings.fallback_image,
+    class: 'cp-seen__logo-image',
+    style: inline_style
+  -%}
 </div>
 
 {% schema %}
@@ -22,6 +26,12 @@
       "id": "width",
       "label": "Width (px)",
       "default": 150
+    },
+    {
+      "type": "text",
+      "id": "fallback_image",
+      "label": "Fallback asset filename",
+      "visible_if": "{{ false }}"
     }
   ],
   "presets": [
