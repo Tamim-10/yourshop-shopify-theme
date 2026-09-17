@@ -1,0 +1,42 @@
+{% render 'custom-product-fonts' %}
+
+{% liquid 
+    assign product = section.settings.main_product
+
+    if product == blank
+    assign product = collections.all.products.first
+    endif
+
+  assign variant = product.selected_or_first_available_variant
+
+  assign school_clip_product = all_products[section.settings.school_clip_handle]
+  assign screen_protector_product = all_products[section.settings.screen_protector_handle]
+  assign charging_stand_product = all_products[section.settings.charging_stand_handle]
+%}
+
+<div> 
+  <h1>Customize JrTrack</h1>
+
+  <p>Watch: {{ product.title }}</p>
+  <p>Variant: {{ variant.title }}</p>
+
+  <p>School Clip: {{ school_clip_product.title }}</p>
+  <p>Screen Protector: {{ screen_protector_product.title }}</p>
+  <p>Charging Stand: {{ charging_stand_product.title }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Product configurator",
+  "settings": [
+    {
+    "type": "product",
+    "id": "main_product",
+    "label": "Watch product"
+    },
+    { "type": "text", "id": "school_clip_handle", "label": "School Clip product handle", "default": "school-clip" },
+    { "type": "text", "id": "screen_protector_handle", "label": "Screen Protector product handle", "default": "screen-protector" },
+    { "type": "text", "id": "charging_stand_handle", "label": "Charging Stand product handle", "default": "charging-stand" }
+  ]
+}
+{% endschema %}
