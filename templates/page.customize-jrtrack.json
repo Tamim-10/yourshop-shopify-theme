@@ -11,7 +11,12 @@
   "sections": {
     "main": {
       "type": "custom-product-configurator",
-      "settings": {}
+      "settings": {
+        "main_product": "jrtrack-5-se-kids-smartwatch",
+        "school_clip_handle": "school-clip",
+        "screen_protector_handle": "screen-protector",
+        "charging_stand_handle": "charging-stand"
+      }
     }
   },
   "order": [
