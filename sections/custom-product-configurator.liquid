@@ -80,7 +80,6 @@
 
   <div class="cp-configurator__layout">
 
-
     {%- comment -%}
       ==========================================================
       LEFT — PRODUCT MEDIA
@@ -93,8 +92,8 @@
 
         <div class="cp-configurator__image-wrap">
 
-          {%- assign display_image = variant.featured_image | default: product.featured_image -%}
-          {%- assign display_alt = display_image.alt | default: product.title -%}
+          {% assign display_image = variant.featured_image | default: product.featured_image %}
+          {% assign display_alt = display_image.alt | default: product.title %}
 
           {% render 'cp-image-with-fallback',
             image: display_image,
@@ -109,7 +108,10 @@
             class="cp-configurator__3d-btn"
             disabled
           >
-            <span class="cp-configurator__3d-icon" aria-hidden="true">
+            <span
+              class="cp-configurator__3d-icon"
+              aria-hidden="true"
+            >
               ◇
             </span>
 
@@ -212,7 +214,6 @@
           </span>
 
         </div>
-
 
         <div class="cp-configurator__payment-options">
 
@@ -326,7 +327,6 @@
 
         </div>
 
-
         <div class="cp-configurator__product-options">
 
           {% for school_variant in school_clip_product.variants %}
@@ -376,7 +376,6 @@
 
         </div>
 
-
         <button
           type="button"
           class="cp-configurator__learn-more"
@@ -401,18 +400,18 @@
         data-config-section="band"
       >
 
-   {% liquid
-  assign band_option = nil
+        {% liquid
+          assign band_option = nil
 
-  for option in product.options_with_values
-    assign option_name = option.name | downcase
+          for option in product.options_with_values
+            assign option_name = option.name | downcase
 
-    if option_name == 'band color'
-      assign band_option = option
-      break
-    endif
-  endfor
-%}
+            if option_name == 'band color'
+              assign band_option = option
+              break
+            endif
+          endfor
+        %}
 
         <div class="cp-configurator__offer-label">
           INCLUDED FREE · BACK-TO-SCHOOL OFFER
@@ -436,7 +435,6 @@
 
         </div>
 
-
         <div class="cp-configurator__product-options cp-configurator__product-options--band">
 
           {% if band_option != blank %}
@@ -447,23 +445,32 @@
                 assign band_variant = nil
 
                 for v in product.variants
+
                   case band_option.position
+
                     when 1
+
                       if v.option1 == band_value
                         assign band_variant = v
                         break
                       endif
+
                     when 2
+
                       if v.option2 == band_value
                         assign band_variant = v
                         break
                       endif
+
                     when 3
+
                       if v.option3 == band_value
                         assign band_variant = v
                         break
                       endif
+
                   endcase
+
                 endfor
               %}
 
@@ -483,8 +490,10 @@
                   aria-pressed="{% if band_variant.id == variant.id %}true{% else %}false{% endif %}"
                   aria-label="{{ band_value | escape }}"
                   title="{{ band_value | escape }}"
+
                   {% if band_value.swatch.color %}
                     style="background-color: {{ band_value.swatch.color }};"
+
                   {% elsif band_value.swatch.image %}
                     style="background-image: url('{{ band_value.swatch.image | image_url: width: 100 }}');"
                   {% endif %}
@@ -526,48 +535,60 @@
         </div>
 
 
-        <div class="cp-configurator__simple-options">
+        <div class="cp-configurator__protector-options">
+
+          {%- comment -%}
+            NONE
+          {%- endcomment -%}
 
           <button
             type="button"
-            class="cp-configurator__simple-option is-selected"
+            class="cp-configurator__protector-swatch is-selected"
             data-screen-protector="none"
+            data-price="0"
             aria-pressed="true"
+            aria-label="None"
+            title="None"
           >
-            <span class="cp-configurator__radio">
-              <span></span>
-            </span>
-
-            <span>None</span>
+            <span class="cp-configurator__protector-none-icon"></span>
           </button>
 
 
           {% if screen_protector_product != blank %}
 
-            {% assign screen_variant = screen_protector_product.selected_or_first_available_variant %}
+            {% for screen_variant in screen_protector_product.variants %}
 
-            <button
-              type="button"
-              class="cp-configurator__simple-option"
-              data-screen-protector="enabled"
-              data-variant-id="{{ screen_variant.id }}"
-              data-price="{{ screen_variant.price }}"
-              aria-pressed="false"
-            >
+              {% assign protector_name = screen_variant.title | downcase %}
 
-              <span class="cp-configurator__radio">
-                <span></span>
-              </span>
+              <button
+                type="button"
+                class="cp-configurator__protector-swatch"
+                data-screen-protector="enabled"
+                data-variant-id="{{ screen_variant.id }}"
+                data-price="{{ screen_variant.price }}"
+                data-protector-title="{{ screen_variant.title | escape }}"
+                aria-pressed="false"
+                aria-label="{{ screen_variant.title | escape }}"
+                title="{{ screen_variant.title | escape }}"
 
-              <span>
-                Screen Protector
-              </span>
+                {% if protector_name contains 'black' %}
+                  style="--protector-color: #202124;"
 
-              <strong>
-                {{ screen_variant.price | money }}
-              </strong>
+                {% elsif protector_name contains 'pink' %}
+                  style="--protector-color: #f39acb;"
 
-            </button>
+                {% elsif protector_name contains 'teal' %}
+                  style="--protector-color: #68b6b7;"
+
+                {% elsif protector_name contains 'green' %}
+                  style="--protector-color: #a8ff75;"
+
+                {% else %}
+                  style="--protector-color: #d9d9d9;"
+                {% endif %}
+              ></button>
+
+            {% endfor %}
 
           {% endif %}
 
@@ -688,6 +709,7 @@
           data-config-checkout
         >
           Checkout
+
           <span data-checkout-price>
             {{ product_price | money }}
           </span>
@@ -735,38 +757,50 @@
 
           <div class="cp-configurator__review-item">
             <span>Watch</span>
-            <strong>{{ product.title }}</strong>
+
+            <strong>
+              {{ product.title }}
+            </strong>
           </div>
+
 
           <div class="cp-configurator__review-item">
             <span>School Clip</span>
+
             <strong data-review-school-clip>
               {{ school_clip_product.variants.first.title }}
             </strong>
           </div>
 
+
           <div class="cp-configurator__review-item">
             <span>Band</span>
+
             <strong data-review-band>
               {{ variant.title }}
             </strong>
           </div>
 
+
           <div class="cp-configurator__review-item">
             <span>Screen Protector</span>
+
             <strong data-review-protector>
               None
             </strong>
           </div>
 
+
           <div class="cp-configurator__review-item">
             <span>Charging</span>
+
             <strong data-review-charging>
               Standard Charging Clip
             </strong>
           </div>
 
         </div>
+
 
         <div class="cp-configurator__review-total">
 
@@ -793,7 +827,10 @@
   ============================================================
 {%- endcomment -%}
 
-<script type="application/json" data-config-product>
+<script
+  type="application/json"
+  data-config-product
+>
 {
   "productId": {{ product.id | json }},
   "productHandle": {{ product.handle | json }},
@@ -805,14 +842,20 @@
   "schoolClip": {
     "productId": {{ school_clip_product.id | default: 0 | json }},
     "variants": [
+
       {% for school_variant in school_clip_product.variants %}
+
         {
           "id": {{ school_variant.id | json }},
           "title": {{ school_variant.title | json }},
           "price": 0,
           "available": {{ school_variant.available | json }}
-        }{% unless forloop.last %},{% endunless %}
+        }
+
+        {% unless forloop.last %},{% endunless %}
+
       {% endfor %}
+
     ]
   },
 
@@ -830,7 +873,9 @@
 }
 </script>
 
+
 {{ 'custom-product-configurator.js' | asset_url | script_tag }}
+
 
 {% schema %}
 {
@@ -878,4 +923,4 @@
     }
   ]
 }
-{% endschema %} 
+{% endschema %}
