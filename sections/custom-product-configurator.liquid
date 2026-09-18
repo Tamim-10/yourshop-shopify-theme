@@ -1,42 +1,881 @@
+{{ 'custom-product-configurator.css' | asset_url | stylesheet_tag }}
+
 {% render 'custom-product-fonts' %}
 
-{% liquid 
-    assign product = section.settings.main_product
+{% liquid
+  assign product = section.settings.main_product
 
-    if product == blank
+  if product == blank
     assign product = collections.all.products.first
-    endif
+  endif
 
   assign variant = product.selected_or_first_available_variant
 
   assign school_clip_product = all_products[section.settings.school_clip_handle]
   assign screen_protector_product = all_products[section.settings.screen_protector_handle]
   assign charging_stand_product = all_products[section.settings.charging_stand_handle]
+
+  assign product_price = variant.price
+  assign product_compare_price = variant.compare_at_price
+
+  if product_compare_price == blank
+    assign product_compare_price = product.compare_at_price
+  endif
+
+  if product_compare_price > product_price
+    assign discount_amount = product_compare_price | minus: product_price
+    assign discount_percentage = discount_amount | times: 100 | divided_by: product_compare_price
+  endif
 %}
 
-<div> 
-  <h1>Customize JrTrack</h1>
+<div
+  class="cp-configurator"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-product-handle="{{ product.handle }}"
+>
 
-  <p>Watch: {{ product.title }}</p>
-  <p>Variant: {{ variant.title }}</p>
+  {%- comment -%}
+    ============================================================
+    HEADER
+    ============================================================
+  {%- endcomment -%}
 
-  <p>School Clip: {{ school_clip_product.title }}</p>
-  <p>Screen Protector: {{ screen_protector_product.title }}</p>
-  <p>Charging Stand: {{ charging_stand_product.title }}</p>
+  <header class="cp-configurator__header">
+
+    <a
+      href="javascript:history.back()"
+      class="cp-configurator__back"
+      aria-label="Go back"
+    >
+      <span aria-hidden="true">‹</span>
+      <span>Back</span>
+    </a>
+
+    <div class="cp-configurator__logo">
+      {% if section.settings.logo != blank %}
+        {{
+          section.settings.logo
+          | image_url: width: 300
+          | image_tag:
+            loading: 'eager',
+            class: 'cp-configurator__logo-image',
+            alt: shop.name
+        }}
+      {% else %}
+        <span>{{ shop.name }}</span>
+      {% endif %}
+    </div>
+
+    <div class="cp-configurator__header-spacer"></div>
+
+  </header>
+
+
+  {%- comment -%}
+    ============================================================
+    MAIN CONFIGURATOR
+    ============================================================
+  {%- endcomment -%}
+
+  <div class="cp-configurator__layout">
+
+
+    {%- comment -%}
+      ==========================================================
+      LEFT — PRODUCT MEDIA
+      ==========================================================
+    {%- endcomment -%}
+
+    <div class="cp-configurator__media-column">
+
+      <div class="cp-configurator__media">
+
+        <div class="cp-configurator__image-wrap">
+
+          {%- assign display_image = variant.featured_image | default: product.featured_image -%}
+          {%- assign display_alt = display_image.alt | default: product.title -%}
+
+          {% render 'cp-image-with-fallback',
+            image: display_image,
+            fallback: 'large-watch.png',
+            width: 1000,
+            class: 'cp-configurator__image',
+            alt: display_alt
+          %}
+
+          <button
+            type="button"
+            class="cp-configurator__3d-btn"
+            disabled
+          >
+            <span class="cp-configurator__3d-icon" aria-hidden="true">
+              ◇
+            </span>
+
+            <span>View in 3D</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {%- comment -%}
+      ==========================================================
+      RIGHT — CONFIGURATION PANEL
+      ==========================================================
+    {%- endcomment -%}
+
+    <div class="cp-configurator__panel">
+
+
+      {%- comment -%}
+        ========================================================
+        PRODUCT INFORMATION
+        ========================================================
+      {%- endcomment -%}
+
+      <section class="cp-configurator__product-info">
+
+        <div class="cp-configurator__product-title-row">
+
+          <h1 class="cp-configurator__product-title">
+            {{ product.title }}
+          </h1>
+
+          {% if section.settings.show_new_badge %}
+            <span class="cp-configurator__new-badge">
+              NEW
+            </span>
+          {% endif %}
+
+        </div>
+
+        {% if section.settings.product_subtitle != blank %}
+          <p class="cp-configurator__product-subtitle">
+            {{ section.settings.product_subtitle }}
+          </p>
+        {% endif %}
+
+        <div class="cp-configurator__price">
+
+          <span class="cp-configurator__price-current">
+            {{ product_price | money }}
+          </span>
+
+          {% if product_compare_price > product_price %}
+            <span class="cp-configurator__price-compare">
+              {{ product_compare_price | money }}
+            </span>
+
+            <span class="cp-configurator__discount-badge">
+              {{ discount_percentage }}% OFF
+            </span>
+          {% endif %}
+
+        </div>
+
+      </section>
+
+
+      <div class="cp-configurator__divider"></div>
+
+
+      {%- comment -%}
+        ========================================================
+        PAYMENT
+        ========================================================
+      {%- endcomment -%}
+
+      <section
+        class="cp-configurator__section cp-configurator__payment"
+        data-config-section="payment"
+      >
+
+        <div class="cp-configurator__section-heading">
+          <h2>Payment</h2>
+        </div>
+
+        <div class="cp-configurator__payment-summary">
+
+          <span>Pay in full today</span>
+
+          <span>
+            {{ product_price | money }}
+
+            {% if product_compare_price > product_price %}
+              <s>{{ product_compare_price | money }}</s>
+            {% endif %}
+          </span>
+
+        </div>
+
+
+        <div class="cp-configurator__payment-options">
+
+          <button
+            type="button"
+            class="cp-configurator__payment-card is-selected"
+            data-payment-option="full"
+            aria-pressed="true"
+          >
+
+            <span class="cp-configurator__radio">
+              <span></span>
+            </span>
+
+            <span class="cp-configurator__payment-content">
+
+              <strong>
+                Pay in full today
+              </strong>
+
+              <small>
+                One payment, and it's yours.
+              </small>
+
+            </span>
+
+            <span class="cp-configurator__payment-price">
+
+              {{ product_price | money }}
+
+              {% if product_compare_price > product_price %}
+                <s>{{ product_compare_price | money }}</s>
+              {% endif %}
+
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="cp-configurator__payment-card"
+            data-payment-option="monthly"
+            aria-pressed="false"
+          >
+
+            <span class="cp-configurator__radio">
+              <span></span>
+            </span>
+
+            <span class="cp-configurator__payment-content">
+
+              <strong>
+                Pay over time
+              </strong>
+
+              <small>
+                12 monthly payments.
+              </small>
+
+            </span>
+
+            <span class="cp-configurator__payment-price">
+              $9.99/mo
+            </span>
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <div class="cp-configurator__divider"></div>
+
+
+      {%- comment -%}
+        ========================================================
+        SCHOOL CLIP
+        ========================================================
+      {%- endcomment -%}
+
+      <section
+        class="cp-configurator__section cp-configurator__school-clip"
+        data-config-section="school-clip"
+      >
+
+        <div class="cp-configurator__offer-label">
+          INCLUDED FREE · BACK-TO-SCHOOL OFFER
+        </div>
+
+        <div class="cp-configurator__option-heading">
+
+          <div>
+            <h2>
+              School Clip
+
+              <span class="cp-configurator__free-badge">
+                FREE
+              </span>
+            </h2>
+
+            <p>
+              Clips onto backpacks and belt loops
+            </p>
+          </div>
+
+          <s>
+            {{ school_clip_product.price | money }}
+          </s>
+
+        </div>
+
+
+        <div class="cp-configurator__product-options">
+
+          {% for school_variant in school_clip_product.variants %}
+
+            <button
+              type="button"
+              class="
+                cp-configurator__product-option
+                {% if forloop.first %}is-selected{% endif %}
+              "
+              data-school-clip-variant-id="{{ school_variant.id }}"
+              data-price="0"
+              aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+            >
+
+              {% if school_variant.featured_image != blank %}
+
+                <img
+                  src="{{ school_variant.featured_image | image_url: width: 300 }}"
+                  alt="{{ school_variant.title | escape }}"
+                  loading="lazy"
+                  width="150"
+                  height="150"
+                >
+
+              {% elsif school_clip_product.featured_image != blank %}
+
+                <img
+                  src="{{ school_clip_product.featured_image | image_url: width: 300 }}"
+                  alt="{{ school_clip_product.title | escape }}"
+                  loading="lazy"
+                  width="150"
+                  height="150"
+                >
+
+              {% endif %}
+
+              {% if forloop.first %}
+                <span class="cp-configurator__selected-check">
+                  ✓
+                </span>
+              {% endif %}
+
+            </button>
+
+          {% endfor %}
+
+        </div>
+
+
+        <button
+          type="button"
+          class="cp-configurator__learn-more"
+        >
+          Learn more
+        </button>
+
+      </section>
+
+
+      <div class="cp-configurator__divider"></div>
+
+
+      {%- comment -%}
+        ========================================================
+        BAND COLOR
+        ========================================================
+      {%- endcomment -%}
+
+      <section
+        class="cp-configurator__section cp-configurator__band"
+        data-config-section="band"
+      >
+
+   {% liquid
+  assign band_option = nil
+
+  for option in product.options_with_values
+    assign option_name = option.name | downcase
+
+    if option_name == 'band color'
+      assign band_option = option
+      break
+    endif
+  endfor
+%}
+
+        <div class="cp-configurator__offer-label">
+          INCLUDED FREE · BACK-TO-SCHOOL OFFER
+        </div>
+
+        <div class="cp-configurator__option-heading">
+
+          <div>
+            <h2>
+              Band Color
+
+              <span class="cp-configurator__free-badge">
+                FREE
+              </span>
+            </h2>
+
+            <p>
+              Pick your FREE band color
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="cp-configurator__product-options cp-configurator__product-options--band">
+
+          {% if band_option != blank %}
+
+            {% for band_value in band_option.values %}
+
+              {% liquid
+                assign band_variant = nil
+
+                for v in product.variants
+                  case band_option.position
+                    when 1
+                      if v.option1 == band_value
+                        assign band_variant = v
+                        break
+                      endif
+                    when 2
+                      if v.option2 == band_value
+                        assign band_variant = v
+                        break
+                      endif
+                    when 3
+                      if v.option3 == band_value
+                        assign band_variant = v
+                        break
+                      endif
+                  endcase
+                endfor
+              %}
+
+              {% if band_variant != blank %}
+
+                <button
+                  type="button"
+                  class="
+                    cp-configurator__band-swatch
+                    {% if band_variant.id == variant.id %}is-selected{% endif %}
+                  "
+                  data-band-variant-id="{{ band_variant.id }}"
+                  data-band-title="{{ band_value | escape }}"
+                  data-band-image="{{ band_variant.featured_image | image_url: width: 1000 }}"
+                  data-band-image-alt="{{ band_variant.featured_image.alt | default: band_value | escape }}"
+                  data-price="0"
+                  aria-pressed="{% if band_variant.id == variant.id %}true{% else %}false{% endif %}"
+                  aria-label="{{ band_value | escape }}"
+                  title="{{ band_value | escape }}"
+                  {% if band_value.swatch.color %}
+                    style="background-color: {{ band_value.swatch.color }};"
+                  {% elsif band_value.swatch.image %}
+                    style="background-image: url('{{ band_value.swatch.image | image_url: width: 100 }}');"
+                  {% endif %}
+                ></button>
+
+              {% endif %}
+
+            {% endfor %}
+
+          {% endif %}
+
+        </div>
+
+      </section>
+
+
+      <div class="cp-configurator__divider"></div>
+
+
+      {%- comment -%}
+        ========================================================
+        SCREEN PROTECTOR
+        ========================================================
+      {%- endcomment -%}
+
+      <section
+        class="cp-configurator__section"
+        data-config-section="screen-protector"
+      >
+
+        <div class="cp-configurator__option-heading">
+
+          <div>
+            <h2>
+              Screen Protector
+            </h2>
+          </div>
+
+        </div>
+
+
+        <div class="cp-configurator__simple-options">
+
+          <button
+            type="button"
+            class="cp-configurator__simple-option is-selected"
+            data-screen-protector="none"
+            aria-pressed="true"
+          >
+            <span class="cp-configurator__radio">
+              <span></span>
+            </span>
+
+            <span>None</span>
+          </button>
+
+
+          {% if screen_protector_product != blank %}
+
+            {% assign screen_variant = screen_protector_product.selected_or_first_available_variant %}
+
+            <button
+              type="button"
+              class="cp-configurator__simple-option"
+              data-screen-protector="enabled"
+              data-variant-id="{{ screen_variant.id }}"
+              data-price="{{ screen_variant.price }}"
+              aria-pressed="false"
+            >
+
+              <span class="cp-configurator__radio">
+                <span></span>
+              </span>
+
+              <span>
+                Screen Protector
+              </span>
+
+              <strong>
+                {{ screen_variant.price | money }}
+              </strong>
+
+            </button>
+
+          {% endif %}
+
+        </div>
+
+      </section>
+
+
+      <div class="cp-configurator__divider"></div>
+
+
+      {%- comment -%}
+        ========================================================
+        CHARGING
+        ========================================================
+      {%- endcomment -%}
+
+      <section
+        class="cp-configurator__section"
+        data-config-section="charging"
+      >
+
+        <div class="cp-configurator__option-heading">
+
+          <div>
+            <h2>
+              Charging
+            </h2>
+          </div>
+
+        </div>
+
+
+        <div class="cp-configurator__simple-options">
+
+          <button
+            type="button"
+            class="cp-configurator__simple-option is-selected"
+            data-charging="standard"
+            data-price="0"
+            aria-pressed="true"
+          >
+
+            <span class="cp-configurator__radio">
+              <span></span>
+            </span>
+
+            <span>
+              Standard Charging Clip Included
+            </span>
+
+            <strong>
+              Included
+            </strong>
+
+          </button>
+
+
+          {% if charging_stand_product != blank %}
+
+            {% assign charging_variant = charging_stand_product.selected_or_first_available_variant %}
+
+            <button
+              type="button"
+              class="cp-configurator__simple-option"
+              data-charging="stand"
+              data-variant-id="{{ charging_variant.id }}"
+              data-price="{{ charging_variant.price }}"
+              aria-pressed="false"
+            >
+
+              <span class="cp-configurator__radio">
+                <span></span>
+              </span>
+
+              <span>
+                Charging Stand
+              </span>
+
+              <strong>
+                +{{ charging_variant.price | money }}
+              </strong>
+
+            </button>
+
+          {% endif %}
+
+        </div>
+
+      </section>
+
+
+      <div class="cp-configurator__divider"></div>
+
+
+      {%- comment -%}
+        ========================================================
+        TOTAL
+        ========================================================
+      {%- endcomment -%}
+
+      <section class="cp-configurator__total">
+
+        <div>
+          <span>Total</span>
+
+          <strong
+            class="cp-configurator__total-price"
+            data-config-total
+          >
+            {{ product_price | money }}
+          </strong>
+        </div>
+
+        <button
+          type="button"
+          class="cp-configurator__checkout-btn"
+          data-config-checkout
+        >
+          Checkout
+          <span data-checkout-price>
+            {{ product_price | money }}
+          </span>
+        </button>
+
+      </section>
+
+
+      {%- comment -%}
+        ========================================================
+        TRUST
+        ========================================================
+      {%- endcomment -%}
+
+      <div class="cp-configurator__trust">
+
+        <div>
+          Free shipping on US orders
+        </div>
+
+        <div>
+          30-day money-back guarantee
+        </div>
+
+        <div>
+          Thousands of happy customers
+        </div>
+
+      </div>
+
+
+      {%- comment -%}
+        ========================================================
+        REVIEW YOUR BUILD
+        ========================================================
+      {%- endcomment -%}
+
+      <section class="cp-configurator__review">
+
+        <h2>
+          Review your build
+        </h2>
+
+        <div class="cp-configurator__review-items">
+
+          <div class="cp-configurator__review-item">
+            <span>Watch</span>
+            <strong>{{ product.title }}</strong>
+          </div>
+
+          <div class="cp-configurator__review-item">
+            <span>School Clip</span>
+            <strong data-review-school-clip>
+              {{ school_clip_product.variants.first.title }}
+            </strong>
+          </div>
+
+          <div class="cp-configurator__review-item">
+            <span>Band</span>
+            <strong data-review-band>
+              {{ variant.title }}
+            </strong>
+          </div>
+
+          <div class="cp-configurator__review-item">
+            <span>Screen Protector</span>
+            <strong data-review-protector>
+              None
+            </strong>
+          </div>
+
+          <div class="cp-configurator__review-item">
+            <span>Charging</span>
+            <strong data-review-charging>
+              Standard Charging Clip
+            </strong>
+          </div>
+
+        </div>
+
+        <div class="cp-configurator__review-total">
+
+          <span>Total</span>
+
+          <strong data-review-total>
+            {{ product_price | money }}
+          </strong>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
 </div>
+
+
+{%- comment -%}
+  ============================================================
+  PRODUCT DATA FOR JAVASCRIPT
+  ============================================================
+{%- endcomment -%}
+
+<script type="application/json" data-config-product>
+{
+  "productId": {{ product.id | json }},
+  "productHandle": {{ product.handle | json }},
+  "variantId": {{ variant.id | json }},
+  "variantTitle": {{ variant.title | json }},
+  "price": {{ variant.price | json }},
+  "compareAtPrice": {{ product_compare_price | default: 0 | json }},
+
+  "schoolClip": {
+    "productId": {{ school_clip_product.id | default: 0 | json }},
+    "variants": [
+      {% for school_variant in school_clip_product.variants %}
+        {
+          "id": {{ school_variant.id | json }},
+          "title": {{ school_variant.title | json }},
+          "price": 0,
+          "available": {{ school_variant.available | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  },
+
+  "screenProtector": {
+    "productId": {{ screen_protector_product.id | default: 0 | json }},
+    "variantId": {{ screen_protector_product.selected_or_first_available_variant.id | default: 0 | json }},
+    "price": {{ screen_protector_product.selected_or_first_available_variant.price | default: 0 | json }}
+  },
+
+  "chargingStand": {
+    "productId": {{ charging_stand_product.id | default: 0 | json }},
+    "variantId": {{ charging_stand_product.selected_or_first_available_variant.id | default: 0 | json }},
+    "price": {{ charging_stand_product.selected_or_first_available_variant.price | default: 0 | json }}
+  }
+}
+</script>
+
+{{ 'custom-product-configurator.js' | asset_url | script_tag }}
 
 {% schema %}
 {
   "name": "Product configurator",
   "settings": [
     {
-    "type": "product",
-    "id": "main_product",
-    "label": "Watch product"
+      "type": "product",
+      "id": "main_product",
+      "label": "Watch product"
     },
-    { "type": "text", "id": "school_clip_handle", "label": "School Clip product handle", "default": "school-clip" },
-    { "type": "text", "id": "screen_protector_handle", "label": "Screen Protector product handle", "default": "screen-protector" },
-    { "type": "text", "id": "charging_stand_handle", "label": "Charging Stand product handle", "default": "charging-stand" }
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Configurator logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_new_badge",
+      "label": "Show NEW badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_subtitle",
+      "label": "Product subtitle",
+      "default": "Customize your kid's smartwatch"
+    },
+    {
+      "type": "text",
+      "id": "school_clip_handle",
+      "label": "School Clip product handle",
+      "default": "school-clip"
+    },
+    {
+      "type": "text",
+      "id": "screen_protector_handle",
+      "label": "Screen Protector product handle",
+      "default": "screen-protector"
+    },
+    {
+      "type": "text",
+      "id": "charging_stand_handle",
+      "label": "Charging Stand product handle",
+      "default": "charging-stand"
+    }
   ]
 }
-{% endschema %}
+{% endschema %} 
