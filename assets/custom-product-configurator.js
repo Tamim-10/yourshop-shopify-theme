@@ -8,6 +8,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /*
          * ============================================================
+         * ORDER SUMMARY
+         * ============================================================
+         */
+
+        const productDataEl = configurator.querySelector(
+            '[data-config-product]'
+        );
+
+        let basePrice = 0;
+        /** @type {any} */
+        let productData = {};
+
+        if (productDataEl) {
+            try {
+                productData = JSON.parse(productDataEl.textContent || '{}');
+                basePrice = productData.price || 0;
+            } catch (error) {
+                productData = {};
+                basePrice = 0;
+            }
+        }
+
+        const totalPriceEl = configurator.querySelector('[data-config-total]');
+        const checkoutPriceEls = configurator.querySelectorAll('[data-checkout-price]');
+        const reviewTotalEl = configurator.querySelector('[data-review-total]');
+
+        /** @param {number} cents */
+        const formatMoney = (cents) => `$${(cents / 100).toFixed(2)}`;
+
+        /** @param {NodeListOf<Element>} options */
+        const getSelectedPrice = (options) => {
+            let price = 0;
+
+            options.forEach((option) => {
+                if (option.classList.contains('is-selected')) {
+                    price = parseInt(
+                        (/** @type {HTMLElement} */ (option)).dataset.price || '0',
+                        10
+                    ) || 0;
+                }
+            });
+
+            return price;
+        };
+
+        const updateOrderSummary = () => {
+            const total = basePrice
+                + getSelectedPrice(schoolClipOptions)
+                + getSelectedPrice(bandOptions)
+                + getSelectedPrice(screenProtectorOptions)
+                + getSelectedPrice(chargingOptions);
+
+            const formattedTotal = formatMoney(total);
+
+            if (totalPriceEl) {
+                totalPriceEl.textContent = formattedTotal;
+            }
+
+            checkoutPriceEls.forEach((el) => {
+                el.textContent = formattedTotal;
+            });
+
+            if (reviewTotalEl) {
+                reviewTotalEl.textContent = formattedTotal;
+            }
+        };
+
+        /*
+         * ============================================================
          * PAYMENT
          * ============================================================
          */
@@ -129,6 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     productImage.alt = schoolClipImageAlt;
                 }
 
+                updateOrderSummary();
+
                 console.log(
                     'Selected School Clip variant ID:',
                     option.dataset.schoolClipVariantId
@@ -184,6 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Store selected Band Color variant ID
                 configurator.dataset.bandVariantId = bandVariantId;
 
+                updateOrderSummary();
+
                 console.log('Selected Band Color:', bandTitle);
                 console.log('Selected Band variant ID:', bandVariantId);
                 console.log('Selected Band image:', bandImage);
@@ -238,6 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     reviewProtector.textContent = protectorLabel;
                 }
 
+                updateOrderSummary();
+
                 console.log('Selected screen protector:', protectorLabel);
             });
         });
@@ -290,8 +365,171 @@ document.addEventListener('DOMContentLoaded', () => {
                     reviewCharging.textContent = chargingLabel;
                 }
 
+                updateOrderSummary();
+
                 console.log('Selected charging option:', chargingLabel);
             });
         });
+
+
+        /*
+         * ============================================================
+         * ADD TO CART
+         * ============================================================
+         */
+
+        const checkoutButtons = configurator.querySelectorAll(
+            '[data-config-checkout]'
+        );
+
+        const termsCheckbox = /** @type {HTMLInputElement} */ (
+            configurator.querySelector('[data-terms-checkbox]')
+        );
+
+        const termsError = configurator.querySelector('[data-terms-error]');
+
+        /**
+         * @param {NodeListOf<Element>} options
+         * @param {string} datasetKey
+         */
+        const getSelectedVariantId = (options, datasetKey) => {
+            let variantId = null;
+
+            options.forEach((option) => {
+                if (option.classList.contains('is-selected')) {
+                    variantId = (/** @type {HTMLElement} */ (option)).dataset[datasetKey] || null;
+                }
+            });
+
+            return variantId;
+        };
+
+        const buildCartItems = () => {
+            const items = [];
+
+            // Watch — Band Color selection overrides the base variant
+            const watchVariantId = configurator.dataset.bandVariantId
+                || productData.variantId;
+
+            if (watchVariantId) {
+                items.push({ id: parseInt(String(watchVariantId), 10), quantity: 1 });
+            }
+
+            // School Clip (included free)
+            const schoolClipVariantId = getSelectedVariantId(
+                schoolClipOptions,
+                'schoolClipVariantId'
+            );
+
+            if (schoolClipVariantId) {
+                items.push({ id: parseInt(schoolClipVariantId, 10), quantity: 1 });
+            }
+
+            // Screen Protector
+            let screenProtectorVariantId = null;
+
+            screenProtectorOptions.forEach((option) => {
+                if (
+                    option.classList.contains('is-selected')
+                    && option.dataset.screenProtector === 'enabled'
+                ) {
+                    screenProtectorVariantId = option.dataset.variantId;
+                }
+            });
+
+            if (screenProtectorVariantId) {
+                items.push({ id: parseInt(screenProtectorVariantId, 10), quantity: 1 });
+            }
+
+            // Charging Stand
+            let chargingVariantId = null;
+
+            chargingOptions.forEach((option) => {
+                if (
+                    option.classList.contains('is-selected')
+                    && (/** @type {HTMLElement} */ (option)).dataset.charging === 'stand'
+                ) {
+                    chargingVariantId = (/** @type {HTMLElement} */ (option)).dataset.variantId;
+                }
+            });
+
+            if (chargingVariantId) {
+                items.push({ id: parseInt(chargingVariantId, 10), quantity: 1 });
+            }
+
+            return items;
+        };
+
+        /** @param {boolean} isLoading */
+        const setCheckoutLoading = (isLoading) => {
+            checkoutButtons.forEach((button) => {
+                (/** @type {HTMLButtonElement} */ (button)).disabled = isLoading;
+                button.classList.toggle('is-loading', isLoading);
+            });
+        };
+
+        /** @param {string} message */
+        const showTermsError = (message) => {
+            if (!termsError) {
+                alert(message);
+                return;
+            }
+
+            termsError.textContent = message;
+            termsError.removeAttribute('hidden');
+        };
+
+        const hideTermsError = () => {
+            if (termsError) {
+                termsError.setAttribute('hidden', '');
+            }
+        };
+
+        const addToCart = () => {
+            if (termsCheckbox && !termsCheckbox.checked) {
+                showTermsError('Please agree to the terms to continue.');
+                termsCheckbox.focus();
+                return;
+            }
+
+            hideTermsError();
+
+            const items = buildCartItems();
+
+            if (!items.length) {
+                return;
+            }
+
+            setCheckoutLoading(true);
+
+            fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items })
+            })
+                .then((response) => (
+                    response.ok
+                        ? response.json()
+                        : response.json().then((data) => {
+                            throw new Error(
+                                data.description || data.message || 'Unable to add items to cart.'
+                            );
+                        })
+                ))
+                .then(() => {
+                    window.location.href = '/checkout';
+                })
+                .catch((error) => {
+                    setCheckoutLoading(false);
+                    showTermsError(error.message);
+                    console.error('Add to cart failed:', error);
+                });
+        };
+
+        checkoutButtons.forEach((button) => {
+            button.addEventListener('click', addToCart);
+        });
+
+        updateOrderSummary();
     });
 });
