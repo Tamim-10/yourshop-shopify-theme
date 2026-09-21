@@ -543,6 +543,8 @@
             class="cp-configurator__protector-swatch is-selected"
             data-screen-protector="none"
             data-price="0"
+            data-protector-image="{{ display_image | image_url: width: 1000 }}"
+            data-protector-image-alt="{{ display_alt | escape }}"
             aria-pressed="true"
             aria-label="None"
             title="None"
@@ -555,7 +557,11 @@
 
             {% for screen_variant in screen_protector_product.variants %}
 
-              {% assign protector_name = screen_variant.title | downcase %}
+              {% liquid
+                assign protector_name = screen_variant.title | downcase
+                assign protector_image = screen_variant.featured_image | default: screen_protector_product.featured_image | default: display_image
+                assign protector_image_alt = screen_variant.featured_image.alt | default: screen_variant.title
+              %}
 
               <button
                 type="button"
@@ -564,6 +570,8 @@
                 data-variant-id="{{ screen_variant.id }}"
                 data-price="{{ screen_variant.price }}"
                 data-protector-title="{{ screen_variant.title | escape }}"
+                data-protector-image="{{ protector_image | image_url: width: 1000 }}"
+                data-protector-image-alt="{{ protector_image_alt | escape }}"
                 aria-pressed="false"
                 aria-label="{{ screen_variant.title | escape }}"
                 title="{{ screen_variant.title | escape }}"
@@ -626,6 +634,8 @@
             class="cp-configurator__simple-option is-selected"
             data-charging="standard"
             data-price="0"
+            data-charging-image="{{ display_image | image_url: width: 1000 }}"
+            data-charging-image-alt="{{ display_alt | escape }}"
             aria-pressed="true"
           >
 
@@ -647,6 +657,7 @@
           {% if charging_stand_product != blank %}
 
             {% assign charging_variant = charging_stand_product.selected_or_first_available_variant %}
+            {% assign charging_stand_image = charging_stand_product.featured_image | default: display_image %}
 
             <button
               type="button"
@@ -654,6 +665,8 @@
               data-charging="stand"
               data-variant-id="{{ charging_variant.id }}"
               data-price="{{ charging_variant.price }}"
+              data-charging-image="{{ charging_stand_image | image_url: width: 1000 }}"
+              data-charging-image-alt="{{ charging_stand_product.title | escape }}"
               aria-pressed="false"
             >
 

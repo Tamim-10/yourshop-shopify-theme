@@ -189,5 +189,109 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Selected Band image:', bandImage);
             });
         });
+
+
+        /*
+         * ============================================================
+         * SCREEN PROTECTOR
+         * ============================================================
+         */
+
+        const screenProtectorOptions = /** @type {NodeListOf<HTMLElement>} */ (
+            configurator.querySelectorAll('[data-screen-protector]')
+        );
+
+        const reviewProtector = configurator.querySelector(
+            '[data-review-protector]'
+        );
+
+        screenProtectorOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+
+                // Remove selected state from all screen protector options
+                screenProtectorOptions.forEach((item) => {
+                    item.classList.remove('is-selected');
+                    item.setAttribute('aria-pressed', 'false');
+                });
+
+                // Select clicked screen protector option
+                option.classList.add('is-selected');
+                option.setAttribute('aria-pressed', 'true');
+
+                // Get selected screen protector information
+                const protectorType = option.dataset.screenProtector;
+                const protectorImage = option.dataset.protectorImage;
+                const protectorImageAlt = option.dataset.protectorImageAlt;
+                const protectorLabel = protectorType === 'enabled'
+                    ? option.dataset.protectorTitle || 'Screen Protector'
+                    : 'None';
+
+                // Change main product image
+                if (productImage && protectorImage) {
+                    productImage.removeAttribute('srcset');
+                    productImage.src = protectorImage;
+                    productImage.alt = protectorImageAlt || '';
+                }
+
+                // Update Review Your Build
+                if (reviewProtector) {
+                    reviewProtector.textContent = protectorLabel;
+                }
+
+                console.log('Selected screen protector:', protectorLabel);
+            });
+        });
+
+
+        /*
+         * ============================================================
+         * CHARGING
+         * ============================================================
+         */
+
+        const chargingOptions = configurator.querySelectorAll(
+            '[data-charging]'
+        );
+
+        const reviewCharging = configurator.querySelector(
+            '[data-review-charging]'
+        );
+
+        chargingOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+
+                // Remove selected state from all charging options
+                chargingOptions.forEach((item) => {
+                    item.classList.remove('is-selected');
+                    item.setAttribute('aria-pressed', 'false');
+                });
+
+                // Select clicked charging option
+                option.classList.add('is-selected');
+                option.setAttribute('aria-pressed', 'true');
+
+                // Get selected charging information
+                const chargingType = option.dataset.charging;
+                const chargingImage = option.dataset.chargingImage;
+                const chargingImageAlt = option.dataset.chargingImageAlt;
+                const chargingLabel = chargingType === 'stand'
+                    ? 'Charging Stand'
+                    : 'Standard Charging Clip';
+
+                // Change main product image
+                if (productImage && chargingImage) {
+                    productImage.removeAttribute('srcset');
+                    productImage.src = chargingImage;
+                    productImage.alt = chargingImageAlt;
+                }
+
+                // Update Review Your Build
+                if (reviewCharging) {
+                    reviewCharging.textContent = chargingLabel;
+                }
+
+                console.log('Selected charging option:', chargingLabel);
+            });
+        });
     });
 });
