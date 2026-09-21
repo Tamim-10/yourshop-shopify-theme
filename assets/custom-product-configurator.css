@@ -1017,6 +1017,70 @@
   font-weight: 700;
 }
 
+.cp-configurator__terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin-bottom: 22px;
+  padding: 16px;
+
+  border-radius: 10px;
+  background: #f4f4f4;
+
+  cursor: pointer;
+}
+
+.cp-configurator__terms-checkbox {
+  flex: none;
+
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+
+  accent-color: var(--cp-border-dark);
+}
+
+.cp-configurator__terms span {
+  color: #8a8a8a;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.cp-configurator__terms-link {
+  color: #8a8a8a;
+  text-decoration: underline;
+}
+
+.cp-configurator__checkout-btn--pill {
+  justify-content: center;
+
+  margin-bottom: 16px;
+
+  border-radius: 999px;
+
+  background: #7ea6ef;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.cp-configurator__checkout-btn--pill:hover {
+  opacity: 0.92;
+}
+
+.cp-configurator__view-cart {
+  display: block;
+
+  margin-bottom: 30px;
+
+  color: var(--cp-muted);
+  font-size: 13px;
+  text-align: center;
+  text-decoration: underline;
+}
+
 
 /* =========================================================
    FOCUS / ACCESSIBILITY

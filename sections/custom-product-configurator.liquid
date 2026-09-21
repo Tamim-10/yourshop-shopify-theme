@@ -26,6 +26,8 @@
     assign discount_amount = product_compare_price | minus: product_price
     assign discount_percentage = discount_amount | times: 100 | divided_by: product_compare_price
   endif
+
+  assign membership_plan = product.metafields.custom.membership_plan.value.plan_name.value
 %}
 
 <div
@@ -850,6 +852,45 @@
 
         </div>
 
+
+        <label class="cp-configurator__terms">
+
+          <input
+            type="checkbox"
+            class="cp-configurator__terms-checkbox"
+            data-terms-checkbox
+          >
+
+          <span>
+            I understand I am purchasing this device on a payment contract and will be charged $9.99/mo on the 21st of each month for 12 months and that I am responsible for the full cost of the device. I understand that I will purchase a {{ membership_plan | default: 'Cosmo Membership' }} plan once I receive my device in order to unlock all features and activate service.
+
+            <a
+              href="{{ section.settings.terms_url | default: '#' }}"
+              class="cp-configurator__terms-link"
+            >
+              See full terms
+            </a>
+          </span>
+
+        </label>
+
+
+        <button
+          type="button"
+          class="cp-configurator__checkout-btn cp-configurator__checkout-btn--pill"
+          data-config-checkout
+        >
+          Checkout&nbsp;|&nbsp;<span data-checkout-price>{{ product_price | money }}</span>
+        </button>
+
+
+        <a
+          href="{{ routes.cart_url }}"
+          class="cp-configurator__view-cart"
+        >
+          View or change cart
+        </a>
+
       </section>
 
     </div>
@@ -958,6 +999,11 @@
       "id": "charging_stand_handle",
       "label": "Charging Stand product handle",
       "default": "charging-stand"
+    },
+    {
+      "type": "url",
+      "id": "terms_url",
+      "label": "Payment terms link"
     }
   ]
 }
