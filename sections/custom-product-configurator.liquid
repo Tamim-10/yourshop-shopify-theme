@@ -572,20 +572,20 @@
                 title="{{ screen_variant.title | escape }}"
 
                 {% if protector_name contains 'black' %}
-                  style="--protector-color: #202124;"
+  style="--protector-color: #202124;"
 
-                {% elsif protector_name contains 'pink' %}
-                  style="--protector-color: #f39acb;"
+{% elsif protector_name contains 'pink' %}
+  style="--protector-color: #f39acb;"
 
-                {% elsif protector_name contains 'teal' %}
-                  style="--protector-color: #68b6b7;"
+{% elsif protector_name contains 'teal' %}
+  style="--protector-color: #68b6b7;"
 
-                {% elsif protector_name contains 'green' %}
-                  style="--protector-color: #a8ff75;"
+{% elsif protector_name contains 'lime' or protector_name contains 'green' %}
+  style="--protector-color: #a8ff75;"
 
-                {% else %}
-                  style="--protector-color: #d9d9d9;"
-                {% endif %}
+{% else %}
+  style="--protector-color: #d9d9d9;"
+{% endif %}
               ></button>
 
             {% endfor %}
@@ -909,7 +909,7 @@
       "label": "School Clip product handle",
       "default": "school-clip"
     },
-    {
+    { 
       "type": "text",
       "id": "screen_protector_handle",
       "label": "Screen Protector product handle",
