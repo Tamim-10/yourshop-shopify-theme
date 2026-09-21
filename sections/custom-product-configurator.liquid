@@ -555,12 +555,48 @@
 
           {% if screen_protector_product != blank %}
 
+            {% liquid
+              assign protector_color_option = nil
+
+              for option in screen_protector_product.options_with_values
+                assign option_name_lc = option.name | downcase
+
+                if option_name_lc contains 'color' or option_name_lc contains 'colour'
+                  assign protector_color_option = option
+                  break
+                endif
+              endfor
+
+              if protector_color_option == blank
+                assign protector_color_option = screen_protector_product.options_with_values.first
+              endif
+            %}
+
             {% for screen_variant in screen_protector_product.variants %}
 
               {% liquid
-                assign protector_name = screen_variant.title | downcase
                 assign protector_image = screen_variant.featured_image | default: screen_protector_product.featured_image | default: display_image
                 assign protector_image_alt = screen_variant.featured_image.alt | default: screen_variant.title
+
+                assign protector_option_value = nil
+
+                case protector_color_option.position
+                  when 1
+                    assign protector_option_value = screen_variant.option1
+                  when 2
+                    assign protector_option_value = screen_variant.option2
+                  when 3
+                    assign protector_option_value = screen_variant.option3
+                endcase
+
+                assign protector_swatch_value = nil
+
+                for value in protector_color_option.values
+                  if value == protector_option_value
+                    assign protector_swatch_value = value
+                    break
+                  endif
+                endfor
               %}
 
               <button
@@ -576,21 +612,13 @@
                 aria-label="{{ screen_variant.title | escape }}"
                 title="{{ screen_variant.title | escape }}"
 
-                {% if protector_name contains 'black' %}
-  style="--protector-color: #202124;"
-
-{% elsif protector_name contains 'pink' %}
-  style="--protector-color: #f39acb;"
-
-{% elsif protector_name contains 'teal' %}
-  style="--protector-color: #68b6b7;"
-
-{% elsif protector_name contains 'lime' or protector_name contains 'green' %}
-  style="--protector-color: #a8ff75;"
-
-{% else %}
-  style="--protector-color: #d9d9d9;"
-{% endif %}
+                {% if protector_swatch_value.swatch.color %}
+                  style="--protector-color: {{ protector_swatch_value.swatch.color }};"
+                {% elsif protector_swatch_value.swatch.image %}
+                  style="--protector-color: transparent; background-image: url('{{ protector_swatch_value.swatch.image | image_url: width: 100 }}');"
+                {% else %}
+                  style="--protector-color: #d9d9d9;"
+                {% endif %}
               ></button>
 
             {% endfor %}
