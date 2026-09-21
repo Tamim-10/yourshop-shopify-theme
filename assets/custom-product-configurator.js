@@ -2,6 +2,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const configurators = document.querySelectorAll('.cp-configurator');
 
     configurators.forEach((configurator) => {
+        const productImage = configurator.querySelector(
+            '.cp-configurator__image'
+        );
+
+        /*
+         * ============================================================
+         * PAYMENT
+         * ============================================================
+         */
+
+        const paymentOptions = configurator.querySelectorAll(
+            '[data-payment-option]'
+        );
+
+        const paymentSummaryLabel = configurator.querySelector(
+            '[data-payment-summary-label]'
+        );
+
+        const paymentSummaryPrice = configurator.querySelector(
+            '[data-payment-summary-price]'
+        );
+
+        paymentOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+
+                // Remove selected state from all payment options
+                paymentOptions.forEach((item) => {
+                    item.classList.remove('is-selected');
+                    item.setAttribute('aria-pressed', 'false');
+                });
+
+                // Select clicked payment option
+                option.classList.add('is-selected');
+                option.setAttribute('aria-pressed', 'true');
+
+                const paymentType = option.dataset.paymentOption;
+
+                // Update the summary line above the options
+                if (paymentSummaryLabel && paymentSummaryPrice) {
+
+                    if (paymentType === 'monthly') {
+                        const monthlyPriceEl = option.querySelector(
+                            '.cp-configurator__payment-price'
+                        );
+
+                        paymentSummaryLabel.textContent = 'Pay over time';
+                        paymentSummaryPrice.innerHTML = monthlyPriceEl
+                            ? monthlyPriceEl.innerHTML
+                            : '';
+
+                    } else {
+                        const fullPriceEl = option.querySelector(
+                            '.cp-configurator__payment-price'
+                        );
+
+                        paymentSummaryLabel.textContent = 'Pay in full today';
+                        paymentSummaryPrice.innerHTML = fullPriceEl
+                            ? fullPriceEl.innerHTML
+                            : '';
+                    }
+                }
+
+                configurator.dataset.paymentOption = paymentType;
+
+                console.log('Selected payment option:', paymentType);
+            });
+        });
+
+
         /*
          * ============================================================
          * SCHOOL CLIP
@@ -50,6 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                // Change main product image to the selected School Clip
+                const schoolClipImage = option.dataset.schoolClipImage;
+                const schoolClipImageAlt = option.dataset.schoolClipImageAlt;
+
+                if (productImage && schoolClipImage) {
+                    productImage.removeAttribute('srcset');
+                    productImage.src = schoolClipImage;
+                    productImage.alt = schoolClipImageAlt;
+                }
+
                 console.log(
                     'Selected School Clip variant ID:',
                     option.dataset.schoolClipVariantId
@@ -72,10 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
             '[data-review-band]'
         );
 
-        const productImage = configurator.querySelector(
-            '.cp-configurator__image'
-        );
-
         bandOptions.forEach((option) => {
             option.addEventListener('click', () => {
 
@@ -95,11 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const bandTitle = option.dataset.bandTitle;
 
                 // Change main product image
-              if (productImage && bandImage) {
-  productImage.removeAttribute('srcset');
-  productImage.src = bandImage;
-  productImage.alt = bandTitle;
-}
+                if (productImage && bandImage) {
+                    productImage.removeAttribute('srcset');
+                    productImage.src = bandImage;
+                    productImage.alt = bandTitle;
+                }
 
                 // Update Review Your Build
                 if (reviewBand) {

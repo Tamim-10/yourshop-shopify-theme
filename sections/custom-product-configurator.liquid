@@ -203,9 +203,9 @@
 
         <div class="cp-configurator__payment-summary">
 
-          <span>Pay in full today</span>
+          <span data-payment-summary-label>Pay in full today</span>
 
-          <span>
+          <span data-payment-summary-price>
             {{ product_price | money }}
 
             {% if product_compare_price > product_price %}
@@ -331,6 +331,11 @@
 
           {% for school_variant in school_clip_product.variants %}
 
+            {% liquid
+              assign school_image = school_variant.featured_image | default: school_clip_product.featured_image
+              assign school_alt = school_variant.title | default: school_clip_product.title
+            %}
+
             <button
               type="button"
               class="
@@ -338,25 +343,17 @@
                 {% if forloop.first %}is-selected{% endif %}
               "
               data-school-clip-variant-id="{{ school_variant.id }}"
+              data-school-clip-image="{{ school_image | image_url: width: 1000 }}"
+              data-school-clip-image-alt="{{ school_alt | escape }}"
               data-price="0"
               aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
             >
 
-              {% if school_variant.featured_image != blank %}
+              {% if school_image != blank %}
 
                 <img
-                  src="{{ school_variant.featured_image | image_url: width: 300 }}"
-                  alt="{{ school_variant.title | escape }}"
-                  loading="lazy"
-                  width="150"
-                  height="150"
-                >
-
-              {% elsif school_clip_product.featured_image != blank %}
-
-                <img
-                  src="{{ school_clip_product.featured_image | image_url: width: 300 }}"
-                  alt="{{ school_clip_product.title | escape }}"
+                  src="{{ school_image | image_url: width: 300 }}"
+                  alt="{{ school_alt | escape }}"
                   loading="lazy"
                   width="150"
                   height="150"
