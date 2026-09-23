@@ -695,6 +695,38 @@
 
 
 /* =========================================================
+   SOLD OUT OPTIONS
+   ========================================================= */
+
+.cp-configurator__band-swatch.is-sold-out,
+.cp-configurator__protector-swatch.is-sold-out,
+.cp-configurator__product-option.is-sold-out,
+.cp-configurator__simple-option.is-sold-out {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cp-configurator__band-swatch.is-sold-out:hover,
+.cp-configurator__protector-swatch.is-sold-out:hover {
+  transform: none;
+}
+
+.cp-configurator__band-swatch.is-sold-out::after,
+.cp-configurator__protector-swatch.is-sold-out::after,
+.cp-configurator__product-option.is-sold-out::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #5b574d;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  pointer-events: none;
+}
+
+
+/* =========================================================
    SCREEN PROTECTOR OPTIONS — COLOR SWATCHES
    ========================================================= */
 
@@ -1068,7 +1100,9 @@
   line-height: 1.4;
 }
 
-.cp-configurator__terms-error[hidden] {
+.cp-configurator__terms-error[hidden],
+.cp-configurator__price-compare[hidden],
+.cp-configurator__discount-badge[hidden] {
   display: none;
 }
 

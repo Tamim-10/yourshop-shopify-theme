@@ -166,19 +166,29 @@
 
         <div class="cp-configurator__price">
 
-          <span class="cp-configurator__price-current">
+          <span class="cp-configurator__price-current" data-watch-price>
             {{ product_price | money }}
           </span>
 
-          {% if product_compare_price > product_price %}
-            <span class="cp-configurator__price-compare">
+          <span
+            class="cp-configurator__price-compare"
+            data-watch-compare-price
+            {% unless product_compare_price > product_price %}hidden{% endunless %}
+          >
+            {% if product_compare_price > product_price %}
               {{ product_compare_price | money }}
-            </span>
+            {% endif %}
+          </span>
 
-            <span class="cp-configurator__discount-badge">
+          <span
+            class="cp-configurator__discount-badge"
+            data-watch-discount
+            {% unless product_compare_price > product_price %}hidden{% endunless %}
+          >
+            {% if product_compare_price > product_price %}
               {{ discount_percentage }}% OFF
-            </span>
-          {% endif %}
+            {% endif %}
+          </span>
 
         </div>
 
@@ -242,7 +252,7 @@
 
             </span>
 
-            <span class="cp-configurator__payment-price">
+            <span class="cp-configurator__payment-price" data-payment-full-price>
 
               {{ product_price | money }}
 
@@ -329,6 +339,8 @@
 
         </div>
 
+        {% assign selected_school_clip_id = school_clip_product.selected_or_first_available_variant.id %}
+
         <div class="cp-configurator__product-options">
 
           {% for school_variant in school_clip_product.variants %}
@@ -342,13 +354,20 @@
               type="button"
               class="
                 cp-configurator__product-option
-                {% if forloop.first %}is-selected{% endif %}
+                {% if school_variant.id == selected_school_clip_id and school_variant.available %}is-selected{% endif %}
+                {% unless school_variant.available %}is-sold-out{% endunless %}
               "
               data-school-clip-variant-id="{{ school_variant.id }}"
               data-school-clip-image="{{ school_image | image_url: width: 1000 }}"
               data-school-clip-image-alt="{{ school_alt | escape }}"
               data-price="0"
-              aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+              data-available="{{ school_variant.available }}"
+              aria-pressed="{% if school_variant.id == selected_school_clip_id and school_variant.available %}true{% else %}false{% endif %}"
+              {% unless school_variant.available %}
+                disabled
+                aria-disabled="true"
+                title="{{ school_alt | escape }} — Sold out"
+              {% endunless %}
             >
 
               {% if school_image != blank %}
@@ -363,7 +382,7 @@
 
               {% endif %}
 
-              {% if forloop.first %}
+              {% if school_variant.id == selected_school_clip_id and school_variant.available %}
                 <span class="cp-configurator__selected-check">
                   ✓
                 </span>
@@ -480,15 +499,25 @@
                   class="
                     cp-configurator__band-swatch
                     {% if band_variant.id == variant.id %}is-selected{% endif %}
+                    {% unless band_variant.available %}is-sold-out{% endunless %}
                   "
                   data-band-variant-id="{{ band_variant.id }}"
+                  data-available="{{ band_variant.available }}"
                   data-band-title="{{ band_value | escape }}"
                   data-band-image="{{ band_variant.featured_image | image_url: width: 1000 }}"
                   data-band-image-alt="{{ band_variant.featured_image.alt | default: band_value | escape }}"
-                  data-price="0"
+                  data-price="{{ band_variant.price }}"
+                  data-compare-price="{{ band_variant.compare_at_price | default: 0 }}"
                   aria-pressed="{% if band_variant.id == variant.id %}true{% else %}false{% endif %}"
-                  aria-label="{{ band_value | escape }}"
-                  title="{{ band_value | escape }}"
+                  {% if band_variant.available %}
+                    aria-label="{{ band_value | escape }}"
+                    title="{{ band_value | escape }}"
+                  {% else %}
+                    aria-label="{{ band_value | escape }} — Sold out"
+                    title="{{ band_value | escape }} — Sold out"
+                    aria-disabled="true"
+                    disabled
+                  {% endif %}
 
                   {% if band_value.swatch.color %}
                     style="background-color: {{ band_value.swatch.color }};"
@@ -603,16 +632,24 @@
 
               <button
                 type="button"
-                class="cp-configurator__protector-swatch"
+                class="cp-configurator__protector-swatch{% unless screen_variant.available %} is-sold-out{% endunless %}"
                 data-screen-protector="enabled"
                 data-variant-id="{{ screen_variant.id }}"
+                data-available="{{ screen_variant.available }}"
                 data-price="{{ screen_variant.price }}"
                 data-protector-title="{{ screen_variant.title | escape }}"
                 data-protector-image="{{ protector_image | image_url: width: 1000 }}"
                 data-protector-image-alt="{{ protector_image_alt | escape }}"
                 aria-pressed="false"
-                aria-label="{{ screen_variant.title | escape }}"
-                title="{{ screen_variant.title | escape }}"
+                {% if screen_variant.available %}
+                  aria-label="{{ screen_variant.title | escape }}"
+                  title="{{ screen_variant.title | escape }}"
+                {% else %}
+                  aria-label="{{ screen_variant.title | escape }} — Sold out"
+                  title="{{ screen_variant.title | escape }} — Sold out"
+                  aria-disabled="true"
+                  disabled
+                {% endif %}
 
                 {% if protector_swatch_value.swatch.color %}
                   style="--protector-color: {{ protector_swatch_value.swatch.color }};"
@@ -691,9 +728,11 @@
 
             <button
               type="button"
-              class="cp-configurator__simple-option"
+              class="cp-configurator__simple-option{% unless charging_variant.available %} is-sold-out{% endunless %}"
               data-charging="stand"
               data-variant-id="{{ charging_variant.id }}"
+              data-available="{{ charging_variant.available }}"
+              {% unless charging_variant.available %}disabled aria-disabled="true"{% endunless %}
               data-price="{{ charging_variant.price }}"
               data-charging-image="{{ charging_stand_image | image_url: width: 1000 }}"
               data-charging-image-alt="{{ charging_stand_product.title | escape }}"
@@ -709,7 +748,11 @@
               </span>
 
               <strong>
-                +{{ charging_variant.price | money }}
+                {% if charging_variant.available %}
+                  +{{ charging_variant.price | money }}
+                {% else %}
+                  Sold out
+                {% endif %}
               </strong>
 
             </button>
@@ -920,6 +963,7 @@
   "productHandle": {{ product.handle | json }},
   "variantId": {{ variant.id | json }},
   "variantTitle": {{ variant.title | json }},
+  "variantAvailable": {{ variant.available | json }},
   "price": {{ variant.price | json }},
   "compareAtPrice": {{ product_compare_price | default: 0 | json }},
 

@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         /** @param {number} cents */
         const formatMoney = (cents) => `$${(cents / 100).toFixed(2)}`;
 
+        /** @param {Element} option */
+        const isAvailable = (option) => (
+            (/** @type {HTMLElement} */ (option)).dataset.available !== 'false'
+        );
+
         /** @param {NodeListOf<Element>} options */
         const getSelectedPrice = (options) => {
             let price = 0;
@@ -53,10 +58,75 @@ document.addEventListener('DOMContentLoaded', () => {
             return price;
         };
 
+        const watchPriceEl = configurator.querySelector('[data-watch-price]');
+        const watchComparePriceEl = configurator.querySelector('[data-watch-compare-price]');
+        const watchDiscountEl = configurator.querySelector('[data-watch-discount]');
+        const paymentFullPriceEl = configurator.querySelector('[data-payment-full-price]');
+
+        // The selected Band Color is a variant of the watch, so its price
+        // replaces the base price instead of being added to it.
+        const getWatchPricing = () => {
+            /** @type {HTMLElement | null} */
+            let selectedBand = null;
+
+            bandOptions.forEach((option) => {
+                if (option.classList.contains('is-selected')) {
+                    selectedBand = /** @type {HTMLElement} */ (option);
+                }
+            });
+
+            if (!selectedBand) {
+                return {
+                    price: basePrice,
+                    compareAtPrice: productData.compareAtPrice || 0
+                };
+            }
+
+            return {
+                price: parseInt(selectedBand.dataset.price || '', 10) || basePrice,
+                compareAtPrice: parseInt(selectedBand.dataset.comparePrice || '0', 10)
+                    || productData.compareAtPrice
+                    || 0
+            };
+        };
+
+        const updateWatchPrice = () => {
+            const { price, compareAtPrice } = getWatchPricing();
+            const hasDiscount = compareAtPrice > price;
+            const priceHtml = hasDiscount
+                ? `${formatMoney(price)} <s>${formatMoney(compareAtPrice)}</s>`
+                : formatMoney(price);
+
+            if (watchPriceEl) {
+                watchPriceEl.textContent = formatMoney(price);
+            }
+
+            if (watchComparePriceEl) {
+                watchComparePriceEl.textContent = hasDiscount ? formatMoney(compareAtPrice) : '';
+                watchComparePriceEl.toggleAttribute('hidden', !hasDiscount);
+            }
+
+            if (watchDiscountEl) {
+                watchDiscountEl.textContent = hasDiscount
+                    ? `${Math.floor(((compareAtPrice - price) * 100) / compareAtPrice)}% OFF`
+                    : '';
+                watchDiscountEl.toggleAttribute('hidden', !hasDiscount);
+            }
+
+            if (paymentFullPriceEl) {
+                paymentFullPriceEl.innerHTML = priceHtml;
+            }
+
+            if (paymentSummaryPrice && configurator.dataset.paymentOption !== 'monthly') {
+                paymentSummaryPrice.innerHTML = priceHtml;
+            }
+        };
+
         const updateOrderSummary = () => {
-            const total = basePrice
+            updateWatchPrice();
+
+            const total = getWatchPricing().price
                 + getSelectedPrice(schoolClipOptions)
-                + getSelectedPrice(bandOptions)
                 + getSelectedPrice(screenProtectorOptions)
                 + getSelectedPrice(chargingOptions);
 
@@ -255,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Store selected Band Color variant ID
                 configurator.dataset.bandVariantId = bandVariantId;
 
+                hideTermsError();
                 updateOrderSummary();
 
                 console.log('Selected Band Color:', bandTitle);
@@ -396,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let variantId = null;
 
             options.forEach((option) => {
-                if (option.classList.contains('is-selected')) {
+                if (option.classList.contains('is-selected') && isAvailable(option)) {
                     variantId = (/** @type {HTMLElement} */ (option)).dataset[datasetKey] || null;
                 }
             });
@@ -404,15 +475,38 @@ document.addEventListener('DOMContentLoaded', () => {
             return variantId;
         };
 
+        // Watch — Band Color selection overrides the base variant
+        const getWatchSelection = () => {
+            let selectedBand = null;
+
+            bandOptions.forEach((option) => {
+                if (option.classList.contains('is-selected')) {
+                    selectedBand = /** @type {HTMLElement} */ (option);
+                }
+            });
+
+            if (selectedBand) {
+                return {
+                    id: selectedBand.dataset.bandVariantId,
+                    title: selectedBand.dataset.bandTitle || '',
+                    available: isAvailable(selectedBand)
+                };
+            }
+
+            return {
+                id: productData.variantId,
+                title: productData.variantTitle || '',
+                available: productData.variantAvailable !== false
+            };
+        };
+
         const buildCartItems = () => {
             const items = [];
 
-            // Watch — Band Color selection overrides the base variant
-            const watchVariantId = configurator.dataset.bandVariantId
-                || productData.variantId;
+            const watch = getWatchSelection();
 
-            if (watchVariantId) {
-                items.push({ id: parseInt(String(watchVariantId), 10), quantity: 1 });
+            if (watch.id) {
+                items.push({ id: parseInt(String(watch.id), 10), quantity: 1 });
             }
 
             // School Clip (included free)
@@ -432,6 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (
                     option.classList.contains('is-selected')
                     && option.dataset.screenProtector === 'enabled'
+                    && isAvailable(option)
                 ) {
                     screenProtectorVariantId = option.dataset.variantId;
                 }
@@ -448,6 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (
                     option.classList.contains('is-selected')
                     && (/** @type {HTMLElement} */ (option)).dataset.charging === 'stand'
+                    && isAvailable(option)
                 ) {
                     chargingVariantId = (/** @type {HTMLElement} */ (option)).dataset.variantId;
                 }
@@ -494,6 +590,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             hideTermsError();
 
+            const watch = getWatchSelection();
+
+            if (!watch.available) {
+                showTermsError(
+                    watch.title
+                        ? `${watch.title} is sold out. Please choose another band color.`
+                        : 'This watch is sold out.'
+                );
+                return;
+            }
+
             const items = buildCartItems();
 
             if (!items.length) {
@@ -529,6 +636,14 @@ document.addEventListener('DOMContentLoaded', () => {
         checkoutButtons.forEach((button) => {
             button.addEventListener('click', addToCart);
         });
+
+        if (termsCheckbox) {
+            termsCheckbox.addEventListener('change', () => {
+                if (termsCheckbox.checked) {
+                    hideTermsError();
+                }
+            });
+        }
 
         updateOrderSummary();
     });
