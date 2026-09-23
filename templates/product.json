@@ -114,7 +114,8 @@
         }
       },
       "settings": {
-        "rating_icon_fallback": "Review-Stars.svg"
+        "rating_icon_fallback": "Review-Stars.svg",
+        "customize_page": "customize-jrtrack"
       }
     },
     "faq": {

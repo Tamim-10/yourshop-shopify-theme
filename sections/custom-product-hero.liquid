@@ -166,6 +166,33 @@
             %}
           {%- endform -%}
         </product-form-component>
+
+        {%- if section.settings.customize_page != blank -%}
+          <script>
+            // Send the Add to Cart button to the customize page instead of the cart.
+            // Listens in the capture phase on window so it fires before the theme's
+            // add-to-cart handlers (click animation + form submit) and stops them.
+            (() => {
+              const formId = {{ product_form_id | json }};
+              const customizeUrl = {{ section.settings.customize_page.url | json }};
+
+              const redirect = (event) => {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                window.location.href = customizeUrl;
+              };
+
+              window.addEventListener('click', (event) => {
+                const button = event.target.closest && event.target.closest('button[type="submit"]');
+                if (button && button.form && button.form.id === formId) redirect(event);
+              }, true);
+
+              window.addEventListener('submit', (event) => {
+                if (event.target.id === formId) redirect(event);
+              }, true);
+            })();
+          </script>
+        {%- endif -%}
       {%- endif -%}
 
       {%- if section.settings.show_prime_banner -%}
@@ -569,6 +596,12 @@
       "id": "cart_button_text",
       "label": "Button text",
       "default": "Add to Cart"
+    },
+    {
+      "type": "page",
+      "id": "customize_page",
+      "label": "Redirect to customize page",
+      "info": "When set, the button opens this page instead of adding the product to the cart."
     },
     {
       "type": "header",
