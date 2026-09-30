@@ -1,101 +1,127 @@
-{%- comment -%} jrtrack-wiki-part-1 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
+{%- comment -%}
+  jrtrack-wiki-part-1 - part of jrtrack-wiki. Use inside the
+  template-jrtrack-wiki wrapper (it holds the styles, scripts and layout
+  containers).
+{%- endcomment -%}
 <div class="cw-top">
-<div class="cw-top-in">
-<div class="cw-brand">{{ section.settings.page_01 }}</div>
-<div class="cw-top-spacer"></div>
-<div class="cw-search" data-cw-search>
-<div class="cw-search-field">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-<input type="text" placeholder="Search features and answers" aria-label="Search" autocomplete="off" spellcheck="false">
-<kbd class="cw-kbd">/</kbd>
-</div>
-<div class="cw-results" role="listbox"></div>
-</div>
-<a class="cw-top-cta" href="/products/jrtrack-pro">{{ section.settings.page_02 }}</a>
-</div>
+  <div class="cw-top-in">
+    <div class="cw-brand">{{ section.settings.page_01 }}</div>
+    <div class="cw-top-spacer"></div>
+    <div class="cw-search" data-cw-search>
+      <div class="cw-search-field">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-3.5-3.5" />
+        </svg>
+        <input
+          type="text"
+          placeholder="Search features and answers"
+          aria-label="Search"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <kbd class="cw-kbd">/</kbd>
+      </div>
+      <div class="cw-results" role="listbox"></div>
+    </div>
+    <a class="cw-top-cta" href="/products/jrtrack-pro">{{ section.settings.page_02 }}</a>
+  </div>
 </div>
 <header class="cw-hero">
-<div class="cw-hero-in">
-<div>
-<div class="cw-eyebrow">{{ section.settings.cw_hero_01 }}</div>
-<h1>{{ section.settings.cw_hero_02 }}</h1>
-<p class="cw-hero-sub">{{ section.settings.cw_hero_03 }}</p>
-<div class="cw-hero-search">
-<div class="cw-search" data-cw-search>
-<div class="cw-search-field">
-<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-<input type="text" placeholder="Try &ldquo;SOS&rdquo;, &ldquo;accuracy&rdquo;, &ldquo;school&rdquo;, &ldquo;water&rdquo;&hellip;" aria-label="Search" autocomplete="off" spellcheck="false">
-</div>
-<div class="cw-results" role="listbox"></div>
-</div>
-</div>
-<div class="cw-hero-meta">
-<span class="cw-meta">{{ section.settings.cw_hero_04 }}</span>
-<span class="cw-meta">{{ section.settings.cw_hero_05 }}</span>
-<span class="cw-meta">{{ section.settings.cw_hero_06 }}</span>
-</div>
-</div>
-<figure class="cw-hero-img">
-<img src="{{ 'cosmo-wiki-hero-crop.jpg' | file_url }}" alt="Three kids lying in the grass at sunset, one wearing a JrTrack" width="2040" height="1133" fetchpriority="high">
-<figcaption>{{ section.settings.cw_hero_07 }}</figcaption>
-</figure>
-</div>
+  <div class="cw-hero-in">
+    <div>
+      <div class="cw-eyebrow">{{ section.settings.cw_hero_01 }}</div>
+      <h1>{{ section.settings.cw_hero_02 }}</h1>
+      <p class="cw-hero-sub">{{ section.settings.cw_hero_03 }}</p>
+      <div class="cw-hero-search">
+        <div class="cw-search" data-cw-search>
+          <div class="cw-search-field">
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Try &ldquo;SOS&rdquo;, &ldquo;accuracy&rdquo;, &ldquo;school&rdquo;, &ldquo;water&rdquo;&hellip;"
+              aria-label="Search"
+              autocomplete="off"
+              spellcheck="false"
+            >
+          </div>
+          <div class="cw-results" role="listbox"></div>
+        </div>
+      </div>
+      <div class="cw-hero-meta">
+        <span class="cw-meta">{{ section.settings.cw_hero_04 }}</span>
+        <span class="cw-meta">{{ section.settings.cw_hero_05 }}</span>
+        <span class="cw-meta">{{ section.settings.cw_hero_06 }}</span>
+      </div>
+    </div>
+    <figure class="cw-hero-img">
+      <img
+        src="{{ 'cosmo-wiki-hero-crop.jpg' | file_url }}"
+        alt="Three kids lying in the grass at sunset, one wearing a JrTrack"
+        width="2040"
+        height="1133"
+        fetchpriority="high"
+      >
+      <figcaption>{{ section.settings.cw_hero_07 }}</figcaption>
+    </figure>
+  </div>
 </header>
 <section class="cw-feat">
-<div class="cw-feat-h"><h2>{{ section.settings.cw_feat_01 }}</h2><span class="cw-feat-sub">{{ section.settings.cw_feat_02 }}</span></div>
-<div class="cw-feat-grid">
-<a class="cw-fcard" href="#halogps">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-8.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_03 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_04 }}</i></div>
-</a>
-<a class="cw-fcard" href="#safecore">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-7.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_05 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_06 }}</i></div>
-</a>
-<a class="cw-fcard" href="#texting">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-4.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_07 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_08 }}</i></div>
-</a>
-<a class="cw-fcard" href="#schoolfi">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-watch-schoolfi.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_09 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_10 }}</i></div>
-</a>
-<a class="cw-fcard" href="#routines">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-11.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_11 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_12 }}</i></div>
-</a>
-<a class="cw-fcard" href="#appstation">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-9.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_13 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_14 }}</i></div>
-</a>
-<a class="cw-fcard" href="#app">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-19.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_15 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_16 }}</i></div>
-</a>
-<a class="cw-fcard" href="#mobile">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-bus-calling.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_17 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_18 }}</i></div>
-</a>
-<a class="cw-fcard" href="#design">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-15.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_19 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_20 }}</i></div>
-</a>
-<a class="cw-fcard" href="#care">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-6.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_21 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_22 }}</i></div>
-</a>
-<a class="cw-fcard" href="#grows">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-16.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_23 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_24 }}</i></div>
-</a>
-<a class="cw-fcard" href="#compare">
-<div class="cw-fcard-img"><img src="{{ 'cosmo-wiki-life-14.jpg' | file_url }}" alt="" loading="lazy"></div>
-<div class="cw-fcard-b"><b class="cw-fcard-t">{{ section.settings.cw_feat_25 }}</b><i class="cw-fcard-d">{{ section.settings.cw_feat_26 }}</i></div>
-</a>
-</div>
+  <div class="cw-feat-h">
+    <h2>{{ section.settings.cw_feat_01 }}</h2>
+    <span class="cw-feat-sub">{{ section.settings.cw_feat_02 }}</span>
+  </div>
+
+  <div class="cw-feat-grid">
+    {% for block in section.blocks %}
+      <a
+        class="cw-fcard"
+        href="{{ block.settings.card_link }}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="cw-fcard-img">
+          {% if block.settings.card_image != blank %}
+            <img
+              src="{{ block.settings.card_image | image_url: width: 800 }}"
+              alt="{{ block.settings.card_title | escape }}"
+              loading="lazy"
+            >
+          {% endif %}
+        </div>
+
+        <div class="cw-fcard-b">
+          <b class="cw-fcard-t">
+            {{ block.settings.card_title }}
+          </b>
+          <i class="cw-fcard-d">
+            {{ block.settings.card_description }}
+          </i>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
 </section>
 <div class="cw-mobnav">
-<select aria-label="Jump to feature" data-cw-mobnav></select>
+  <select aria-label="Jump to feature" data-cw-mobnav></select>
 </div>
 
 {% schema %}
@@ -118,6 +144,7 @@
       "label": "Shop JrTrack",
       "default": "Shop JrTrack"
     },
+
     {
       "type": "header",
       "content": "CW HERO"
@@ -137,7 +164,7 @@
     {
       "type": "textarea",
       "id": "cw_hero_03",
-      "label": "Every feature on the watch and in the app, t...",
+      "label": "Every feature on the watch and in the app",
       "default": "Every feature on the watch and in the app, taken apart and put back together. How HaloGPS finds them, what SafeCore does in an emergency, how School-Fi knows it is a school day, what Cosmo Mobile costs. Read the parts you care about, or all of it."
     },
     {
@@ -164,6 +191,7 @@
       "label": "Freedom for them, a line back to you",
       "default": "Freedom for them, a line back to you"
     },
+
     {
       "type": "header",
       "content": "CW FEAT"
@@ -177,157 +205,79 @@
     {
       "type": "text",
       "id": "cw_feat_02",
-      "label": "Each one goes deep. Pick where to start.",
+      "label": "Feature section subtitle",
       "default": "Each one goes deep. Pick where to start."
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_03",
-      "label": "HaloGPS",
-      "default": "HaloGPS"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_04",
-      "label": "115 satellite signals, Active Tracking, Safe...",
-      "default": "115 satellite signals, Active Tracking, SafeZones"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_05",
-      "label": "SafeCore",
-      "default": "SafeCore"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_06",
-      "label": "SOS, Guardians, optional 911, approved conta...",
-      "default": "SOS, Guardians, optional 911, approved contacts"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_07",
-      "label": "Texting",
-      "default": "Texting"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_08",
-      "label": "TrueTexting, group chats, photos, voice note...",
-      "default": "TrueTexting, group chats, photos, voice notes, talk to text"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_09",
-      "label": "School-Fi",
-      "default": "School-Fi"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_10",
-      "label": "Distraction-free from bell to bell, automati...",
-      "default": "Distraction-free from bell to bell, automatically"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_11",
-      "label": "Routines",
-      "default": "Routines"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_12",
-      "label": "School, bedtime, and anything you build",
-      "default": "School, bedtime, and anything you build"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_13",
-      "label": "App Station &amp; music",
-      "default": "App Station &amp; music"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_14",
-      "label": "A curated library you approve, with time lim...",
-      "default": "A curated library you approve, with time limits"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_15",
-      "label": "The Cosmo app",
-      "default": "The Cosmo app"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_16",
-      "label": "Location, contacts, routines, and every mess...",
-      "default": "Location, contacts, routines, and every message"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_17",
-      "label": "Cosmo Mobile &amp; plans",
-      "default": "Cosmo Mobile &amp; plans"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_18",
-      "label": "FlexSIM eSIM, coverage, and what it costs",
-      "default": "FlexSIM eSIM, coverage, and what it costs"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_19",
-      "label": "Design &amp; battery",
-      "default": "Design &amp; battery"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_20",
-      "label": "OLED, 720 mAh, 3 ATM, the Action button",
-      "default": "OLED, 720 mAh, 3 ATM, the Action button"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_21",
-      "label": "Cosmo Care &amp; guarantees",
-      "default": "Cosmo Care &amp; guarantees"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_22",
-      "label": "Damage, loss, 30-day returns, 3-year warranty",
-      "default": "Damage, loss, 30-day returns, 3-year warranty"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_23",
-      "label": "The watch that grows up",
-      "default": "The watch that grows up"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_24",
-      "label": "Buddies, watch faces, steps and streaks",
-      "default": "Buddies, watch faces, steps and streaks"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_25",
-      "label": "Which JrTrack",
-      "default": "Which JrTrack"
-    },
-    {
-      "type": "text",
-      "id": "cw_feat_26",
-      "label": "Pro, 5 SE, or 5 Renewed, side by side",
-      "default": "Pro, 5 SE, or 5 Renewed, side by side"
     }
   ],
+
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "card_description",
+          "label": "Card description",
+          "default": "Feature description"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card link"
+        }
+      ]
+    }
+  ],
+
   "presets": [
     {
-      "name": "jrtrack-wiki part 1"
+      "name": "jrtrack-wiki part 1",
+      "blocks": [
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "HaloGPS",
+            "card_description": "115 satellite signals, Active Tracking, SafeZones",
+            "card_link": "#halogps"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "SafeCore",
+            "card_description": "SOS, Guardians, optional 911, approved contacts",
+            "card_link": "#safecore"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "Texting",
+            "card_description": "TrueTexting, group chats, photos, voice notes, talk to text",
+            "card_link": "#texting"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "School-Fi",
+            "card_description": "Distraction-free from bell to bell, automatically",
+            "card_link": "#schoolfi"
+          }
+        }
+      ]
     }
   ]
 }
