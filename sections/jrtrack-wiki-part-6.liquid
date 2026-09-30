@@ -1,0 +1,125 @@
+{%- comment -%} jrtrack-wiki-part-6 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
+<section class="cw-help" id="help" data-cw-title="Get help">
+<h2>{{ section.settings.help_01 }}</h2>
+<p>{{ section.settings.help_02 }}</p>
+<div class="cw-help-grid">
+<a class="cw-help-card" href="tel:8772154741"><b class="cw-hc-l">{{ section.settings.help_03 }}</b><span class="cw-hc-v">{{ section.settings.help_04 }}</span></a>
+<a class="cw-help-card" href="mailto:support@cosmotogether.com"><b class="cw-hc-l">{{ section.settings.help_05 }}</b><span class="cw-hc-v">{{ section.settings.help_06 }}</span></a>
+<a class="cw-help-card" href="/pages/jrtrack-5-se-user-guide"><b class="cw-hc-l">{{ section.settings.help_07 }}</b><span class="cw-hc-v">{{ section.settings.help_08 }}</span></a>
+</div>
+<p class="cw-help-sign">{{ section.settings.help_09 }}</p>
+</section>
+<div class="cw-foot">
+<ol>
+<li>{{ section.settings.page_05 }}</li>
+<li>{{ section.settings.page_06 }}</li>
+<li>{{ section.settings.page_07 }}</li>
+<li>{{ section.settings.page_08 }}</li>
+</ol>
+<p>{{ section.settings.page_09 }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "jrtrack-wiki 6",
+  "settings": [
+    {
+      "type": "header",
+      "content": "HELP"
+    },
+    {
+      "type": "text",
+      "id": "help_01",
+      "label": "Still have a question?",
+      "default": "Still have a question?"
+    },
+    {
+      "type": "textarea",
+      "id": "help_02",
+      "label": "Real humans, seven days a week. If the hones...",
+      "default": "Real humans, seven days a week. If the honest answer is \"this is not the right product for your family\", they will say that too."
+    },
+    {
+      "type": "text",
+      "id": "help_03",
+      "label": "Phone",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "help_04",
+      "label": "877-215-4741",
+      "default": "877-215-4741"
+    },
+    {
+      "type": "text",
+      "id": "help_05",
+      "label": "Email",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "help_06",
+      "label": "support@cosmotogether.com",
+      "default": "support@cosmotogether.com"
+    },
+    {
+      "type": "text",
+      "id": "help_07",
+      "label": "Already own one",
+      "default": "Already own one"
+    },
+    {
+      "type": "text",
+      "id": "help_08",
+      "label": "The full user guide",
+      "default": "The full user guide"
+    },
+    {
+      "type": "text",
+      "id": "help_09",
+      "label": "Reach for More.",
+      "default": "Reach for More."
+    },
+    {
+      "type": "header",
+      "content": "PAGE"
+    },
+    {
+      "type": "textarea",
+      "id": "page_05",
+      "label": "Battery life varies with settings, signal st...",
+      "default": "Battery life varies with settings, signal strength, and usage. 24+ hours reflects default settings in Cosmo lab testing. JrTrack Pro battery capacity and runtime figures are preliminary."
+    },
+    {
+      "type": "textarea",
+      "id": "page_06",
+      "label": "JrTrack Pro is 3 ATM rated for water, equiva...",
+      "default": "JrTrack Pro is 3 ATM rated for water, equivalent to 30 meters (98 feet) of static pressure. Suitable for rain, splashes, and handwashing. Not a swimming or diving rating. JrTrack 5 and JrTrack 5 SE are IP68 rated to 1.5 meters."
+    },
+    {
+      "type": "textarea",
+      "id": "page_07",
+      "label": "Cellular service requires an active Cosmo Mo...",
+      "default": "Cellular service requires an active Cosmo Mobile plan. Calling available in the US, Canada, and Mexico. Texting available in the US and Canada."
+    },
+    {
+      "type": "textarea",
+      "id": "page_08",
+      "label": "Compared with single-constellation GPS in Co...",
+      "default": "Compared with single-constellation GPS in Cosmo lab testing. Real-world results vary with signal and surroundings."
+    },
+    {
+      "type": "html",
+      "id": "page_09",
+      "label": "&dagger; JrTrack Pro hardware specifications...",
+      "default": "<sup>&dagger;</sup> JrTrack Pro hardware specifications and design details shown are preliminary and will be confirmed before launch. Watch renders showing app screens depict JrTrack 5; JrTrack Pro renders are identified as such. Prices in USD and subject to change. This page is a plain-language explainer; the Cosmo terms of service and privacy policy govern."
+    }
+  ],
+  "presets": [
+    {
+      "name": "jrtrack-wiki part 6"
+    }
+  ]
+}
+{% endschema %}

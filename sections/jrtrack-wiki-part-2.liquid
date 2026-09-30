@@ -1,0 +1,35 @@
+{%- comment -%} jrtrack-wiki-part-2 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
+<aside class="cw-side">
+<div class="cw-side-h">{{ section.settings.page_03 }}</div>
+<ul class="cw-nav" data-cw-nav></ul>
+<div class="cw-side-help">{{ section.settings.page_04 }}</div>
+</aside>
+
+{% schema %}
+{
+  "name": "jrtrack-wiki 2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "PAGE"
+    },
+    {
+      "type": "text",
+      "id": "page_03",
+      "label": "Features",
+      "default": "Features"
+    },
+    {
+      "type": "html",
+      "id": "page_04",
+      "label": "Rather just ask? Real humans, seven days a w...",
+      "default": "<b>Rather just ask?</b> Real humans, seven days a week. <a href=\"tel:8772154741\">877-215-4741</a>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "jrtrack-wiki part 2"
+    }
+  ]
+}
+{% endschema %}
