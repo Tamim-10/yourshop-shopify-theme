@@ -141,13 +141,33 @@
               "card_description": "Distraction-free from bell to bell, automatically",
               "card_link": ""
             }
+          },
+          "feature_card_T9BkwJ": {
+            "type": "feature_card",
+            "settings": {
+              "card_image": "shopify://shop_images/cosmo-wiki-life-11.jpg",
+              "card_title": "Routines",
+              "card_description": "School, bedtime, and anything you build",
+              "card_link": ""
+            }
+          },
+          "feature_card_jcfzYC": {
+            "type": "feature_card",
+            "settings": {
+              "card_image": "shopify://shop_images/cosmo-wiki-life-9.jpg",
+              "card_title": "App Station & music",
+              "card_description": "A curated library you approve, with time limits",
+              "card_link": ""
+            }
           }
         },
         "block_order": [
           "feature_card_3AR4RW",
           "feature_card_GpDrE9",
           "feature_card_qy3QE7",
-          "feature_card_Pdjq8q"
+          "feature_card_Pdjq8q",
+          "feature_card_T9BkwJ",
+          "feature_card_jcfzYC"
         ],
         "settings": {
           "page_01": "<b>JrTrack</b><span>Wiki</span>",
