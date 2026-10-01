@@ -38,8 +38,8 @@
 <header class="cw-hero">
   <div class="cw-hero-in">
     <div>
-      <div class="cw-eyebrow">{{ section.settings.cw_hero_01 }}</div>
-      <h1>{{ section.settings.cw_hero_02 }}</h1>
+      <div class="cw-eyebrow">{{ section.settings.hero_eyebrow }}</div>
+      <h1>{{ section.settings.hero_heading }}</h1>
       <p class="cw-hero-sub">{{ section.settings.cw_hero_03 }}</p>
       <div class="cw-hero-search">
         <div class="cw-search" data-cw-search>
@@ -151,17 +151,18 @@
     },
     {
       "type": "text",
-      "id": "cw_hero_01",
-      "label": "All the details",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
       "default": "All the details"
     },
     {
-      "type": "html",
-      "id": "cw_hero_02",
-      "label": "JrTrack Wiki",
-      "default": "JrTrack <span>Wiki</span>"
+      "type": "inline_richtext",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "info": "Bold text will be styled as the main word",
+      "default": "<strong>JrTrack</strong> Wiki"
     },
-    {
+        {
       "type": "textarea",
       "id": "cw_hero_03",
       "label": "Every feature on the watch and in the app",
