@@ -74,15 +74,23 @@
       </div>
     </div>
     <figure class="cw-hero-img">
-      <img
-        src="{{ 'cosmo-wiki-hero-crop.jpg' | file_url }}"
-        alt="Three kids lying in the grass at sunset, one wearing a JrTrack"
-        width="2040"
-        height="1133"
-        fetchpriority="high"
-      >
+      {% if section.settings.hero_image != blank %}
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1600 }}"
+          srcset="
+            {{ section.settings.hero_image | image_url: width: 800 }} 800w,
+            {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.hero_image | image_url: width: 1600 }} 1600w
+          "
+          sizes="(min-width: 900px) 50vw, 100vw"
+          alt="{{ section.settings.hero_image_alt | escape }}"
+          width="{{ section.settings.hero_image.width }}"
+          height="{{ section.settings.hero_image.height }}"
+          fetchpriority="high"
+        >
+      {% endif %}
       <figcaption>{{ section.settings.cw_hero_07 }}</figcaption>
-    </figure>
+    </figure>  
   </div>
 </header>
 <section class="cw-feat">
@@ -162,7 +170,19 @@
       "info": "Bold text will be styled as the main word",
       "default": "<strong>JrTrack</strong> Wiki"
     },
-        {
+    {
+  "type": "image_picker",
+  "id": "hero_image",
+  "label": "Hero image"
+},
+{
+  "type": "text",
+  "id": "hero_image_alt",
+  "label": "Hero image alt text",
+  "info": "Describe the image for screen readers and SEO",
+  "default": "Three kids lying in the grass at sunset, one wearing a JrTrack"
+},
+    {
       "type": "textarea",
       "id": "cw_hero_03",
       "label": "Every feature on the watch and in the app",
