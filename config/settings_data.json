@@ -105,6 +105,19 @@
     "sections": {
       "jrtrack-wiki-part-1": {
         "type": "jrtrack-wiki-part-1",
+        "blocks": {
+          "feature_card_3yTnVr": {
+            "type": "feature_card",
+            "settings": {
+              "card_title": "Feature title",
+              "card_description": "Feature description",
+              "card_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "feature_card_3yTnVr"
+        ],
         "settings": {
           "page_01": "<b>JrTrack</b><span>Wiki</span>",
           "page_02": "Shop JrTrack",
