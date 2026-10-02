@@ -3,6 +3,7 @@
   template-jrtrack-wiki wrapper (it holds the styles, scripts and layout
   containers).
 {%- endcomment -%}
+
 <div class="cw-top">
   <div class="cw-top-in">
     <div class="cw-brand">{{ section.settings.page_01 }}</div>
@@ -32,9 +33,15 @@
       </div>
       <div class="cw-results" role="listbox"></div>
     </div>
-    <a class="cw-top-cta" href="/products/jrtrack-pro">{{ section.settings.page_02 }}</a>
+    <a
+      class="cw-top-cta"
+      href="{{ section.settings.shop_product.url | default: '/products/jrtrack-pro' }}"
+    >  
+      {{ section.settings.page_02 }}
+    </a>
   </div>
 </div>
+
 <header class="cw-hero">
   <div class="cw-hero-in">
     <div>
@@ -67,10 +74,14 @@
           <div class="cw-results" role="listbox"></div>
         </div>
       </div>
-      <div class="cw-hero-meta">
-        <span class="cw-meta">{{ section.settings.cw_hero_04 }}</span>
-        <span class="cw-meta">{{ section.settings.cw_hero_05 }}</span>
-        <span class="cw-meta">{{ section.settings.cw_hero_06 }}</span>
+            <div class="cw-hero-meta">
+        {% for block in section.blocks %}
+          {% if block.type == 'meta_chip' %}
+            <span class="cw-meta" {{ block.shopify_attributes }}>
+              {{ block.settings.chip_text }}
+            </span>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
     <figure class="cw-hero-img">
@@ -93,6 +104,7 @@
     </figure>  
   </div>
 </header>
+
 <section class="cw-feat">
   <div class="cw-feat-h">
     <h2>{{ section.settings.cw_feat_01 }}</h2>
@@ -101,20 +113,24 @@
 
   <div class="cw-feat-grid">
     {% for block in section.blocks %}
+      {% if block.type == 'feature_card' %}
       <a
         class="cw-fcard"
         href="{{ block.settings.card_link }}"
         {{ block.shopify_attributes }}
       >
-        <div class="cw-fcard-img">
-          {% if block.settings.card_image != blank %}
-            <img
-              src="{{ block.settings.card_image | image_url: width: 800 }}"
-              alt="{{ block.settings.card_title | escape }}"
-              loading="lazy"
-            >
-          {% endif %}
-        </div>
+
+      <div class="cw-fcard-img">
+        {% if block.settings.card_image != blank %}
+          <img
+            src="{{ block.settings.card_image | image_url: width: 800 }}"
+            alt="{{ block.settings.card_title | escape }}"
+            width="{{ block.settings.card_image.width }}"
+            height="{{ block.settings.card_image.height }}"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>  
 
         <div class="cw-fcard-b">
           <b class="cw-fcard-t">
@@ -125,9 +141,12 @@
           </i>
         </div>
       </a>
+      
+        {% endif %}
     {% endfor %}
   </div>
 </section>
+
 <div class="cw-mobnav">
   <select aria-label="Jump to feature" data-cw-mobnav></select>
 </div>
@@ -152,7 +171,11 @@
       "label": "Shop JrTrack",
       "default": "Shop JrTrack"
     },
-
+    {
+      "type": "product",
+      "id": "shop_product",
+      "label": "Shop JrTrack product"
+    },
     {
       "type": "header",
       "content": "CW HERO"
@@ -171,17 +194,17 @@
       "default": "<strong>JrTrack</strong> Wiki"
     },
     {
-  "type": "image_picker",
-  "id": "hero_image",
-  "label": "Hero image"
-},
-{
-  "type": "text",
-  "id": "hero_image_alt",
-  "label": "Hero image alt text",
-  "info": "Describe the image for screen readers and SEO",
-  "default": "Three kids lying in the grass at sunset, one wearing a JrTrack"
-},
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "info": "Describe the image for screen readers and SEO",
+      "default": "Three kids lying in the grass at sunset, one wearing a JrTrack"
+    },
     {
       "type": "textarea",
       "id": "cw_hero_03",
@@ -189,30 +212,11 @@
       "default": "Every feature on the watch and in the app, taken apart and put back together. How HaloGPS finds them, what SafeCore does in an emergency, how School-Fi knows it is a school day, what Cosmo Mobile costs. Read the parts you care about, or all of it."
     },
     {
-      "type": "html",
-      "id": "cw_hero_04",
-      "label": "12 features",
-      "default": "<b>12</b> features"
-    },
-    {
-      "type": "html",
-      "id": "cw_hero_05",
-      "label": "50+ answers",
-      "default": "<b>50+</b> answers"
-    },
-    {
-      "type": "html",
-      "id": "cw_hero_06",
-      "label": "Everything in JrTrack Pro",
-      "default": "Everything in <b>JrTrack Pro</b>"
-    },
-    {
       "type": "text",
       "id": "cw_hero_07",
       "label": "Freedom for them, a line back to you",
       "default": "Freedom for them, a line back to you"
     },
-
     {
       "type": "header",
       "content": "CW FEAT"
@@ -230,7 +234,6 @@
       "default": "Each one goes deep. Pick where to start."
     }
   ],
-
   "blocks": [
     {
       "type": "feature_card",
@@ -259,13 +262,29 @@
           "label": "Card link"
         }
       ]
+    },
+    {
+      "type": "meta_chip",
+      "name": "Hero chip",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "chip_text",
+          "label": "Chip text",
+          "info": "Use bold for the highlighted part",
+          "default": "<strong>12</strong> features"
+        }
+      ]
     }
   ],
-
   "presets": [
     {
       "name": "jrtrack-wiki part 1",
       "blocks": [
+        { "type": "meta_chip", "settings": { "chip_text": "<strong>12</strong> features" } },
+        { "type": "meta_chip", "settings": { "chip_text": "<strong>50+</strong> answers" } },
+        { "type": "meta_chip", "settings": { "chip_text": "Everything in <strong>JrTrack Pro</strong>" } },
         {
           "type": "feature_card",
           "settings": {

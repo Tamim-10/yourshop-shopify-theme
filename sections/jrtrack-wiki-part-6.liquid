@@ -1,5 +1,5 @@
 {%- comment -%} jrtrack-wiki-part-6 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
-<section class="cw-help" id="help" data-cw-title="Get help">
+<section class="cw-help" id="help" data-cw-title="{{ section.settings.help_nav_title | default: "Get help" | escape }}">
 <h2>{{ section.settings.help_01 }}</h2>
 <p>{{ section.settings.help_02 }}</p>
 <div class="cw-help-grid">
@@ -26,6 +26,13 @@
     {
       "type": "header",
       "content": "HELP"
+    },
+    {
+      "type": "text",
+      "id": "help_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Get help"
     },
     {
       "type": "text",

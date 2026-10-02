@@ -1,5 +1,5 @@
 {%- comment -%} jrtrack-wiki-part-5 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
-<section class="cw-sec" id="design" data-cw-title="Design &amp; battery">
+<section class="cw-sec" id="design" data-cw-title="{{ section.settings.design_nav_title | default: "Design & battery" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-15.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -117,7 +117,7 @@
 </div>
 </article>
 </section>
-<section class="cw-sec" id="care" data-cw-title="Cosmo Care &amp; guarantees">
+<section class="cw-sec" id="care" data-cw-title="{{ section.settings.care_nav_title | default: "Cosmo Care & guarantees" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-6.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -195,7 +195,7 @@
 </div>
 </article>
 </section>
-<section class="cw-sec" id="grows" data-cw-title="The watch that grows up">
+<section class="cw-sec" id="grows" data-cw-title="{{ section.settings.grows_nav_title | default: "The watch that grows up" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-14.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -239,7 +239,7 @@
 </div>
 </article>
 </section>
-<section class="cw-sec" id="compare" data-cw-title="Which JrTrack">
+<section class="cw-sec" id="compare" data-cw-title="{{ section.settings.compare_nav_title | default: "Which JrTrack" | escape }}">
 <div class="cw-sec-head"><h2>{{ section.settings.compare_01 }}</h2></div>
 <article class="cw-art" id="lineup">
 <div class="cw-art-h"><h3>{{ section.settings.compare_02 }}</h3></div>
@@ -316,6 +316,13 @@
     {
       "type": "header",
       "content": "DESIGN"
+    },
+    {
+      "type": "text",
+      "id": "design_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Design & battery"
     },
     {
       "type": "text",
@@ -659,6 +666,13 @@
     },
     {
       "type": "text",
+      "id": "care_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Cosmo Care & guarantees"
+    },
+    {
+      "type": "text",
       "id": "care_01",
       "label": "Feature 10",
       "default": "Feature 10"
@@ -939,6 +953,13 @@
     },
     {
       "type": "text",
+      "id": "grows_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "The watch that grows up"
+    },
+    {
+      "type": "text",
       "id": "grows_01",
       "label": "Feature 11",
       "default": "Feature 11"
@@ -1018,6 +1039,13 @@
     {
       "type": "header",
       "content": "COMPARE"
+    },
+    {
+      "type": "text",
+      "id": "compare_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Which JrTrack"
     },
     {
       "type": "text",

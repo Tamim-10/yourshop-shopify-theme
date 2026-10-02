@@ -1,417 +1,605 @@
-{%- comment -%} jrtrack-wiki-part-3 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
-<section class="cw-sec" id="overview" data-cw-title="Overview">
-<div class="cw-sec-head"><h2>{{ section.settings.overview_01 }}</h2></div>
-<article class="cw-art" id="what-it-is">
-<div class="cw-split is-wide">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.overview_02 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.overview_03 }}</div>
-<p>{{ section.settings.overview_04 }}</p>
-<p>{{ section.settings.overview_05 }}</p>
-</div>
-</div>
-<figure class="cw-fig is-photo">
-<img src="{{ 'cosmo-wiki-reach-crop.jpg' | file_url }}" alt="A girl on the school bus resting her arm on the seat, JrTrack on her wrist" loading="lazy" width="1306" height="1632">
-<figcaption>{{ section.settings.overview_06 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="the-platform">
-<div class="cw-art-h"><h3>{{ section.settings.overview_07 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.overview_08 }}</p>
-<div class="cw-kv">
-<div class="cw-kv-row">{{ section.settings.overview_09 }}</div>
-<div class="cw-kv-row">{{ section.settings.overview_10 }}</div>
-<div class="cw-kv-row">{{ section.settings.overview_11 }}</div>
-<div class="cw-kv-row">{{ section.settings.overview_12 }}</div>
-<div class="cw-kv-row">{{ section.settings.overview_13 }}</div>
-</div>
-</div>
-</article>
-<article class="cw-art" id="who-for">
-<div class="cw-split is-flip is-wide">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.overview_14 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.overview_15 }}</div>
-<ul class="cw-list">
-<li>{{ section.settings.overview_16 }}</li>
-<li>{{ section.settings.overview_17 }}</li>
-<li>{{ section.settings.overview_18 }}</li>
-</ul>
-<p>{{ section.settings.overview_19 }}</p>
-</div>
-</div>
-<figure class="cw-fig is-photo is-square">
-<img src="{{ 'cosmo-wiki-life-20.jpg' | file_url }}" alt="A dad and his son fist-bumping outside, the boy wearing a JrTrack" loading="lazy" width="1920" height="1080" style="object-position:30% center">
-<figcaption>{{ section.settings.overview_20 }}</figcaption>
-</figure>
-</div>
-</article>
+{%- comment -%} 
+jrtrack-wiki-part-3 - part of jrtrack-wiki. 
+Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). 
+{%- endcomment -%}
+
+<section
+  class="cw-sec"
+  id="overview"
+  data-cw-title="{{ section.settings.overview_nav_title | default: "Overview" | escape }}"
+>
+  <div class="cw-sec-head">
+    <h2>{{ section.settings.overview_01 }}</h2>
+  </div>
+  <article class="cw-art" id="what-it-is">
+    <div class="cw-split is-wide">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.overview_02 }}</h3>
+        </div>
+        <div class="cw-body">
+          <div class="cw-answer">{{ section.settings.overview_03 }}</div>
+          <p>{{ section.settings.overview_04 }}</p>
+          <p>{{ section.settings.overview_05 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig is-photo">
+      {%- if section.settings.overview_img_1 != blank -%}
+      {{ section.settings.overview_img_1 | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1400', sizes: '(min-width: 990px) 50vw, 100vw' }}
+      {%- else -%}
+        <img
+          src="{{ 'cosmo-wiki-reach-crop.jpg' | file_url }}"
+          alt="A girl on the school bus resting her arm on the seat, JrTrack on her wrist"
+          loading="lazy"
+          width="1306"
+          height="1632"
+        >
+      {%- endif -%}
+
+        <figcaption>{{ section.settings.overview_06 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="the-platform">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.overview_07 }}</h3>
+    </div>
+    <div class="cw-body">
+      <p>{{ section.settings.overview_08 }}</p>
+      <div class="cw-kv">
+        <div class="cw-kv-row">{{ section.settings.overview_09 }}</div>
+        <div class="cw-kv-row">{{ section.settings.overview_10 }}</div>
+        <div class="cw-kv-row">{{ section.settings.overview_11 }}</div>
+        <div class="cw-kv-row">{{ section.settings.overview_12 }}</div>
+        <div class="cw-kv-row">{{ section.settings.overview_13 }}</div>
+      </div>
+    </div>
+  </article>
+  <article class="cw-art" id="who-for">
+    <div class="cw-split is-flip is-wide">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.overview_14 }}</h3>
+        </div>
+        <div class="cw-body">
+          <div class="cw-answer">{{ section.settings.overview_15 }}</div>
+          <ul class="cw-list">
+            <li>{{ section.settings.overview_16 }}</li>
+            <li>{{ section.settings.overview_17 }}</li>
+            <li>{{ section.settings.overview_18 }}</li>
+          </ul>
+          <p>{{ section.settings.overview_19 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig is-photo is-square">
+        <img
+          src="{{ 'cosmo-wiki-life-20.jpg' | file_url }}"
+          alt="A dad and his son fist-bumping outside, the boy wearing a JrTrack"
+          loading="lazy"
+          width="1920"
+          height="1080"
+          style="object-position:30% center"
+        >
+        <figcaption>{{ section.settings.overview_20 }}</figcaption>
+      </figure>
+    </div>
+  </article>
 </section>
-<section class="cw-sec" id="halogps" data-cw-title="HaloGPS">
-<div class="cw-band is-flipx">
-<img src="{{ 'cosmo-wiki-life-8.jpg' | file_url }}" alt="" loading="lazy">
-<div class="cw-band-in">
-<div class="cw-eyebrow">{{ section.settings.halogps_01 }}</div>
-<h2>{{ section.settings.halogps_02 }}</h2>
-<p>{{ section.settings.halogps_03 }}</p>
-<div class="cw-stats">
-<div class="cw-stat">{{ section.settings.halogps_04 }}</div>
-<div class="cw-stat">{{ section.settings.halogps_05 }}</div>
-<div class="cw-stat">{{ section.settings.halogps_06 }}</div>
-<div class="cw-stat">{{ section.settings.halogps_07 }}</div>
-</div>
-</div>
-</div>
-<article class="cw-art" id="how-halogps-works">
-<div class="cw-split">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.halogps_08 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.halogps_09 }}</div>
-<p>{{ section.settings.halogps_10 }}</p>
-<p>{{ section.settings.halogps_11 }}</p>
-</div>
-</div>
-<figure class="cw-fig">
-<img src="{{ 'cosmo-wiki-app-halogps-phone.png' | file_url }}" alt="Cosmo app on an iPhone showing live locations for two kids" loading="lazy" width="900" height="1200">
-<figcaption>{{ section.settings.halogps_12 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="active-tracking">
-<div class="cw-split is-flip">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.halogps_13 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.halogps_14 }}</div>
-<p>{{ section.settings.halogps_15 }}</p>
-<p>{{ section.settings.halogps_16 }}</p>
-<ul class="cw-list">
-<li>{{ section.settings.halogps_17 }}</li>
-<li>{{ section.settings.halogps_18 }}</li>
-<li>{{ section.settings.halogps_19 }}</li>
-</ul>
-</div>
-</div>
-<figure class="cw-fig">
-<img src="{{ 'cosmo-wiki-app-live-tracking-tight.png' | file_url }}" alt="Cosmo app live tracking a child moving along a street" loading="lazy">
-</figure>
-</div>
-</article>
-<article class="cw-art" id="safezones">
-<div class="cw-split">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.halogps_20 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.halogps_21 }}</p>
-<ul class="cw-list">
-<li>{{ section.settings.halogps_22 }}</li>
-<li>{{ section.settings.halogps_23 }}</li>
-<li>{{ section.settings.halogps_24 }}</li>
-</ul>
-</div>
-</div>
-<figure class="cw-fig">
-<img src="{{ 'cosmo-wiki-app-safezone-tight.png' | file_url }}" alt="Cosmo app showing a SafeZone drawn around a location" loading="lazy">
-<figcaption>{{ section.settings.halogps_25 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="accuracy">
-<div class="cw-art-h"><h3>{{ section.settings.halogps_26 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.halogps_27 }}</p>
-<div class="cw-levels">
-<div class="cw-lvl open">
-<div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ section.settings.halogps_28 }}</h4></div>
-<p>{{ section.settings.halogps_29 }}</p>
-</div>
-<div class="cw-lvl part">
-<div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ section.settings.halogps_30 }}</h4></div>
-<p>{{ section.settings.halogps_31 }}</p>
-</div>
-<div class="cw-lvl full">
-<div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ section.settings.halogps_32 }}</h4></div>
-<p>{{ section.settings.halogps_33 }}</p>
-</div>
-</div>
-<div class="cw-note is-tip">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21.5h4"/><path d="M12 2.5a6.5 6.5 0 00-3.7 11.8c.5.4.7.9.7 1.5V16h6v-.2c0-.6.2-1.1.7-1.5A6.5 6.5 0 0012 2.5z"/></svg>
-<span class="cw-note-t">{{ section.settings.halogps_34 }}</span>
-</div>
-</div>
-</article>
-<article class="cw-art" id="location-history">
-<div class="cw-split is-flip">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.halogps_35 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.halogps_36 }}</p>
-<p>{{ section.settings.halogps_37 }}</p>
-</div>
-</div>
-<figure class="cw-fig">
-<img src="{{ 'cosmo-wiki-app-location-history-tight.png' | file_url }}" alt="Location history trail in the Cosmo app" loading="lazy">
-</figure>
-</div>
-</article>
-<article class="cw-art" id="halogps-questions">
-<div class="cw-art-h"><h3>{{ section.settings.halogps_38 }}</h3></div>
-<div class="cw-body">
-<div class="cw-acc">
-<details>
-<summary>{{ section.settings.halogps_39 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.halogps_40 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.halogps_41 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.halogps_42 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.halogps_43 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.halogps_44 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.halogps_45 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.halogps_46 }}</p></div>
-</details>
-</div>
-</div>
-</article>
+<section
+  class="cw-sec"
+  id="halogps"
+  data-cw-title="{{ section.settings.halogps_nav_title | default: "HaloGPS" | escape }}"
+>
+  <div class="cw-band is-flipx">
+    <img src="{{ 'cosmo-wiki-life-8.jpg' | file_url }}" alt="" loading="lazy">
+    <div class="cw-band-in">
+      <div class="cw-eyebrow">{{ section.settings.halogps_01 }}</div>
+      <h2>{{ section.settings.halogps_02 }}</h2>
+      <p>{{ section.settings.halogps_03 }}</p>
+      <div class="cw-stats">
+        <div class="cw-stat">{{ section.settings.halogps_04 }}</div>
+        <div class="cw-stat">{{ section.settings.halogps_05 }}</div>
+        <div class="cw-stat">{{ section.settings.halogps_06 }}</div>
+        <div class="cw-stat">{{ section.settings.halogps_07 }}</div>
+      </div>
+    </div>
+  </div>
+  <article class="cw-art" id="how-halogps-works">
+    <div class="cw-split">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.halogps_08 }}</h3>
+        </div>
+        <div class="cw-body">
+          <div class="cw-answer">{{ section.settings.halogps_09 }}</div>
+          <p>{{ section.settings.halogps_10 }}</p>
+          <p>{{ section.settings.halogps_11 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig">
+        <img
+          src="{{ 'cosmo-wiki-app-halogps-phone.png' | file_url }}"
+          alt="Cosmo app on an iPhone showing live locations for two kids"
+          loading="lazy"
+          width="900"
+          height="1200"
+        >
+        <figcaption>{{ section.settings.halogps_12 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="active-tracking">
+    <div class="cw-split is-flip">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.halogps_13 }}</h3>
+        </div>
+        <div class="cw-body">
+          <div class="cw-answer">{{ section.settings.halogps_14 }}</div>
+          <p>{{ section.settings.halogps_15 }}</p>
+          <p>{{ section.settings.halogps_16 }}</p>
+          <ul class="cw-list">
+            <li>{{ section.settings.halogps_17 }}</li>
+            <li>{{ section.settings.halogps_18 }}</li>
+            <li>{{ section.settings.halogps_19 }}</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="cw-fig">
+        <img
+          src="{{ 'cosmo-wiki-app-live-tracking-tight.png' | file_url }}"
+          alt="Cosmo app live tracking a child moving along a street"
+          loading="lazy"
+        >
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="safezones">
+    <div class="cw-split">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.halogps_20 }}</h3>
+        </div>
+        <div class="cw-body">
+          <p>{{ section.settings.halogps_21 }}</p>
+          <ul class="cw-list">
+            <li>{{ section.settings.halogps_22 }}</li>
+            <li>{{ section.settings.halogps_23 }}</li>
+            <li>{{ section.settings.halogps_24 }}</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="cw-fig">
+        <img
+          src="{{ 'cosmo-wiki-app-safezone-tight.png' | file_url }}"
+          alt="Cosmo app showing a SafeZone drawn around a location"
+          loading="lazy"
+        >
+        <figcaption>{{ section.settings.halogps_25 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="accuracy">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.halogps_26 }}</h3>
+    </div>
+    <div class="cw-body">
+      <p>{{ section.settings.halogps_27 }}</p>
+      <div class="cw-levels">
+        <div class="cw-lvl open">
+          <div class="cw-lvl-t">
+            <span class="cw-lvl-dot"></span>
+            <h4>{{ section.settings.halogps_28 }}</h4>
+          </div>
+          <p>{{ section.settings.halogps_29 }}</p>
+        </div>
+        <div class="cw-lvl part">
+          <div class="cw-lvl-t">
+            <span class="cw-lvl-dot"></span>
+            <h4>{{ section.settings.halogps_30 }}</h4>
+          </div>
+          <p>{{ section.settings.halogps_31 }}</p>
+        </div>
+        <div class="cw-lvl full">
+          <div class="cw-lvl-t">
+            <span class="cw-lvl-dot"></span>
+            <h4>{{ section.settings.halogps_32 }}</h4>
+          </div>
+          <p>{{ section.settings.halogps_33 }}</p>
+        </div>
+      </div>
+      <div class="cw-note is-tip">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 18h6M10 21.5h4"/><path d="M12 2.5a6.5 6.5 0 00-3.7 11.8c.5.4.7.9.7 1.5V16h6v-.2c0-.6.2-1.1.7-1.5A6.5 6.5 0 0012 2.5z"/>
+        </svg>
+        <span class="cw-note-t">{{ section.settings.halogps_34 }}</span>
+      </div>
+    </div>
+  </article>
+  <article class="cw-art" id="location-history">
+    <div class="cw-split is-flip">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.halogps_35 }}</h3>
+        </div>
+        <div class="cw-body">
+          <p>{{ section.settings.halogps_36 }}</p>
+          <p>{{ section.settings.halogps_37 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig">
+        <img
+          src="{{ 'cosmo-wiki-app-location-history-tight.png' | file_url }}"
+          alt="Location history trail in the Cosmo app"
+          loading="lazy"
+        >
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="halogps-questions">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.halogps_38 }}</h3>
+    </div>
+    <div class="cw-body">
+      <div class="cw-acc">
+        <details>
+          <summary>{{ section.settings.halogps_39 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.halogps_40 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.halogps_41 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.halogps_42 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.halogps_43 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.halogps_44 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.halogps_45 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.halogps_46 }}</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </article>
 </section>
-<section class="cw-sec" id="safecore" data-cw-title="SafeCore">
-<div class="cw-band">
-<img src="{{ 'cosmo-wiki-life-7.jpg' | file_url }}" alt="" loading="lazy">
-<div class="cw-band-in">
-<div class="cw-eyebrow">{{ section.settings.safecore_01 }}</div>
-<h2>{{ section.settings.safecore_02 }}</h2>
-<p>{{ section.settings.safecore_03 }}</p>
-<div class="cw-stats">
-<div class="cw-stat">{{ section.settings.safecore_04 }}</div>
-<div class="cw-stat">{{ section.settings.safecore_05 }}</div>
-<div class="cw-stat">{{ section.settings.safecore_06 }}</div>
-<div class="cw-stat">{{ section.settings.safecore_07 }}</div>
-</div>
-</div>
-</div>
-<article class="cw-art" id="safecore-includes">
-<div class="cw-art-h"><h3>{{ section.settings.safecore_08 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.safecore_09 }}</div>
-<div class="cw-levels">
-<div class="cw-lvl open">
-<div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ section.settings.safecore_10 }}</h4></div>
-<p>{{ section.settings.safecore_11 }}</p>
-</div>
-<div class="cw-lvl open">
-<div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ section.settings.safecore_12 }}</h4></div>
-<p>{{ section.settings.safecore_13 }}</p>
-</div>
-<div class="cw-lvl open">
-<div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ section.settings.safecore_14 }}</h4></div>
-<p>{{ section.settings.safecore_15 }}</p>
-</div>
-</div>
-</div>
-</article>
-<article class="cw-art" id="sos-flow">
-<div class="cw-split is-wide">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.safecore_16 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.safecore_17 }}</p>
-<ol class="cw-steps">
-<li>{{ section.settings.safecore_18 }}</li>
-<li>{{ section.settings.safecore_19 }}</li>
-<li>{{ section.settings.safecore_20 }}</li>
-<li>{{ section.settings.safecore_21 }}</li>
-<li>{{ section.settings.safecore_22 }}</li>
-</ol>
-<div class="cw-note is-info">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.6v.1"/></svg>
-<span class="cw-note-t">{{ section.settings.safecore_23 }}</span>
-</div>
-</div>
-</div>
-<figure class="cw-fig is-shot">
-<img src="{{ 'cosmo-wiki-r-sos-angled.png' | file_url }}" alt="JrTrack showing Activating SOS on screen, with tap to cancel" loading="lazy" width="1080" height="1080">
-<figcaption>{{ section.settings.safecore_24 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="guardians">
-<div class="cw-split is-flip">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.safecore_25 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.safecore_26 }}</p>
-<ul class="cw-list">
-<li>{{ section.settings.safecore_27 }}</li>
-<li>{{ section.settings.safecore_28 }}</li>
-<li>{{ section.settings.safecore_29 }}</li>
-</ul>
-</div>
-</div>
-<figure class="cw-fig is-photo">
-<img src="{{ 'cosmo-wiki-life-17.jpg' | file_url }}" alt="A group of kids walking together after school" loading="lazy" width="1920" height="1080" style="object-position:78% center">
-<figcaption>{{ section.settings.safecore_30 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="nine-one-one">
-<div class="cw-art-h"><h3>{{ section.settings.safecore_31 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.safecore_32 }}</div>
-<p>{{ section.settings.safecore_33 }}</p>
-</div>
-</article>
-<article class="cw-art" id="approved-only">
-<div class="cw-art-h"><h3>{{ section.settings.safecore_34 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.safecore_35 }}</div>
-<ul class="cw-list">
-<li>{{ section.settings.safecore_36 }}</li>
-<li>{{ section.settings.safecore_37 }}</li>
-<li>{{ section.settings.safecore_38 }}</li>
-<li>{{ section.settings.safecore_39 }}</li>
-</ul>
-<div class="cw-note is-note">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.6v.1"/></svg>
-<span class="cw-note-t">{{ section.settings.safecore_40 }}</span>
-</div>
-</div>
-</article>
-<article class="cw-art" id="safecore-questions">
-<div class="cw-art-h"><h3>{{ section.settings.safecore_41 }}</h3></div>
-<div class="cw-body">
-<div class="cw-acc">
-<details>
-<summary>{{ section.settings.safecore_42 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.safecore_43 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.safecore_44 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.safecore_45 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.safecore_46 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.safecore_47 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.safecore_48 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.safecore_49 }}</p></div>
-</details>
-</div>
-</div>
-</article>
+<section
+  class="cw-sec"
+  id="safecore"
+  data-cw-title="{{ section.settings.safecore_nav_title | default: "SafeCore" | escape }}"
+>
+  <div class="cw-band">
+    <img src="{{ 'cosmo-wiki-life-7.jpg' | file_url }}" alt="" loading="lazy">
+    <div class="cw-band-in">
+      <div class="cw-eyebrow">{{ section.settings.safecore_01 }}</div>
+      <h2>{{ section.settings.safecore_02 }}</h2>
+      <p>{{ section.settings.safecore_03 }}</p>
+      <div class="cw-stats">
+        <div class="cw-stat">{{ section.settings.safecore_04 }}</div>
+        <div class="cw-stat">{{ section.settings.safecore_05 }}</div>
+        <div class="cw-stat">{{ section.settings.safecore_06 }}</div>
+        <div class="cw-stat">{{ section.settings.safecore_07 }}</div>
+      </div>
+    </div>
+  </div>
+  <article class="cw-art" id="safecore-includes">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.safecore_08 }}</h3>
+    </div>
+    <div class="cw-body">
+      <div class="cw-answer">{{ section.settings.safecore_09 }}</div>
+      <div class="cw-levels">
+        <div class="cw-lvl open">
+          <div class="cw-lvl-t">
+            <span class="cw-lvl-dot"></span>
+            <h4>{{ section.settings.safecore_10 }}</h4>
+          </div>
+          <p>{{ section.settings.safecore_11 }}</p>
+        </div>
+        <div class="cw-lvl open">
+          <div class="cw-lvl-t">
+            <span class="cw-lvl-dot"></span>
+            <h4>{{ section.settings.safecore_12 }}</h4>
+          </div>
+          <p>{{ section.settings.safecore_13 }}</p>
+        </div>
+        <div class="cw-lvl open">
+          <div class="cw-lvl-t">
+            <span class="cw-lvl-dot"></span>
+            <h4>{{ section.settings.safecore_14 }}</h4>
+          </div>
+          <p>{{ section.settings.safecore_15 }}</p>
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="cw-art" id="sos-flow">
+    <div class="cw-split is-wide">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.safecore_16 }}</h3>
+        </div>
+        <div class="cw-body">
+          <p>{{ section.settings.safecore_17 }}</p>
+          <ol class="cw-steps">
+            <li>{{ section.settings.safecore_18 }}</li>
+            <li>{{ section.settings.safecore_19 }}</li>
+            <li>{{ section.settings.safecore_20 }}</li>
+            <li>{{ section.settings.safecore_21 }}</li>
+            <li>{{ section.settings.safecore_22 }}</li>
+          </ol>
+          <div class="cw-note is-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.6v.1"/>
+            </svg>
+            <span class="cw-note-t">{{ section.settings.safecore_23 }}</span>
+          </div>
+        </div>
+      </div>
+      <figure class="cw-fig is-shot">
+        <img
+          src="{{ 'cosmo-wiki-r-sos-angled.png' | file_url }}"
+          alt="JrTrack showing Activating SOS on screen, with tap to cancel"
+          loading="lazy"
+          width="1080"
+          height="1080"
+        >
+        <figcaption>{{ section.settings.safecore_24 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="guardians">
+    <div class="cw-split is-flip">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.safecore_25 }}</h3>
+        </div>
+        <div class="cw-body">
+          <p>{{ section.settings.safecore_26 }}</p>
+          <ul class="cw-list">
+            <li>{{ section.settings.safecore_27 }}</li>
+            <li>{{ section.settings.safecore_28 }}</li>
+            <li>{{ section.settings.safecore_29 }}</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="cw-fig is-photo">
+        <img
+          src="{{ 'cosmo-wiki-life-17.jpg' | file_url }}"
+          alt="A group of kids walking together after school"
+          loading="lazy"
+          width="1920"
+          height="1080"
+          style="object-position:78% center"
+        >
+        <figcaption>{{ section.settings.safecore_30 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="nine-one-one">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.safecore_31 }}</h3>
+    </div>
+    <div class="cw-body">
+      <div class="cw-answer">{{ section.settings.safecore_32 }}</div>
+      <p>{{ section.settings.safecore_33 }}</p>
+    </div>
+  </article>
+  <article class="cw-art" id="approved-only">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.safecore_34 }}</h3>
+    </div>
+    <div class="cw-body">
+      <div class="cw-answer">{{ section.settings.safecore_35 }}</div>
+      <ul class="cw-list">
+        <li>{{ section.settings.safecore_36 }}</li>
+        <li>{{ section.settings.safecore_37 }}</li>
+        <li>{{ section.settings.safecore_38 }}</li>
+        <li>{{ section.settings.safecore_39 }}</li>
+      </ul>
+      <div class="cw-note is-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.6v.1"/>
+        </svg>
+        <span class="cw-note-t">{{ section.settings.safecore_40 }}</span>
+      </div>
+    </div>
+  </article>
+  <article class="cw-art" id="safecore-questions">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.safecore_41 }}</h3>
+    </div>
+    <div class="cw-body">
+      <div class="cw-acc">
+        <details>
+          <summary>{{ section.settings.safecore_42 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.safecore_43 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.safecore_44 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.safecore_45 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.safecore_46 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.safecore_47 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.safecore_48 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.safecore_49 }}</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </article>
 </section>
-<section class="cw-sec" id="texting" data-cw-title="Texting">
-<div class="cw-band">
-<img src="{{ 'cosmo-wiki-life-2.jpg' | file_url }}" alt="" loading="lazy">
-<div class="cw-band-in">
-<div class="cw-eyebrow">{{ section.settings.texting_01 }}</div>
-<h2>{{ section.settings.texting_02 }}</h2>
-<p>{{ section.settings.texting_03 }}</p>
-<div class="cw-stats">
-<div class="cw-stat">{{ section.settings.texting_04 }}</div>
-<div class="cw-stat">{{ section.settings.texting_05 }}</div>
-<div class="cw-stat">{{ section.settings.texting_06 }}</div>
-</div>
-</div>
-</div>
-<article class="cw-art" id="real-number">
-<div class="cw-split">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.texting_07 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.texting_08 }}</div>
-<p>{{ section.settings.texting_09 }}</p>
-<p>{{ section.settings.texting_10 }}</p>
-</div>
-</div>
-<figure class="cw-fig is-shot">
-<img src="{{ 'cosmo-wiki-r-mom-calling.png' | file_url }}" alt="JrTrack showing an incoming call from Mom" loading="lazy" width="1080" height="1080">
-<figcaption>{{ section.settings.texting_11 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="mms">
-<div class="cw-split is-flip">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.texting_12 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.texting_13 }}</p>
-<ul class="cw-list">
-<li>{{ section.settings.texting_14 }}</li>
-<li>{{ section.settings.texting_15 }}</li>
-<li>{{ section.settings.texting_16 }}</li>
-</ul>
-</div>
-</div>
-<figure class="cw-fig is-shot">
-<img src="{{ 'cosmo-wiki-r-family-chat.png' | file_url }}" alt="JrTrack showing a new message in the Family Chat group" loading="lazy" width="1080" height="1080">
-<figcaption>{{ section.settings.texting_17 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="talk-or-type">
-<div class="cw-split">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.texting_18 }}</h3></div>
-<div class="cw-body">
-<div class="cw-answer">{{ section.settings.texting_19 }}</div>
-<p>{{ section.settings.texting_20 }}</p>
-<p>{{ section.settings.texting_21 }}</p>
-</div>
-</div>
-<figure class="cw-fig is-shot">
-<img src="{{ 'cosmo-wiki-r-keyboard-angled.png' | file_url }}" alt="JrTrack showing the keyboard with a message typed out" loading="lazy" width="1080" height="1080">
-<figcaption>{{ section.settings.texting_22 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="readable">
-<div class="cw-split is-flip">
-<div class="cw-col">
-<div class="cw-art-h"><h3>{{ section.settings.texting_23 }}</h3></div>
-<div class="cw-body">
-<p>{{ section.settings.texting_24 }}</p>
-<p>{{ section.settings.texting_25 }}</p>
-</div>
-</div>
-<figure class="cw-fig">
-<img src="{{ 'cosmo-wiki-app-text-convo-tight.png' | file_url }}" alt="A watch conversation viewed in the Cosmo app" loading="lazy">
-<figcaption>{{ section.settings.texting_26 }}</figcaption>
-</figure>
-</div>
-</article>
-<article class="cw-art" id="texting-questions">
-<div class="cw-art-h"><h3>{{ section.settings.texting_27 }}</h3></div>
-<div class="cw-body">
-<div class="cw-acc">
-<details>
-<summary>{{ section.settings.texting_28 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.texting_29 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.texting_30 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.texting_31 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.texting_32 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.texting_33 }}</p></div>
-</details>
-<details>
-<summary>{{ section.settings.texting_34 }}</summary>
-<div class="cw-acc-body"><p>{{ section.settings.texting_35 }}</p></div>
-</details>
-</div>
-</div>
-</article>
+<section
+  class="cw-sec"
+  id="texting"
+  data-cw-title="{{ section.settings.texting_nav_title | default: "Texting" | escape }}"
+>
+  <div class="cw-band">
+    <img src="{{ 'cosmo-wiki-life-2.jpg' | file_url }}" alt="" loading="lazy">
+    <div class="cw-band-in">
+      <div class="cw-eyebrow">{{ section.settings.texting_01 }}</div>
+      <h2>{{ section.settings.texting_02 }}</h2>
+      <p>{{ section.settings.texting_03 }}</p>
+      <div class="cw-stats">
+        <div class="cw-stat">{{ section.settings.texting_04 }}</div>
+        <div class="cw-stat">{{ section.settings.texting_05 }}</div>
+        <div class="cw-stat">{{ section.settings.texting_06 }}</div>
+      </div>
+    </div>
+  </div>
+  <article class="cw-art" id="real-number">
+    <div class="cw-split">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.texting_07 }}</h3>
+        </div>
+        <div class="cw-body">
+          <div class="cw-answer">{{ section.settings.texting_08 }}</div>
+          <p>{{ section.settings.texting_09 }}</p>
+          <p>{{ section.settings.texting_10 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig is-shot">
+        <img
+          src="{{ 'cosmo-wiki-r-mom-calling.png' | file_url }}"
+          alt="JrTrack showing an incoming call from Mom"
+          loading="lazy"
+          width="1080"
+          height="1080"
+        >
+        <figcaption>{{ section.settings.texting_11 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="mms">
+    <div class="cw-split is-flip">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.texting_12 }}</h3>
+        </div>
+        <div class="cw-body">
+          <p>{{ section.settings.texting_13 }}</p>
+          <ul class="cw-list">
+            <li>{{ section.settings.texting_14 }}</li>
+            <li>{{ section.settings.texting_15 }}</li>
+            <li>{{ section.settings.texting_16 }}</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="cw-fig is-shot">
+        <img
+          src="{{ 'cosmo-wiki-r-family-chat.png' | file_url }}"
+          alt="JrTrack showing a new message in the Family Chat group"
+          loading="lazy"
+          width="1080"
+          height="1080"
+        >
+        <figcaption>{{ section.settings.texting_17 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="talk-or-type">
+    <div class="cw-split">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.texting_18 }}</h3>
+        </div>
+        <div class="cw-body">
+          <div class="cw-answer">{{ section.settings.texting_19 }}</div>
+          <p>{{ section.settings.texting_20 }}</p>
+          <p>{{ section.settings.texting_21 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig is-shot">
+        <img
+          src="{{ 'cosmo-wiki-r-keyboard-angled.png' | file_url }}"
+          alt="JrTrack showing the keyboard with a message typed out"
+          loading="lazy"
+          width="1080"
+          height="1080"
+        >
+        <figcaption>{{ section.settings.texting_22 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="readable">
+    <div class="cw-split is-flip">
+      <div class="cw-col">
+        <div class="cw-art-h">
+          <h3>{{ section.settings.texting_23 }}</h3>
+        </div>
+        <div class="cw-body">
+          <p>{{ section.settings.texting_24 }}</p>
+          <p>{{ section.settings.texting_25 }}</p>
+        </div>
+      </div>
+      <figure class="cw-fig">
+        <img
+          src="{{ 'cosmo-wiki-app-text-convo-tight.png' | file_url }}"
+          alt="A watch conversation viewed in the Cosmo app"
+          loading="lazy"
+        >
+        <figcaption>{{ section.settings.texting_26 }}</figcaption>
+      </figure>
+    </div>
+  </article>
+  <article class="cw-art" id="texting-questions">
+    <div class="cw-art-h">
+      <h3>{{ section.settings.texting_27 }}</h3>
+    </div>
+    <div class="cw-body">
+      <div class="cw-acc">
+        <details>
+          <summary>{{ section.settings.texting_28 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.texting_29 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.texting_30 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.texting_31 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.texting_32 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.texting_33 }}</p>
+          </div>
+        </details>
+        <details>
+          <summary>{{ section.settings.texting_34 }}</summary>
+          <div class="cw-acc-body">
+            <p>{{ section.settings.texting_35 }}</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </article>
 </section>
 
 {% schema %}
@@ -421,6 +609,13 @@
     {
       "type": "header",
       "content": "OVERVIEW"
+    },
+    {
+      "type": "text",
+      "id": "overview_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Overview"
     },
     {
       "type": "text",
@@ -451,6 +646,12 @@
       "id": "overview_05",
       "label": "Two halves make the product. The watch on th...",
       "default": "Two halves make the product. The watch on their wrist handles calling, texting, location, and a curated set of apps. The Cosmo app on your phone handles who can reach them, where they are, what the school day looks like, and every message."
+    },
+    {
+      "type": "image_picker",
+      "id": "overview_img_1",
+      "label": "Image: What it is",
+      "info": "Leave empty to use the default image"
     },
     {
       "type": "text",
@@ -545,6 +746,13 @@
     {
       "type": "header",
       "content": "HALOGPS"
+    },
+    {
+      "type": "text",
+      "id": "halogps_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "HaloGPS"
     },
     {
       "type": "text",
@@ -825,6 +1033,13 @@
     {
       "type": "header",
       "content": "SAFECORE"
+    },
+    {
+      "type": "text",
+      "id": "safecore_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "SafeCore"
     },
     {
       "type": "text",
@@ -1123,6 +1338,13 @@
     {
       "type": "header",
       "content": "TEXTING"
+    },
+    {
+      "type": "text",
+      "id": "texting_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Texting"
     },
     {
       "type": "text",

@@ -1,8 +1,17 @@
-{%- comment -%} jrtrack-wiki-part-2 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
-<aside class="cw-side">
-<div class="cw-side-h">{{ section.settings.page_03 }}</div>
-<ul class="cw-nav" data-cw-nav></ul>
-<div class="cw-side-help">{{ section.settings.page_04 }}</div>
+{%- comment -%} 
+jrtrack-wiki-part-2 - part of jrtrack-wiki. 
+Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). 
+{%- endcomment -%}
+
+<aside
+  class="cw-side"
+  aria-label="{{ section.settings.page_03 | escape }}"
+>
+  <div class="cw-side-h">
+    {{ section.settings.page_03 }}
+  </div>
+  <ul class="cw-nav" data-cw-nav></ul>
+  <div class="cw-side-help">{{ section.settings.page_04 }}</div>
 </aside>
 
 {% schema %}

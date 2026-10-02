@@ -1,5 +1,5 @@
 {%- comment -%} jrtrack-wiki-part-4 - part of jrtrack-wiki. Use inside the template-jrtrack-wiki wrapper (it holds the styles, scripts and layout containers). {%- endcomment -%}
-<section class="cw-sec" id="schoolfi" data-cw-title="School-Fi">
+<section class="cw-sec" id="schoolfi" data-cw-title="{{ section.settings.schoolfi_nav_title | default: "School-Fi" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-18.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -124,7 +124,7 @@
 </div>
 </article>
 </section>
-<section class="cw-sec" id="routines" data-cw-title="Routines">
+<section class="cw-sec" id="routines" data-cw-title="{{ section.settings.routines_nav_title | default: "Routines" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-3.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -178,7 +178,7 @@
 </div>
 </article>
 </section>
-<section class="cw-sec" id="appstation" data-cw-title="App Station &amp; music">
+<section class="cw-sec" id="appstation" data-cw-title="{{ section.settings.appstation_nav_title | default: "App Station & music" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-9.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -254,7 +254,7 @@
 </div>
 </article>
 </section>
-<section class="cw-sec" id="app" data-cw-title="The Cosmo app">
+<section class="cw-sec" id="app" data-cw-title="{{ section.settings.app_nav_title | default: "The Cosmo app" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-life-19.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -322,7 +322,7 @@
 <div class="cw-next-btns"><a class="cw-btn" href="/pages/try-the-app">{{ section.settings.app_51 }}</a></div>
 </div>
 </section>
-<section class="cw-sec" id="mobile" data-cw-title="Cosmo Mobile &amp; plans">
+<section class="cw-sec" id="mobile" data-cw-title="{{ section.settings.mobile_nav_title | default: "Cosmo Mobile & plans" | escape }}">
 <div class="cw-band">
 <img src="{{ 'cosmo-wiki-bus-calling.jpg' | file_url }}" alt="" loading="lazy">
 <div class="cw-band-in">
@@ -397,6 +397,13 @@
     {
       "type": "header",
       "content": "SCHOOLFI"
+    },
+    {
+      "type": "text",
+      "id": "schoolfi_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "School-Fi"
     },
     {
       "type": "text",
@@ -710,6 +717,13 @@
     },
     {
       "type": "text",
+      "id": "routines_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Routines"
+    },
+    {
+      "type": "text",
       "id": "routines_01",
       "label": "Feature 05",
       "default": "Feature 05"
@@ -825,6 +839,13 @@
     {
       "type": "header",
       "content": "APPSTATION"
+    },
+    {
+      "type": "text",
+      "id": "appstation_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "App Station & music"
     },
     {
       "type": "text",
@@ -1021,6 +1042,13 @@
     {
       "type": "header",
       "content": "APP"
+    },
+    {
+      "type": "text",
+      "id": "app_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "The Cosmo app"
     },
     {
       "type": "text",
@@ -1325,6 +1353,13 @@
     {
       "type": "header",
       "content": "MOBILE"
+    },
+    {
+      "type": "text",
+      "id": "mobile_nav_title",
+      "label": "Sidebar nav title",
+      "info": "Link text shown in the left sidebar navigation",
+      "default": "Cosmo Mobile & plans"
     },
     {
       "type": "text",
