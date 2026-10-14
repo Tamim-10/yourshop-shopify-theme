@@ -1337,6 +1337,10 @@ guide-search {
     padding: 40px 20px 34px;
   }
 
+  .pg-quick:not(:has(.pg-qcard)) {
+    display: none;
+  }
+
   .pg-quick-in {
     padding: 30px 20px 34px;
   }
@@ -1418,8 +1422,8 @@ guide-search {
     height: 50px;
   }
 
-  .pg-mobnav {
-    padding: 9px 16px;
+  .pg-mobnav[hidden] {
+    display: none !important;
   }
 
   .pg-mobnav select {

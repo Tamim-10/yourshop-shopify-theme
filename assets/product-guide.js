@@ -270,58 +270,89 @@ class GuideSearch extends HTMLElement {
 
 class ProductGuide extends HTMLElement {
   connectedCallback() {
-    this.chapters = Array.from(this.querySelectorAll('[data-pg-chapter]'));
     this.nav = this.querySelector('[data-pg-nav]');
     this.select = this.querySelector('[data-pg-mobnav]');
     this.toTop = this.querySelector('[data-pg-totop]');
     this.live = this.querySelector('[data-pg-live]');
+    this.main = this.querySelector('.pg-main');
     this.copiedTimer = 0;
+    this.chapters = [];
 
-    this.ensureNavigation();
-    this.initCopyLinks();
     this.initScrollSpy();
+    this.initCopyLinks();
     this.initBackToTop();
     this.initMobileNav();
     this.initDeepLinks();
+
+    this.refresh();
+    this.watchChapters();
   }
 
   disconnectedCallback() {
     if (this.spy) this.spy.disconnect();
+    if (this.watcher) this.watcher.disconnect();
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('hashchange', this.onHashChange);
+    window.cancelAnimationFrame(this.refreshFrame);
     window.clearTimeout(this.copiedTimer);
   }
 
-  /**
-   * The contents list is rendered by Liquid. If it ever comes through empty
-   * (for example a customised section), build it from the chapters instead.
-   */
-  ensureNavigation() {
-    if (this.nav && !this.nav.children.length) {
-      for (const chapter of this.chapters) {
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = `#${chapter.id}`;
-        link.textContent = chapter.dataset.title || '';
-        link.dataset.pgNavLink = chapter.id;
-        item.appendChild(link);
-        this.nav.appendChild(item);
-      }
+  /** Contents list and mobile picker are built from the chapters actually on the page. */
+  refresh() {
+    this.chapters = Array.from(this.querySelectorAll('[data-pg-chapter]'));
+    this.renderNavigation();
+    this.observeChapters();
+    this.querySelectorAll('.pg-anchor').forEach((link) => {
+      if (this.dataset.copyLabel) link.setAttribute('aria-label', this.dataset.copyLabel);
+    });
+  }
+
+  /** Re-run refresh() when chapters are added, removed, renamed or reordered (theme editor). */
+  watchChapters() {
+    if (!this.main || !('MutationObserver' in window)) return;
+    this.watcher = new MutationObserver(() => {
+      window.cancelAnimationFrame(this.refreshFrame);
+      this.refreshFrame = window.requestAnimationFrame(() => this.refresh());
+    });
+    this.watcher.observe(this.main, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-title', 'id', 'data-pg-chapter'],
+    });
+  }
+
+  renderNavigation() {
+    const signature = this.chapters.map((c) => `${c.id}|${c.dataset.title}`).join('\n');
+    if (signature === this.navSignature) return;
+    this.navSignature = signature;
+
+    if (this.nav) {
+      this.nav.replaceChildren(
+        ...this.chapters.map((chapter) => {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${chapter.id}`;
+          link.textContent = chapter.dataset.title || '';
+          link.dataset.pgNavLink = chapter.id;
+          item.appendChild(link);
+          return item;
+        })
+      );
     }
-    if (this.select && !this.select.options.length) {
-      for (const chapter of this.chapters) {
-        this.select.add(new Option(chapter.dataset.title || '', chapter.id));
-      }
+    if (this.select) {
+      this.select.replaceChildren(
+        ...this.chapters.map((chapter) => new Option(chapter.dataset.title || '', chapter.id))
+      );
     }
+    const picker = this.querySelector('.pg-mobnav');
+    if (picker) picker.hidden = this.chapters.length < 2;
+    this.currentId = null;
+    this.updateCurrent();
   }
 
   /** Copy-link buttons that sit next to each article heading. */
   initCopyLinks() {
-    const label = this.dataset.copyLabel;
-    this.querySelectorAll('.pg-anchor').forEach((link) => {
-      if (label) link.setAttribute('aria-label', label);
-    });
-
     this.addEventListener('click', (event) => {
       const link = event.target.closest('.pg-anchor');
       if (!link) return;
@@ -351,42 +382,43 @@ class ProductGuide extends HTMLElement {
 
   /** Highlight the contents entry for the chapter currently in view. */
   initScrollSpy() {
-    if (!this.chapters.length || !('IntersectionObserver' in window)) return;
-
-    const links = new Map();
-    this.querySelectorAll('[data-pg-nav-link]').forEach((link) => links.set(link.dataset.pgNavLink, link));
-
-    const inBand = new Set();
-    const setCurrent = (id) => {
-      links.forEach((link, key) => {
-        if (key === id) link.setAttribute('aria-current', 'true');
-        else link.removeAttribute('aria-current');
-      });
-      if (this.select && this.select.value !== id) this.select.value = id;
-    };
-
-    // Watch a thin band a third of the way down the viewport.
+    if (!('IntersectionObserver' in window)) return;
+    this.inBand = new Set();
     this.spy = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) inBand.add(entry.target);
-          else inBand.delete(entry.target);
+          if (entry.isIntersecting) this.inBand.add(entry.target);
+          else this.inBand.delete(entry.target);
         }
-        const current = [...this.chapters].reverse().find((chapter) => inBand.has(chapter));
-        if (current) setCurrent(current.id);
+        this.updateCurrent();
       },
       { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
     );
-    this.chapters.forEach((chapter) => this.spy.observe(chapter));
-    setCurrent(this.chapters[0].id);
   }
 
-  /**
-   * Show the back-to-top button once the page has scrolled down a little.
-   * A passive, rAF-throttled scroll listener is used because an
-   * IntersectionObserver would miss jumps (anchor links, search results) that skip
-   * straight past the trigger point.
-   */
+  observeChapters() {
+    if (!this.spy) return;
+    this.spy.disconnect();
+    this.inBand.clear();
+    this.chapters.forEach((chapter) => this.spy.observe(chapter));
+  }
+
+  updateCurrent() {
+    if (!this.chapters.length) return;
+    const inBand = this.inBand || new Set();
+    const current = [...this.chapters].reverse().find((chapter) => inBand.has(chapter)) || null;
+    const id = current ? current.id : this.currentId || this.chapters[0].id;
+    this.currentId = id;
+    if (this.nav) {
+      this.nav.querySelectorAll('[data-pg-nav-link]').forEach((link) => {
+        if (link.dataset.pgNavLink === id) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    if (this.select && this.select.value !== id) this.select.value = id;
+  }
+
+  /** Show the back-to-top button once the page has scrolled down a little. */
   initBackToTop() {
     if (!this.toTop) return;
     this.toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: scrollBehavior() }));

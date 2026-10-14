@@ -38,28 +38,17 @@
     </div>
   {%- endif -%}
 
-  {%- if section.blocks.size > 1 -%}
-    <div class="pg-mobnav">
-      <label class="pg-visually-hidden" for="pg-mobnav-{{ section.id }}">{{ section.settings.jump_label | escape }}</label>
-      <select id="pg-mobnav-{{ section.id }}" data-pg-mobnav>
-        {%- for block in section.blocks -%}
-          {%- assign anchor = block.settings.anchor | handleize | default: block.id -%}
-          <option value="{{ anchor }}">{{ block.settings.title | escape }}</option>
-        {%- endfor -%}
-      </select>
-    </div>
-  {%- endif -%}
+   {%- comment -%} Filled in by assets/product-guide.js from the chapters on the page. {%- endcomment -%}
+  <div class="pg-mobnav" hidden>
+    <label class="pg-visually-hidden" for="pg-mobnav-{{ section.id }}">{{ section.settings.jump_label | escape }}</label>
+    <select id="pg-mobnav-{{ section.id }}" data-pg-mobnav></select>
+  </div>
 
   <div class="pg-shell">
     <aside class="pg-side">
       <nav aria-label="{{ section.settings.contents_label | escape }}">
         <p class="pg-side-h">{{ section.settings.contents_label | escape }}</p>
-        <ul class="pg-nav" data-pg-nav>
-          {%- for block in section.blocks -%}
-            {%- assign anchor = block.settings.anchor | handleize | default: block.id -%}
-            <li><a href="#{{ anchor }}" data-pg-nav-link="{{ anchor }}">{{ block.settings.title | escape }}</a></li>
-          {%- endfor -%}
-        </ul>
+          <ul class="pg-nav" data-pg-nav></ul>
       </nav>
 
       {%- if section.settings.side_help_title != blank or section.settings.side_help_text != blank -%}
