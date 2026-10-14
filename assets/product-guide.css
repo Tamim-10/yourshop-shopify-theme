@@ -1273,6 +1273,15 @@ guide-search {
   stroke-width: 2.2;
 }
 
+html, body {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+}
+
+#MainContent {
+    padding-top: 0px;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
   .pg-shell {
