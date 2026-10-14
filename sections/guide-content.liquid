@@ -10,14 +10,19 @@
 <noscript><style>.pg-search { display: none; }</style></noscript>
 
 <script>
-  document.documentElement.style.scrollBehavior = 'auto';
-  window.addEventListener('load', function () {
-    requestAnimationFrame(function () {
+  (function () {
+    var root = document.documentElement;
+    root.style.setProperty('scroll-behavior', 'auto', 'important');
+    var restore = function () {
       requestAnimationFrame(function () {
-        document.documentElement.style.removeProperty('scroll-behavior');
+        requestAnimationFrame(function () {
+          root.style.removeProperty('scroll-behavior');
+        });
       });
-    });
-  });
+    };
+    if (document.readyState === 'complete') restore();
+    else window.addEventListener('load', restore, { once: true });
+  })();
 </script>
 
 <product-guide
