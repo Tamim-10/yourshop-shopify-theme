@@ -2,6 +2,7 @@
   Guide hero: eyebrow, heading, intro, search box and a grid of quick links.
   Pair it with the "Guide content" section underneath.
 {%- endcomment -%}
+{% render 'guide-fonts' %}
 {{ 'product-guide.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'product-guide.js' | asset_url }}" type="module"></script>
 <noscript><style>.pg-search { display: none; }</style></noscript>

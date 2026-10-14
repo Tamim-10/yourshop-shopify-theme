@@ -5,6 +5,8 @@
   Chapters and the help panel are blocks. Each chapter holds articles, and each
   article holds content blocks (rich text, callouts, tables, lists, ...).
 {%- endcomment -%}
+{% render 'guide-fonts' %}
+
 {{ 'product-guide.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'product-guide.js' | asset_url }}" type="module"></script>
 <noscript><style>.pg-search { display: none; }</style></noscript>

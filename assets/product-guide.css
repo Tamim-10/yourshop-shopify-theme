@@ -7,7 +7,7 @@
    Customisation:
    - Colors come from the section settings in the theme editor, which write
      the --pg-* custom properties inline on the .pg element.
-   - The font is inherited from the theme (font-family: inherit).
+   - The font is Sohne, loaded by snippets/guide-fonts.liquid.
    ========================================================================== */
 
 /* ---------- Tokens ---------- */
@@ -90,6 +90,8 @@ guide-search {
 
 .pg :where(h1, h2, h3, h4) {
   margin: 0;
+  font-family: inherit;
+  text-transform: none;
   color: var(--pg-ink);
   font-weight: 700;
   letter-spacing: -0.02em;
