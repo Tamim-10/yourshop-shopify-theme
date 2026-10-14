@@ -9,6 +9,17 @@
 <script src="{{ 'product-guide.js' | asset_url }}" type="module"></script>
 <noscript><style>.pg-search { display: none; }</style></noscript>
 
+<script>
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.addEventListener('load', function () {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        document.documentElement.style.removeProperty('scroll-behavior');
+      });
+    });
+  });
+</script>
+
 <product-guide
   class="pg"
   style="--pg-header-offset: {{ section.settings.header_offset }}px; {%- render 'guide-colors', settings: section.settings -%}"
