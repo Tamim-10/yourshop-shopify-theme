@@ -421,6 +421,10 @@ guide-search {
   border-bottom: 1px solid var(--pg-line-soft);
 }
 
+.pg-quick:not(:has(.pg-qcard)) {
+  display: none;
+}
+
 .pg-quick-in {
   max-width: 1240px;
   margin: 0 auto;
@@ -582,6 +586,10 @@ guide-search {
   display: inline-block;
   margin-top: 7px;
   font-weight: 700;
+}
+
+.pg-mobnav[hidden] {
+  display: none !important;
 }
 
 /* ---------- Mobile section picker ---------- */
@@ -1337,10 +1345,6 @@ guide-search {
     padding: 40px 20px 34px;
   }
 
-  .pg-quick:not(:has(.pg-qcard)) {
-    display: none;
-  }
-
   .pg-quick-in {
     padding: 30px 20px 34px;
   }
@@ -1420,10 +1424,6 @@ guide-search {
 
   .pg-hero-search .pg-search-field {
     height: 50px;
-  }
-
-  .pg-mobnav[hidden] {
-    display: none !important;
   }
 
   .pg-mobnav select {

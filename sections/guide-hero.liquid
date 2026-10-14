@@ -40,18 +40,16 @@
     </div>
   </header>
 
-  {%- if section.blocks.size > 0 -%}
-    <section class="pg-quick" aria-labelledby="pg-quick-{{ section.id }}">
-      <div class="pg-quick-in">
-        {%- if section.settings.quick_heading != blank -%}
-          <h2 class="pg-quick-h" id="pg-quick-{{ section.id }}">{{ section.settings.quick_heading | escape }}</h2>
-        {%- endif -%}
-        <div class="pg-quick-grid">
-          {% content_for 'blocks' %}
-        </div>
+  <section class="pg-quick" aria-labelledby="pg-quick-{{ section.id }}">
+    <div class="pg-quick-in">
+      {%- if section.settings.quick_heading != blank -%}
+        <h2 class="pg-quick-h" id="pg-quick-{{ section.id }}">{{ section.settings.quick_heading | escape }}</h2>
+      {%- endif -%}
+      <div class="pg-quick-grid">
+        {% content_for 'blocks' %}
       </div>
-    </section>
-  {%- endif -%}
+    </div>
+  </section>
 </div>
 
 {% schema %}
