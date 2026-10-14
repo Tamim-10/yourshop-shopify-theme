@@ -1,0 +1,61 @@
+{%- comment -%}
+  Chapter: a titled group of articles. Each chapter gets an entry in the
+  contents list (sidebar and mobile picker) and its own anchor.
+{%- endcomment -%}
+{%- liquid
+  assign anchor = block.settings.anchor | handleize | default: block.id
+-%}
+<section
+  class="pg-sec"
+  id="{{ anchor }}"
+  data-pg-chapter
+  data-title="{{ block.settings.title | escape }}"
+  aria-labelledby="{{ anchor }}-heading"
+  {{ block.shopify_attributes }}
+>
+  <div class="pg-sec-head">
+    <h2 id="{{ anchor }}-heading">{{ block.settings.title | escape }}</h2>
+  </div>
+
+  {%- if block.settings.intro != blank -%}
+    <p class="pg-sec-intro">{{ block.settings.intro }}</p>
+  {%- endif -%}
+
+  {% content_for 'blocks' %}
+</section>
+
+{% schema %}
+{
+  "name": "Chapter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Chapter title",
+      "info": "Shown as the chapter heading and in the contents list."
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor ID",
+      "info": "Used for links such as #setup. Letters, numbers and hyphens only. Leave blank to generate one."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "intro",
+      "label": "Introduction"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_guide-article"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Chapter"
+    }
+  ]
+}
+{% endschema %}

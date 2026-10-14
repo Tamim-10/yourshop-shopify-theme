@@ -1,0 +1,45 @@
+{%- comment -%}
+  Responsive image for the product guide.
+
+  Uses the image picked in the theme editor when there is one. Otherwise it
+  falls back to a bundled file in this theme's assets folder, so the guide looks
+  right straight after install. Bundled files carry their size in the file name
+  (for example jrtrack-watch-hero-609x660.webp) so width and height can be
+  written into the markup and the page does not shift while images load.
+
+  Accepts:
+  - image: image_picker value (may be blank)
+  - asset: file name of the bundled fallback (may be blank)
+  - alt: alt text override (may be blank, then the image's own alt text is used)
+  - sizes: the sizes attribute
+{%- endcomment -%}
+{%- liquid
+  assign alt_text = alt
+  if image != blank
+    assign alt_text = alt | default: image.alt
+  endif
+-%}
+{%- if image != blank -%}
+  {{
+    image
+    | image_url: width: 900
+    | image_tag:
+      widths: '240, 360, 480, 720, 900',
+      sizes: sizes,
+      loading: 'lazy',
+      decoding: 'async',
+      alt: alt_text,
+      class: 'pg-img'
+  }}
+{%- elsif asset != blank -%}
+  {%- assign dimensions = asset | split: '-' | last | split: '.' | first | split: 'x' -%}
+  <img
+    class="pg-img"
+    src="{{ asset | asset_url }}"
+    alt="{{ alt_text | escape }}"
+    width="{{ dimensions[0] }}"
+    height="{{ dimensions[1] }}"
+    loading="lazy"
+    decoding="async"
+  >
+{%- endif -%}

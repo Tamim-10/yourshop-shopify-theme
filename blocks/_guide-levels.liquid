@@ -1,0 +1,21 @@
+{%- comment -%}
+  Side-by-side comparison cards, for example restriction levels.
+  Add "Level card" blocks.
+{%- endcomment -%}
+<div class="pg-levels" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Level cards",
+  "blocks": [
+    { "type": "_guide-level" }
+  ],
+  "presets": [
+    {
+      "name": "Level cards"
+    }
+  ]
+}
+{% endschema %}

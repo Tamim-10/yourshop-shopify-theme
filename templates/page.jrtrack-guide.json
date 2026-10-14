@@ -1,0 +1,2277 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "guide-hero",
+      "blocks": {
+        "quick-1": {
+          "type": "_guide-quick-link",
+          "settings": {
+            "title": "Set up a new watch",
+            "description": "Charge, pair, activate, first call",
+            "target": "setup",
+            "icon": "watch"
+          }
+        },
+        "quick-2": {
+          "type": "_guide-quick-link",
+          "settings": {
+            "title": "Learn the two buttons",
+            "description": "Power on top, Action below it",
+            "target": "buttons",
+            "icon": "buttons"
+          }
+        },
+        "quick-3": {
+          "type": "_guide-quick-link",
+          "settings": {
+            "title": "Add a contact",
+            "description": "Who can call and text the watch",
+            "target": "add-contact",
+            "icon": "user-plus"
+          }
+        },
+        "quick-4": {
+          "type": "_guide-quick-link",
+          "settings": {
+            "title": "Turn on School Routine",
+            "description": "Distraction-free during class",
+            "target": "school-routine",
+            "icon": "school"
+          }
+        },
+        "quick-5": {
+          "type": "_guide-quick-link",
+          "settings": {
+            "title": "Maximize battery life",
+            "description": "Location frequency makes the biggest difference",
+            "target": "battery",
+            "icon": "battery"
+          }
+        },
+        "quick-6": {
+          "type": "_guide-quick-link",
+          "settings": {
+            "title": "Understand SOS",
+            "description": "What happens when they hold the button",
+            "target": "sos-mode",
+            "icon": "alert"
+          }
+        }
+      },
+      "block_order": [
+        "quick-1",
+        "quick-2",
+        "quick-3",
+        "quick-4",
+        "quick-5",
+        "quick-6"
+      ],
+      "settings": {
+        "eyebrow": "User Guide",
+        "heading": "JrTrack Pro",
+        "subheading": "Everything you need to set up the watch, get it on their wrist, and run it day to day. Search it, skim it, or work straight through.",
+        "show_search": true,
+        "search_label": "Search the guide",
+        "search_placeholder": "Search setup, buttons, Routines, SOS…",
+        "search_empty_title": "No matches for",
+        "search_empty_text": "Try a different word, or email support@cosmotogether.com",
+        "search_results_label": "results",
+        "quick_heading": "Most parents come here for"
+      }
+    },
+    "guide": {
+      "type": "guide-content",
+      "blocks": {
+        "chapter-setup": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Set up your watch",
+            "anchor": "setup"
+          },
+          "blocks": {
+            "article-in-the-box": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "What’s in the box",
+                "anchor": "in-the-box"
+              },
+              "blocks": {
+                "text-1": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ul><li>JrTrack Pro smartwatch with silicone band</li><li>Charging clip and wall adapter</li><li>Extra velcro band</li><li>Quickstart guide</li></ul>",
+                    "show_seal": false
+                  }
+                },
+                "note-1": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "No SIM card to install.",
+                    "text": "The JrTrack Pro uses an eSIM, so there is no SIM tray. Cellular service is switched on during setup."
+                  }
+                }
+              },
+              "block_order": [
+                "text-1",
+                "note-1"
+              ]
+            },
+            "article-watch-anatomy": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Buttons and ports",
+                "anchor": "watch-anatomy",
+                "image_asset": "jrtrack-watch-hero-609x660.webp",
+                "image_alt": "JrTrack Pro seen from the front and to the right, with the orange Power button on top and the ridged Action button below it",
+                "caption": "Power on top, Action below it",
+                "figure_position": "side",
+                "figure_width": "extra-wide",
+                "device": "app",
+                "callouts": "Power | 58.1 | 24.7 | 79.8 | 16.1\nAction | 60.8 | 35.3 | 81.8 | 45.2"
+              },
+              "blocks": {
+                "text-2": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ul><li>The <strong>Power button</strong> is the top button on the right side. Press to wake or sleep the screen and to go back. Hold for Quick Settings or SOS.</li><li>The <strong>Action button</strong> is the bottom button on the right side. It opens your child’s Quick Access app, or does the main action on the current screen, like taking a photo or answering a call.</li><li><strong>Charging contacts</strong> are on the back of the watch.</li></ul><p>See <a href=\"#buttons\">Button navigation</a> for everything each button does.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-2"
+              ]
+            },
+            "article-charge": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Charge it first",
+                "anchor": "charge"
+              },
+              "blocks": {
+                "text-3": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Charge the watch fully before you start setup. Attach the charger to the back of the watch and plug it in. A charging indicator will appear on the screen.</p>",
+                    "show_seal": false
+                  }
+                },
+                "note-2": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "tip",
+                    "title": "Watch won’t turn on?",
+                    "text": "It almost always just needs charging. Leave it on the charger for at least 30 minutes, then try again."
+                  }
+                }
+              },
+              "block_order": [
+                "text-3",
+                "note-2"
+              ]
+            },
+            "article-turn-on": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Turn it on",
+                "anchor": "turn-on"
+              },
+              "blocks": {
+                "text-4": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Press and hold the Power button for 3 seconds until the screen lights up.</p><p>On first startup the watch shows <strong>Welcome to COSMO</strong>. Tap <strong>Get started</strong>. Let any update finish. If the watch can’t connect, tap <strong>Connect to Wi-Fi</strong> to join your home network.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-4"
+              ]
+            },
+            "article-download-app": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Download the Cosmo app",
+                "anchor": "download-app"
+              },
+              "blocks": {
+                "text-5": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>The Cosmo app is how you see your child’s location, manage who can reach them, set Routines, and change settings. Search your app store for <strong>Cosmo: Family Connection</strong>.</p>",
+                    "show_seal": false
+                  }
+                },
+                "kv-list-1": {
+                  "type": "_guide-kv",
+                  "settings": {},
+                  "blocks": {
+                    "kv-1": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "iOS",
+                        "value": "<a href=\"https://apps.apple.com/us/app/cosmo-family-connection/id6758307772\" rel=\"noopener\" target=\"_blank\">Download on the App Store</a>"
+                      }
+                    },
+                    "kv-2": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Android",
+                        "value": "<a href=\"https://play.google.com/store/apps/details?id=com.cosmotogether.cosmoapp\" rel=\"noopener\" target=\"_blank\">Get it on Google Play</a>"
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "kv-1",
+                    "kv-2"
+                  ]
+                }
+              },
+              "block_order": [
+                "text-5",
+                "kv-list-1"
+              ]
+            },
+            "article-parent-account": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Create your parent account",
+                "anchor": "parent-account"
+              },
+              "blocks": {
+                "text-6": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Open the Cosmo app and enter your email address.</li><li>Enter the one-time code sent to your email.</li><li>Enter your name, a nickname and your phone number. Your nickname is how you appear on your child’s watch.</li><li>Add a profile photo. It shows on your child’s watch when you call.</li></ol>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-6"
+              ]
+            },
+            "article-child-profile": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Add your child’s profile",
+                "anchor": "child-profile",
+                "image_asset": "jrtrack-app-onb-child-455x996.webp",
+                "image_alt": "Your child's info screen in the Cosmo app with an add photo control, name and birth date fields, and optional gender, height and weight",
+                "caption": "Name and birthday, the rest is optional",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-7": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>After your own profile, the app prompts you to create your child’s.</li><li>Enter their name and birthday, and add a photo.</li><li>Fill in any of the optional fields, then tap <strong>Finish</strong>.</li></ol><p>Their profile becomes the hub for every setting on the watch. <a href=\"#child-hub\">See what lives inside it</a>.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-7"
+              ]
+            },
+            "article-pair": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Pair the watch and activate",
+                "anchor": "pair",
+                "image_asset": "jrtrack-app-onb-pair-455x914.webp",
+                "image_alt": "Cosmo app showing a found Cosmo JrTrack Pro with its IMEI and a Connect button",
+                "caption": "The watch appears by name, with its IMEI",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-8": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>On the watch, tap <strong>Continue</strong>. This turns on Bluetooth pairing and can also show a QR code.</li><li>In the app, allow Bluetooth (or camera, for QR) permission when asked. The app looks for the watch automatically.</li><li>When the watch appears, tap <strong>Connect</strong>. If it isn’t found, choose to pair with the QR code and scan the code on the watch.</li><li>If the watch doesn’t have a membership yet, the app asks you to choose a plan and decide whether to add Cosmo Care for device protection.</li><li>Once you purchase your membership, a green check on both screens means pairing was successful.</li><li>Choose your watch settings in the app, and let your child scroll through the short tour on the watch.</li></ol>",
+                    "show_seal": false
+                  }
+                },
+                "note-3": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "info",
+                    "title": "Every membership includes a 30-day money back guarantee.",
+                    "text": ""
+                  }
+                }
+              },
+              "block_order": [
+                "text-8",
+                "note-3"
+              ]
+            },
+            "article-test-call": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Make a test call",
+                "anchor": "test-call"
+              },
+              "blocks": {
+                "text-9": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Once paired, call the watch to confirm everything works. If the call does not connect, contact Cosmo Support at <a href=\"tel:8772154741\">877-215-4741</a> or <a href=\"mailto:support@cosmotogether.com\">support@cosmotogether.com</a>.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-9"
+              ]
+            },
+            "article-wifi": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Connect to Wi-Fi",
+                "anchor": "wifi",
+                "image_asset": "jrtrack-watch-wifi-520x1156.webp",
+                "image_alt": "Wi-Fi screen on the watch with Wi-Fi switched on, a connected network and a list of nearby networks",
+                "caption": "Wi-Fi settings on the watch",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-10": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Wi-Fi improves location accuracy when indoors, and it is needed for app downloads and music streaming.</p><ol><li>On the watch, open <strong>Settings</strong>.</li><li>Tap <strong>Wi-Fi</strong> and toggle it on.</li><li>Tap your network and enter the password.</li></ol>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-10"
+              ]
+            }
+          },
+          "block_order": [
+            "article-in-the-box",
+            "article-watch-anatomy",
+            "article-charge",
+            "article-turn-on",
+            "article-download-app",
+            "article-parent-account",
+            "article-child-profile",
+            "article-pair",
+            "article-test-call",
+            "article-wifi"
+          ]
+        },
+        "chapter-buttons": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Button navigation",
+            "anchor": "buttons",
+            "intro": "The JrTrack Pro has two buttons. The <strong>Power button</strong> (top) handles screen on/off, back, Quick Settings and SOS. The <strong>Action button</strong> (bottom) is a shortcut that changes with what’s on screen."
+          },
+          "blocks": {
+            "article-power-button": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Power button",
+                "anchor": "power-button"
+              },
+              "blocks": {
+                "table-1": {
+                  "type": "_guide-table",
+                  "settings": {
+                    "columns": "2",
+                    "head_1": "Press",
+                    "head_2": "What it does",
+                    "head_3": ""
+                  },
+                  "blocks": {
+                    "row-1": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Hold 3 seconds (watch off)",
+                        "cell_2": "Turns on"
+                      }
+                    },
+                    "row-2": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Press (when screen is off)",
+                        "cell_2": "Wakes the screen"
+                      }
+                    },
+                    "row-3": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Press (home screen)",
+                        "cell_2": "Turns the screen off"
+                      }
+                    },
+                    "row-4": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Press (inside an app or menu)",
+                        "cell_2": "Goes back one screen"
+                      }
+                    },
+                    "row-5": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Double press (inside an app or menu)",
+                        "cell_2": "Goes to the home screen"
+                      }
+                    },
+                    "row-6": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Hold 1 second",
+                        "cell_2": "Opens Quick Settings"
+                      }
+                    },
+                    "row-7": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Hold 5 seconds",
+                        "cell_2": "Starts SOS"
+                      }
+                    },
+                    "row-8": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Hold 10 seconds",
+                        "cell_2": "Restarts the watch (no confirmation)"
+                      }
+                    },
+                    "row-9": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Press 15 times, then press the Action button 5 times",
+                        "cell_2": "Factory reset"
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "row-1",
+                    "row-2",
+                    "row-3",
+                    "row-4",
+                    "row-5",
+                    "row-6",
+                    "row-7",
+                    "row-8",
+                    "row-9"
+                  ]
+                },
+                "text-11": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>You can also swipe in from the left edge of the screen to go back.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "table-1",
+                "text-11"
+              ]
+            },
+            "article-action-button": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Action button",
+                "anchor": "action-button"
+              },
+              "blocks": {
+                "table-2": {
+                  "type": "_guide-table",
+                  "settings": {
+                    "columns": "2",
+                    "head_1": "When",
+                    "head_2": "What it does",
+                    "head_3": ""
+                  },
+                  "blocks": {
+                    "row-10": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Screen off",
+                        "cell_2": "Wakes the screen"
+                      }
+                    },
+                    "row-11": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Home screen, or any screen without its own action",
+                        "cell_2": "Opens the Quick Access app (Messages by default)"
+                      }
+                    },
+                    "row-12": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Inside a supported app",
+                        "cell_2": "Does that screen’s main action (see <a href=\"#contextual-actions\">Contextual actions</a>)"
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "row-10",
+                    "row-11",
+                    "row-12"
+                  ]
+                }
+              },
+              "block_order": [
+                "table-2"
+              ]
+            },
+            "article-action-settings": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Action button settings",
+                "anchor": "action-settings",
+                "image_asset": "jrtrack-watch-action-600x730.webp",
+                "image_alt": "Action screen on the watch with the Context actions toggle switched on and the Shortcut set to Messages",
+                "image_2_asset": "jrtrack-watch-action-shortcut-600x730.webp",
+                "image_2_alt": "Shortcut picker on the watch with Calling, Camera and Messaging, Messaging selected",
+                "caption": "Turn contextual actions on or off, then pick the Quick Access app",
+                "figure_position": "below",
+                "device": "app"
+              },
+              "blocks": {
+                "text-12": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>On the watch, go to <strong>Settings › Device Settings › Action Button</strong>.</p><ul><li><strong>Contextual action:</strong> on or off. On by default. When on, the button performs that screen’s main action. When it’s off, the Action button always opens the Quick Access app (except on the blocked screens listed below).</li><li><strong>Quick Access:</strong> choose which app the Action button opens: <strong>Messages</strong>, <strong>Calling</strong> or <strong>Camera</strong>.</li></ul>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-12"
+              ]
+            },
+            "article-contextual-actions": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Contextual actions",
+                "anchor": "contextual-actions"
+              },
+              "blocks": {
+                "text-13": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>With the contextual action setting on, the Action button does the obvious thing on each screen. On screens without a specific action, it opens the Quick Access app.</p>",
+                    "show_seal": false
+                  }
+                },
+                "table-3": {
+                  "type": "_guide-table",
+                  "settings": {
+                    "columns": "3",
+                    "head_1": "App",
+                    "head_2": "Screen",
+                    "head_3": "Action button"
+                  },
+                  "blocks": {
+                    "row-13": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Phone",
+                        "cell_2": "Incoming call",
+                        "cell_3": "Answer"
+                      }
+                    },
+                    "row-14": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Phone",
+                        "cell_2": "Outgoing or active call",
+                        "cell_3": "End call"
+                      }
+                    },
+                    "row-15": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Phone",
+                        "cell_2": "Missed call",
+                        "cell_3": "Call back"
+                      }
+                    },
+                    "row-16": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Messages",
+                        "cell_2": "Typing with the keyboard",
+                        "cell_3": "Send/Enter"
+                      }
+                    },
+                    "row-17": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Messages",
+                        "cell_2": "Taking a photo to send",
+                        "cell_3": "Take photo, then send it from the preview"
+                      }
+                    },
+                    "row-18": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Messages",
+                        "cell_2": "Recording a video to send",
+                        "cell_3": "Start or stop video, then send it from the preview"
+                      }
+                    },
+                    "row-19": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Messages",
+                        "cell_2": "Voice memo",
+                        "cell_3": "Start or stop recording, then send it from the preview"
+                      }
+                    },
+                    "row-20": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Camera",
+                        "cell_2": "Camera",
+                        "cell_3": "Take photo"
+                      }
+                    },
+                    "row-21": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Video",
+                        "cell_2": "Video",
+                        "cell_3": "Start or stop recording"
+                      }
+                    },
+                    "row-22": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Voice Notes",
+                        "cell_2": "Recorder",
+                        "cell_3": "Start recording, stop recording, play"
+                      }
+                    },
+                    "row-23": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Stopwatch and Timer",
+                        "cell_2": "Running screen",
+                        "cell_3": "Start or stop"
+                      }
+                    },
+                    "row-24": {
+                      "type": "_guide-table-row",
+                      "settings": {
+                        "cell_1": "Alarms, Calculator, Steps, Weather, Settings, Clocks, Wallpapers, The Week Junior, Add a Buddy, Contacts, Gallery",
+                        "cell_2": "Any",
+                        "cell_3": "Opens the Quick Access app"
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "row-13",
+                    "row-14",
+                    "row-15",
+                    "row-16",
+                    "row-17",
+                    "row-18",
+                    "row-19",
+                    "row-20",
+                    "row-21",
+                    "row-22",
+                    "row-23",
+                    "row-24"
+                  ]
+                }
+              },
+              "block_order": [
+                "text-13",
+                "table-3"
+              ]
+            },
+            "article-action-blocked": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "When the Action button does nothing",
+                "anchor": "action-blocked"
+              },
+              "blocks": {
+                "text-14": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ul><li>In apps installed from App Station</li><li>During first-time setup</li><li>While a software update is checking or installing</li><li>In Storage management</li><li>During Water ejection</li><li>During a fully or partially restricted Routine, so it can’t be used to get around school restrictions</li></ul>",
+                    "show_seal": false
+                  }
+                },
+                "note-4": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "",
+                    "text": "Quick Access also never opens on top of a call screen or while recording video or a voice note. In those cases the Action button either does the screen’s action or nothing."
+                  }
+                }
+              },
+              "block_order": [
+                "text-14",
+                "note-4"
+              ]
+            }
+          },
+          "block_order": [
+            "article-power-button",
+            "article-action-button",
+            "article-action-settings",
+            "article-contextual-actions",
+            "article-action-blocked"
+          ]
+        },
+        "chapter-app": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "The Cosmo app",
+            "anchor": "app",
+            "intro": "Your control center. Available on iOS and Android."
+          },
+          "blocks": {
+            "article-app-navigation": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Finding your way around",
+                "anchor": "app-navigation",
+                "image_asset": "jrtrack-app-controls-455x960.webp",
+                "image_alt": "Controls tab in the Cosmo app showing a list of children, My account, My parent portal, Push notifications and Support",
+                "caption": "The Controls tab",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-15": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ul><li><strong>Home</strong> is the map with your child’s location. Tap your child to see battery, last location, and buttons to Call, Text, Track and Find.</li><li><strong>Activity</strong> is a feed of what has happened: Routine arrivals and departures, check-ins, step goals, low battery, SOS alerts and more.</li><li><strong>Controls</strong> holds your child profiles, My account, the Parent Portal, push notification settings and support.</li><li><strong>Child profile</strong>, reached by tapping a child in Controls, is where the device information, Routines, Contacts, Guardians, Alarms, App Station, Fitness, Location tracking, Preset messages, Safety features, and call and location history live.</li></ul>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-15"
+              ]
+            },
+            "article-child-hub": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Each child’s profile",
+                "anchor": "child-hub",
+                "image_asset": "jrtrack-app-childprofile-455x914.webp",
+                "image_alt": "Child profile screen in the Cosmo app showing a paired JrTrack Pro, a Home Routine and Contacts",
+                "caption": "One screen per child, scrolled for the rest",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-16": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Tap a child in Controls to open their profile. This is the screen you will use most. It holds their watch, their Routines, everyone allowed to contact them, and every feature you can turn on or off.</p><p>Scroll down the same screen for Alarms, App Station, Fitness, Location tracking, Preset messages and Safety features, then call and location history at the bottom.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-16"
+              ]
+            },
+            "article-activity-feed": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "The Activity feed",
+                "anchor": "activity-feed"
+              },
+              "blocks": {
+                "text-17": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Activity lists device and account events in order, so you can catch up without opening anything else.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-17"
+              ]
+            },
+            "article-push-notifications": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Push notifications",
+                "anchor": "push-notifications"
+              },
+              "blocks": {
+                "text-18": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Go to <strong>Controls › Push notifications</strong>. All categories are on by default: Connection requests, Device usage, Routines, Step goals, and SOS and emergencies.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-18"
+              ]
+            }
+          },
+          "block_order": [
+            "article-app-navigation",
+            "article-child-hub",
+            "article-activity-feed",
+            "article-push-notifications"
+          ]
+        },
+        "chapter-contacts": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Contacts & buddies",
+            "anchor": "contacts",
+            "intro": "Only people you approve can reach the watch. Unknown numbers never get through."
+          },
+          "blocks": {
+            "article-contact-types": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "The three contact types",
+                "anchor": "contact-types"
+              },
+              "blocks": {
+                "kv-list-2": {
+                  "type": "_guide-kv",
+                  "settings": {},
+                  "blocks": {
+                    "kv-3": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Contact",
+                        "value": "Can call and text the watch. Works as soon as you add them."
+                      }
+                    },
+                    "kv-4": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Guardian",
+                        "value": "Can call, text and have access to a child’s location and settings through the Cosmo app. They can be invited from the Guardians page."
+                      }
+                    },
+                    "kv-5": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Buddy",
+                        "value": "Another child’s Cosmo watch. The two kids add each other over Bluetooth, then both parents approve."
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "kv-3",
+                    "kv-4",
+                    "kv-5"
+                  ]
+                },
+                "text-19": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>In the app, you appear with a star, guardians with a shield and buddies with the Cosmo “C”.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "kv-list-2",
+                "text-19"
+              ]
+            },
+            "article-guardians": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Invite a guardian",
+                "anchor": "guardians"
+              },
+              "blocks": {
+                "text-20": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Guardians get their own login and access to the app. Good for a second parent, a grandparent, or a nanny.</p><ol><li>Go to your child’s profile and tap <strong>Guardians</strong>.</li><li>Tap <strong>+</strong>, enter their name and email, and pick which children you want them to be a guardian for.</li><li>If they already use the Cosmo app, the invite appears in their app. If not, they download the app, create an account, and then review the invite.</li></ol><p>Once accepted, a guardian is added as a contact on the watch and can:</p><ul><li>See your child on the map, marked with a shield icon</li><li>Receive activity updates and push notifications</li><li>Edit the child profile, location settings and safety settings</li><li>Manage location tracking, contacts, Routines and preset messages</li><li>View communication history and fitness history</li></ul>",
+                    "show_seal": false
+                  }
+                },
+                "note-5": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "Some things stay with the primary parent.",
+                    "text": "Guardians cannot delete the child profile, add or remove a watch, or change billing information."
+                  }
+                }
+              },
+              "block_order": [
+                "text-20",
+                "note-5"
+              ]
+            },
+            "article-add-contact": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Add a contact",
+                "anchor": "add-contact",
+                "image_asset": "jrtrack-watch-contacts-560x921.webp",
+                "image_alt": "Contacts list on the watch showing Mom and Dad starred, Lara, a 911 entry and Call history",
+                "caption": "Approved contacts as they appear on the watch",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-21": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Go to your child’s profile and tap <strong>Contacts</strong>.</li><li>Tap <strong>+</strong>.</li><li>Enter their name, country code and phone number.</li><li>Select which children this contact can reach.</li><li>Tap the blue check to save.</li><li>Optional: tap <strong>Send SMS</strong> if you want to text them a ready-made message saying they can now call or text your child.</li></ol><p>The contact appears on the watch straight away.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-21"
+              ]
+            },
+            "article-add-buddy": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Add a buddy",
+                "anchor": "add-buddy",
+                "image_asset": "jrtrack-watch-buddy-600x730.webp",
+                "image_alt": "Add a Buddy on the watch searching for nearby watches, with Cam ready to add and Lara needing a software update",
+                "caption": "Both kids search at the same time",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-22": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Both watches need to be near each other with Bluetooth on.</li><li>Each child opens the <strong>Add a Buddy</strong> app and finds the other watch.</li><li>Both children tap the checkmark to confirm.</li><li>A blue dot appears on Controls, the child and Contacts in each parent’s app.</li><li>Approve or reject the request in Contacts or in Activity.</li><li>Once both parents approve, the kids can call and text each other.</li></ol><p>Buddies work between JrTrack 5 SE and JrTrack Pro watches.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-22"
+              ]
+            },
+            "article-remove-contact": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Remove a contact",
+                "anchor": "remove-contact"
+              },
+              "blocks": {
+                "text-23": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Go to your child’s <strong>Contacts</strong>.</li><li>Tap the contact, then <strong>Remove Contact</strong>.</li></ol><p>Removing a buddy removes them from both watches. To remove a guardian, use the Guardians page.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-23"
+              ]
+            }
+          },
+          "block_order": [
+            "article-contact-types",
+            "article-guardians",
+            "article-add-contact",
+            "article-add-buddy",
+            "article-remove-contact"
+          ]
+        },
+        "chapter-location": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Location & GPS",
+            "anchor": "location"
+          },
+          "blocks": {
+            "article-see-location": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "See where your child is",
+                "anchor": "see-location"
+              },
+              "blocks": {
+                "text-24": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Your child’s latest location shows on the Home map. When the map is open, any location older than 3 minutes refreshes automatically. A circle around the pin means the location is less precise than 100 ft. Tap your child to see their address, battery and quick actions to call, message or track.</p>",
+                    "show_seal": false
+                  }
+                },
+                "note-6": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "tip",
+                    "title": "Turn on Wi-Fi for better indoor accuracy.",
+                    "text": "GPS struggles inside buildings. Wi-Fi can provide a much better location at school or at home."
+                  }
+                }
+              },
+              "block_order": [
+                "text-24",
+                "note-6"
+              ]
+            },
+            "article-battery": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "How often location updates",
+                "anchor": "battery",
+                "image_asset": "jrtrack-app-location-settings-494x1000.webp",
+                "image_alt": "Location tracking settings showing the update frequency slider from 5 to 60 minutes and a scheduled window of 7:00am to 7:00pm",
+                "caption": "Frequency and schedule, both on one screen",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-25": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Location updates automatically. The default is <strong>every 30 minutes, between 7am and 7pm</strong> in the watch’s timezone.</p><ol><li>Open your child’s profile and tap <strong>Location tracking</strong>.</li><li>Pick 5, 10, 15, 30, 45 or 60 minutes, or turn updates off.</li><li>Choose a time window, or turn the schedule off to update around the clock.</li><li>Tap the blue check to save.</li></ol>",
+                    "show_seal": false
+                  }
+                },
+                "note-7": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "warn",
+                    "title": "More frequent updates use more battery.",
+                    "text": "The JrTrack Pro is built to last up to 72 hours on standby. If the battery drains faster than you’d like, lengthen the interval or limit updates to daytime."
+                  }
+                }
+              },
+              "block_order": [
+                "text-25",
+                "note-7"
+              ]
+            },
+            "article-live-tracking": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Live Tracking",
+                "anchor": "live-tracking",
+                "image_asset": "jrtrack-app-live-tracking-455x914.webp",
+                "image_alt": "Live Tracking in the Cosmo app, with a child's pin pulsing green on the map and a Tracking label",
+                "caption": "The green pulse means tracking is live",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-26": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>On the Home map, tap your child, then tap <strong>Track</strong>.</li><li>Location updates every second for up to 5 minutes. A pulsing green pin and the <strong>Tracking</strong> label mean it’s connected.</li><li>Tap <strong>X</strong> to stop early.</li></ol><p>Live Tracking points are saved to Location history every 10 seconds.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-26"
+              ]
+            },
+            "article-location-history": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Location history",
+                "anchor": "location-history"
+              },
+              "blocks": {
+                "text-27": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Open your child’s profile and tap <strong>Location history</strong>.</li><li>Pick a date from the calendar.</li><li>Tap a pin to see the time, address, and whether GPS or Wi-Fi was used.</li></ol>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-27"
+              ]
+            },
+            "article-check-in": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Check in",
+                "anchor": "check-in"
+              },
+              "blocks": {
+                "text-28": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Your child can send you their location from <strong>Quick Settings › Check-in</strong>. You get a push notification and an activity, and a green check on the map for three minutes.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-28"
+              ]
+            },
+            "article-find-device": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Find my device",
+                "anchor": "find-device"
+              },
+              "blocks": {
+                "text-29": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Lost the watch somewhere nearby? Tap your child on the map (or open their profile) and tap <strong>Find</strong>. The watch plays a sound for 5 seconds, even when muted or in a Routine. Your child can stop it early.</p><p>Find won’t play during a call, a recording, an alarm, or SOS.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-29"
+              ]
+            }
+          },
+          "block_order": [
+            "article-see-location",
+            "article-battery",
+            "article-live-tracking",
+            "article-location-history",
+            "article-check-in",
+            "article-find-device"
+          ]
+        },
+        "chapter-routines": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Routines & School-Fi",
+            "anchor": "routines"
+          },
+          "blocks": {
+            "article-what-are-routines": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "What Routines are",
+                "anchor": "what-are-routines"
+              },
+              "blocks": {
+                "text-30": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Routines change what the watch can do automatically, based on where your child is, the time, or both.</p>",
+                    "show_seal": false
+                  }
+                },
+                "kv-list-3": {
+                  "type": "_guide-kv",
+                  "settings": {},
+                  "blocks": {
+                    "kv-6": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Location only",
+                        "value": "Alerts when your child arrives or leaves."
+                      }
+                    },
+                    "kv-7": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Schedule only",
+                        "value": "Restricts the watch at set times, like bedtime."
+                      }
+                    },
+                    "kv-8": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Location and schedule",
+                        "value": "Restricts the watch during set times, with arrival and departure alerts during that time. Use Real-time detection to automatically check your child’s location more frequently around the start and end times. Intelligent Mode can be used to restrict the watch only after your child has arrived at their location."
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "kv-6",
+                    "kv-7",
+                    "kv-8"
+                  ]
+                }
+              },
+              "block_order": [
+                "text-30",
+                "kv-list-3"
+              ]
+            },
+            "article-school-routine": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Set up a School Routine",
+                "anchor": "school-routine"
+              },
+              "blocks": {
+                "text-31": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>In your child’s profile, tap <strong>Add Routine</strong> and choose the school icon.</li><li>Search for the school. If it’s not listed, add it by name and address.</li><li>Set the school boundary on the map.</li><li>Set the days and hours.</li><li>Pick a restriction level.</li><li>Tap <strong>Save</strong>.</li></ol>",
+                    "show_seal": false
+                  }
+                },
+                "note-8": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "info",
+                    "title": "School Routines turn on Intelligent Mode and Real-time detection by default.",
+                    "text": "Restrictions start only once the school day has started <strong>and</strong> your child is at school, so a sick day at home stays unrestricted. If plans change, turn the Routine off for the day from its Activity entry."
+                  }
+                }
+              },
+              "block_order": [
+                "text-31",
+                "note-8"
+              ]
+            },
+            "article-restriction-levels": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "What each restriction level does",
+                "anchor": "restriction-levels"
+              },
+              "blocks": {
+                "levels-1": {
+                  "type": "_guide-levels",
+                  "settings": {},
+                  "blocks": {
+                    "level-1": {
+                      "type": "_guide-level",
+                      "settings": {
+                        "title": "Fully restricted",
+                        "tone": "red",
+                        "allowed": "SOS",
+                        "blocked": "Calls and messages\nApps, camera, games\nAction button",
+                        "allowed_label": "Works:",
+                        "blocked_label": "Does not work:"
+                      }
+                    },
+                    "level-2": {
+                      "type": "_guide-level",
+                      "settings": {
+                        "title": "Partially restricted",
+                        "tone": "amber",
+                        "allowed": "SOS\nCalls and messages with parents and guardians\n911, if you enabled it",
+                        "blocked": "Calling other contacts\nApps, camera, games",
+                        "allowed_label": "Works:",
+                        "blocked_label": "Does not work:"
+                      }
+                    },
+                    "level-3": {
+                      "type": "_guide-level",
+                      "settings": {
+                        "title": "Unrestricted",
+                        "tone": "green",
+                        "allowed": "Everything",
+                        "blocked": "",
+                        "allowed_label": "Works:",
+                        "blocked_label": "Does not work:"
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "level-1",
+                    "level-2",
+                    "level-3"
+                  ]
+                },
+                "text-32": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>When the Routine ends, the watch returns to normal on its own. Children can’t turn a Routine off. Only the primary parent and guardians can.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "levels-1",
+                "text-32"
+              ]
+            },
+            "article-other-routines": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Other Routines",
+                "anchor": "other-routines"
+              },
+              "blocks": {
+                "text-33": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>In your child’s profile, tap <strong>Routines › Add Routine</strong>.</li><li>Name it, choose an icon, and add a location, a schedule or both.</li><li>For a location, choose whether you want arrival and departure alerts.</li><li>For a schedule, choose the restriction level.</li><li>Tap <strong>Save</strong>.</li></ol>",
+                    "show_seal": false
+                  }
+                },
+                "note-9": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "tip",
+                    "title": "Arrival alerts are only as fast as your update interval.",
+                    "text": "They fire off the back of location updates, so a shorter interval means quicker notifications, at the cost of battery."
+                  }
+                }
+              },
+              "block_order": [
+                "text-33",
+                "note-9"
+              ]
+            }
+          },
+          "block_order": [
+            "article-what-are-routines",
+            "article-school-routine",
+            "article-restriction-levels",
+            "article-other-routines"
+          ]
+        },
+        "chapter-messages": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Calls & messages",
+            "anchor": "messages"
+          },
+          "blocks": {
+            "article-calling": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Calling",
+                "anchor": "calling"
+              },
+              "blocks": {
+                "text-34": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Your child can only call, and be called by, approved contacts and guardians.</p><ul><li><strong>Incoming call:</strong> tap green to answer or red to decline, or press the Action button to answer.</li><li><strong>Make a call:</strong> open the Phone app, pick a contact, and tap to call. If Calling is set as Quick Access, press the Action button from the home screen.</li><li><strong>End a call:</strong> tap the red button or press the Action button.</li></ul>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-34"
+              ]
+            },
+            "article-messaging": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Messaging",
+                "anchor": "messaging",
+                "image_asset": "jrtrack-watch-messages-560x1251.webp",
+                "image_alt": "A conversation on the watch with photo, camera and voice memo buttons, a Send text field and preset replies",
+                "caption": "Type, snap, record, or tap a preset",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-35": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>The JrTrack Pro has a real phone number and sends real SMS. Your child can text, and send photos, videos and voice memos to approved contacts, who reply from their normal messaging app.</p><ul><li><strong>Open Messages:</strong> press the Action button from the home screen (Messages is the default Quick Access app), or tap the Messages icon.</li><li><strong>Pick a contact,</strong> then choose keyboard, photo or video, or voice note.</li><li><strong>Action button:</strong> sends text messages, takes the photo or video, and starts or stops voice memos.</li><li><strong>Voice to text:</strong> tap the microphone to dictate.</li><li><strong>Preset messages</strong> are one-tap replies. Edit them in the Cosmo app under your child’s profile › Preset messages.</li></ul>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-35"
+              ]
+            },
+            "article-review-messages": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Review your child’s messages",
+                "anchor": "review-messages"
+              },
+              "blocks": {
+                "text-36": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Full message history can be found on the Message history page in your child’s profile and in the Parent Portal (<strong>Controls › My parent portal</strong>, or <a href=\"https://parent.cosmotogether.com\">parent.cosmotogether.com</a>).</p>",
+                    "show_seal": false
+                  }
+                },
+                "note-10": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "Your child is not notified",
+                    "text": "when you read their messages."
+                  }
+                }
+              },
+              "block_order": [
+                "text-36",
+                "note-10"
+              ]
+            }
+          },
+          "block_order": [
+            "article-calling",
+            "article-messaging",
+            "article-review-messages"
+          ]
+        },
+        "chapter-apps": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "App Station",
+            "anchor": "apps",
+            "intro": "You install the apps. Your child can’t add anything themselves."
+          },
+          "blocks": {
+            "article-install-apps": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Install an app",
+                "anchor": "install-apps",
+                "image_asset": "jrtrack-app-station-494x1000.webp",
+                "image_alt": "App Station in the Cosmo app showing available and installed apps including iHeart Radio, Spotify, The Week Junior and 2048 with a 30 minute limit",
+                "caption": "The app library, with time limits shown inline",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-37": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Make sure the watch is on Wi-Fi.</li><li>In your child’s profile, tap <strong>App Station</strong>.</li><li>Browse and tap <strong>Download</strong>.</li></ol>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-37"
+              ]
+            },
+            "article-time-limits": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Set a time limit",
+                "anchor": "time-limits"
+              },
+              "blocks": {
+                "text-38": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>In App Station, tap an installed app.</li><li>Tap <strong>Set Time Limit</strong> and choose a daily allowance.</li></ol><p>Once the allowance runs out, the app locks until the next calendar day.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-38"
+              ]
+            },
+            "article-remove-app": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Remove an app",
+                "anchor": "remove-app"
+              },
+              "blocks": {
+                "text-39": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Find the installed app in App Station.</li><li>Tap <strong>Uninstall</strong>. It is removed from the watch remotely.</li></ol>",
+                    "show_seal": false
+                  }
+                },
+                "note-11": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "Unpairing the watch does not remove apps.",
+                    "text": "They stay on the watch until you uninstall them through App Station."
+                  }
+                }
+              },
+              "block_order": [
+                "text-39",
+                "note-11"
+              ]
+            },
+            "article-music": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Music",
+                "anchor": "music"
+              },
+              "blocks": {
+                "text-40": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Kids can stream music apps installed from App Station over Wi-Fi. Save songs or playlists for offline playback. You can pair Bluetooth headphones or a speaker for audio.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-40"
+              ]
+            }
+          },
+          "block_order": [
+            "article-install-apps",
+            "article-time-limits",
+            "article-remove-app",
+            "article-music"
+          ]
+        },
+        "chapter-alarms": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Alarms & fitness",
+            "anchor": "alarms"
+          },
+          "blocks": {
+            "article-alarms-app": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Set an alarm from the app",
+                "anchor": "alarms-app"
+              },
+              "blocks": {
+                "text-41": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Open your child’s profile and tap <strong>Alarms</strong>.</li><li>Tap <strong>+</strong>, set the time and name, and pick repeat days (leave them blank for a one-time alarm).</li><li>Tap <strong>Save</strong>.</li></ol><p>Alarms your child sets on the watch also show in the app, but cannot be changed there.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-41"
+              ]
+            },
+            "article-alarms-watch": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Set an alarm from the watch",
+                "anchor": "alarms-watch",
+                "image_asset": "jrtrack-watch-alarms-600x730.webp",
+                "image_alt": "Alarms app on the watch with a New alarm button, a starred Wake up alarm at 7:00am every day, and a Homework alarm at 7:00pm",
+                "caption": "The star marks an alarm set from the app",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-42": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Open <strong>Alarms</strong>, tap <strong>New Alarm</strong>, set the time and repeat, then tap the checkmark.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-42"
+              ]
+            },
+            "article-steps": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Steps and goals",
+                "anchor": "steps",
+                "image_asset": "jrtrack-app-steps-494x1000.webp",
+                "image_alt": "Fitness screen in the Cosmo app showing a weekly step chart, daily average, current streak and daily step goal",
+                "caption": "Daily average, streak and goal in one place",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-43": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<ol><li>Open your child’s profile and tap <strong>Fitness</strong>.</li><li>See today’s steps, their current streak, and daily, 7-day and 31-day step history.</li><li>Change the daily goal (5,000 steps by default) and their height, weight and gender.</li></ol>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-43"
+              ]
+            }
+          },
+          "block_order": [
+            "article-alarms-app",
+            "article-alarms-watch",
+            "article-steps"
+          ]
+        },
+        "chapter-sos": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "SOS & emergency",
+            "anchor": "sos"
+          },
+          "blocks": {
+            "article-sos-mode": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "SOS mode",
+                "anchor": "sos-mode",
+                "image_asset": "jrtrack-watch-sos-700x852.webp",
+                "image_alt": "SOS countdown on the watch showing 12 seconds left, a red cancel button and Activating SOS",
+                "caption": "The countdown, with a chance to cancel",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "note-12": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "warn",
+                    "title": "SOS does not call 911.",
+                    "text": "It alerts you and your guardians. If you want your child to be able to reach emergency services, turn on 911 calling separately."
+                  }
+                },
+                "text-44": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p><strong>How your child starts it</strong></p><ol><li>Press and hold the Power button for 5 seconds.</li><li>A silent 15-second countdown runs, so an accidental press can be canceled.</li><li>Once it confirms, the alert goes out and Live Tracking begins.</li></ol><p><strong>What you receive</strong></p><ul><li>A push notification (if SOS and emergencies notifications are on) and an Activity</li><li>Location tracking, updating every second, shown on the map with an SOS status</li><li>If you call the watch while SOS is active, it connects silently, so you can hear what is happening without your child needing to answer the call</li></ul><p><strong>Turning it off</strong></p><p>On the Home map, tap the <strong>X</strong> to dismiss the SOS and confirm.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "note-12",
+                "text-44"
+              ]
+            },
+            "article-emergency-911": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "911 calling",
+                "anchor": "emergency-911",
+                "image_asset": "jrtrack-app-safety-455x914.webp",
+                "image_alt": "Safety features screen in the Cosmo app with toggles for Show emergency calling, Wireless emergency alerts and Voice transcription",
+                "caption": "Safety features, set from your phone",
+                "figure_position": "side",
+                "figure_width": "default",
+                "device": "app"
+              },
+              "blocks": {
+                "text-45": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Emergency calling is <strong>off by default</strong>. When it’s on, your child can call emergency services from the watch, behind a confirmation step so it can’t be triggered by accident.</p><p><strong>To turn it on</strong></p><ol><li>Open your child’s profile and tap <strong>Safety features</strong>.</li><li>Enable <strong>Show emergency calling</strong>.</li></ol><p>The same screen controls Wireless Emergency Alerts and Voice transcription. Your child can’t change these on the watch.</p>",
+                    "show_seal": false
+                  }
+                },
+                "note-13": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "Not available in a fully restricted Routine.",
+                    "text": "If the watch is in full lockdown, 911 calling is switched off along with everything else. Use partially restricted if you want emergency calling to stay available during school."
+                  }
+                }
+              },
+              "block_order": [
+                "text-45",
+                "note-13"
+              ]
+            }
+          },
+          "block_order": [
+            "article-sos-mode",
+            "article-emergency-911"
+          ]
+        },
+        "chapter-watch": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "The watch itself",
+            "anchor": "watch"
+          },
+          "blocks": {
+            "article-watch-navigation": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Getting around",
+                "anchor": "watch-navigation"
+              },
+              "blocks": {
+                "text-46": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Swipe left and right on the home screen to move between app pages. Press the Power button to go back, double press it to go home, or swipe in from the left edge. Apps you install from App Station are added to these pages.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-46"
+              ]
+            },
+            "article-camera": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Camera and photos",
+                "anchor": "camera",
+                "image_asset": "jrtrack-watch-gallery-700x852.webp",
+                "image_alt": "Gallery app on the watch listing All, Photos and Videos folders",
+                "caption": "Everything they shoot lands in Gallery",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-47": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Open the Camera and tap the shutter or press the Action button to take a photo. Switch between photo and video on the main camera screen.</p><p>Everything lands in <strong>Gallery</strong>, sorted into Photos and Videos.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-47"
+              ]
+            },
+            "article-voice-notes": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Voice Notes",
+                "anchor": "voice-notes"
+              },
+              "blocks": {
+                "text-48": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>The Voice Notes app records notes up to 5 minutes long. Press the Action button to start and stop recording and to play a note back.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-48"
+              ]
+            },
+            "article-watch-face": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Customizing the JrTrack Pro",
+                "anchor": "watch-face",
+                "image_asset": "jrtrack-watch-face-picker-700x852.webp",
+                "image_alt": "Watch face picker showing a clock over a colorful wallpaper, with clock style, color and wallpaper options below",
+                "image_2_asset": "jrtrack-watch-face-confirm-700x852.webp",
+                "image_2_alt": "Watch face preview with cancel and confirm buttons and a choice of two clock layouts",
+                "caption": "Pick a clock style, color and wallpaper, then confirm",
+                "figure_position": "below",
+                "device": "app"
+              },
+              "blocks": {
+                "text-49": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Open the customization app (the watch with a paintbrush icon) to pick a clock style and color, a pre-loaded wallpaper, or one of the photos on the watch.</p><p>Ringtones are in Device Settings.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-49"
+              ]
+            },
+            "article-quick-settings": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Quick Settings",
+                "anchor": "quick-settings",
+                "image_asset": "jrtrack-watch-quick-settings-520x1258.webp",
+                "image_alt": "Quick Settings panel on the watch with Wi-Fi and Bluetooth on, brightness and volume sliders, Check-in, mute, flashlight, water ejection, settings, power off and restart",
+                "caption": "Hold the Power button for 1 second",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-50": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Hold the Power button for 1 second to open Quick Settings:</p><ul><li>Wi-Fi and Bluetooth</li><li>Brightness and volume</li><li>Check-in (send your location to parents)</li><li>Silent mode and flashlight</li><li>Water ejection</li><li>Full Settings</li><li>Power off and restart</li></ul><p>A <strong>green icon</strong> means on. A <strong>red mute icon</strong> means the watch is muted.</p>",
+                    "show_seal": false
+                  }
+                },
+                "note-14": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "note",
+                    "title": "",
+                    "text": "Quick Settings is unavailable during calls and software updates."
+                  }
+                }
+              },
+              "block_order": [
+                "text-50",
+                "note-14"
+              ]
+            },
+            "article-water-ejection": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Water ejection",
+                "anchor": "water-ejection",
+                "image_asset": "jrtrack-watch-water-700x852.webp",
+                "image_alt": "Water ejection running on the watch, a water drop icon with the words Getting rid of the water",
+                "caption": "Clears the speaker after a swim or a splash",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-51": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Water ejection plays a tone to clear water from the speaker after the watch gets wet. Start it from Quick Settings. Buttons are paused while it runs.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-51"
+              ]
+            },
+            "article-device-settings": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Device settings",
+                "anchor": "device-settings",
+                "image_asset": "jrtrack-watch-settings-520x1468.webp",
+                "image_alt": "Settings menu on the watch listing Updates, Bluetooth, Wi-Fi, Device settings, Pair device, About, Support and More",
+                "caption": "The Settings menu on the watch",
+                "figure_position": "side",
+                "figure_width": "wide",
+                "device": "watch"
+              },
+              "blocks": {
+                "text-52": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Open <strong>Device Settings</strong> from the Settings menu on the watch for:</p><ul><li>Action Button</li><li>Display</li><li>Sound and vibration</li><li>Time</li><li>Call options and text options</li><li>Gestures</li><li>Storage</li><li>Location</li></ul><p>Emergency calling, Wireless Emergency Alerts and voice transcription are set by the parent in the Cosmo app. See <a href=\"#emergency-911\">911 calling</a>.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-52"
+              ]
+            },
+            "article-updates": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Software updates",
+                "anchor": "updates",
+                "image_asset": "jrtrack-watch-update-found-700x1011.webp",
+                "image_alt": "Update found screen on the watch showing a new version with Update now and Skip update buttons",
+                "image_2_asset": "jrtrack-watch-update-current-700x852.webp",
+                "image_2_alt": "Watch screen confirming Your watch is up to date",
+                "caption": "An update waiting, and a watch that’s up to date",
+                "figure_position": "below",
+                "device": "app"
+              },
+              "blocks": {
+                "text-53": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Open <strong>Settings</strong> and tap <strong>Updates</strong>. A green update icon means an update is waiting. Keep the watch charged and on Wi-Fi while it installs.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-53"
+              ]
+            }
+          },
+          "block_order": [
+            "article-watch-navigation",
+            "article-camera",
+            "article-voice-notes",
+            "article-watch-face",
+            "article-quick-settings",
+            "article-water-ejection",
+            "article-device-settings",
+            "article-updates"
+          ]
+        },
+        "chapter-account": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Plan & billing",
+            "anchor": "account"
+          },
+          "blocks": {
+            "article-parent-portal": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "The Parent Portal",
+                "anchor": "parent-portal"
+              },
+              "blocks": {
+                "text-54": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>For billing and plan management, go to <a href=\"https://parent.cosmotogether.com\">parent.cosmotogether.com</a>, or tap <strong>My parent portal</strong> under Controls.</p><p>Only the subscriber who purchased the membership plan can change payment information or cancel. Parents and guardians can see app usage, call, message and step history, and manage apps.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-54"
+              ]
+            },
+            "article-billing": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "View your plan",
+                "anchor": "billing"
+              },
+              "blocks": {
+                "text-55": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Log in to the Parent Portal and click <strong>Plans</strong> to see active plans, payment details, next bill date and the watch’s IMEI. Billing changes and cancellations are handled there. Need help? Email <a href=\"mailto:support@cosmotogether.com\">support@cosmotogether.com</a>.</p>",
+                    "show_seal": false
+                  }
+                }
+              },
+              "block_order": [
+                "text-55"
+              ]
+            },
+            "article-cosmo-care": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "Cosmo Care",
+                "anchor": "cosmo-care"
+              },
+              "blocks": {
+                "kv-list-4": {
+                  "type": "_guide-kv",
+                  "settings": {},
+                  "blocks": {
+                    "kv-9": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Cosmo Care Basic",
+                        "value": "$2.99/mo. Covers all damage, including water."
+                      }
+                    },
+                    "kv-10": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Cosmo Care Plus",
+                        "value": "$5.99/mo. Covers damage, loss and theft."
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "kv-9",
+                    "kv-10"
+                  ]
+                },
+                "text-56": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Upgrade eligibility varies by membership and Cosmo Care plan. Review the current Cosmo Care terms for complete coverage and upgrade details.</p>",
+                    "show_seal": false
+                  }
+                },
+                "note-15": {
+                  "type": "_guide-note",
+                  "settings": {
+                    "style": "warn",
+                    "title": "Cosmo Care has to be added when you buy your membership.",
+                    "text": ""
+                  }
+                }
+              },
+              "block_order": [
+                "kv-list-4",
+                "text-56",
+                "note-15"
+              ]
+            },
+            "article-guarantee": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "30-day money back guarantee",
+                "anchor": "guarantee"
+              },
+              "blocks": {
+                "seal-1": {
+                  "type": "_guide-text",
+                  "settings": {
+                    "content": "<p>Cosmo offers a 30-day money-back guarantee. Eligibility, nonrefundable fees, device-return requirements and other conditions may apply. Contact <a href=\"mailto:support@cosmotogether.com\">support@cosmotogether.com</a> within 30 days and review the current <a href=\"https://cosmotogether.com/pages/returns-cancellations\">Returns &amp; Cancellations policy</a>.</p>",
+                    "show_seal": true
+                  }
+                }
+              },
+              "block_order": [
+                "seal-1"
+              ]
+            }
+          },
+          "block_order": [
+            "article-parent-portal",
+            "article-billing",
+            "article-cosmo-care",
+            "article-guarantee"
+          ]
+        },
+        "chapter-specs": {
+          "type": "_guide-chapter",
+          "settings": {
+            "title": "Technical specifications",
+            "anchor": "specs"
+          },
+          "blocks": {
+            "article-tech-specs": {
+              "type": "_guide-article",
+              "settings": {
+                "title": "JrTrack Pro specs",
+                "anchor": "tech-specs"
+              },
+              "blocks": {
+                "kv-list-5": {
+                  "type": "_guide-kv",
+                  "settings": {},
+                  "blocks": {
+                    "kv-11": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Display",
+                        "value": "1.78 inch OLED, 368 x 488, curved edges"
+                      }
+                    },
+                    "kv-12": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Dimensions",
+                        "value": "52 x 43 x 12.8 mm"
+                      }
+                    },
+                    "kv-13": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Battery",
+                        "value": "720 mAh, up to 72 hours standby"
+                      }
+                    },
+                    "kv-14": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Camera",
+                        "value": "5MP, photo and video"
+                      }
+                    },
+                    "kv-15": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Cellular",
+                        "value": "4G LTE, eSIM"
+                      }
+                    },
+                    "kv-16": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "LTE bands",
+                        "value": "1, 2, 3, 4, 5, 7, 8, 12, 13, 17, 20, 28, 66"
+                      }
+                    },
+                    "kv-17": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Wi-Fi",
+                        "value": "2.4 GHz"
+                      }
+                    },
+                    "kv-18": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Bluetooth",
+                        "value": "BLE 4.2"
+                      }
+                    },
+                    "kv-19": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Sensors",
+                        "value": "Step counter, compass, altimeter"
+                      }
+                    },
+                    "kv-20": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Buttons",
+                        "value": "Power (top), Action (bottom)"
+                      }
+                    },
+                    "kv-21": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Water resistance",
+                        "value": "3ATM certified"
+                      }
+                    },
+                    "kv-22": {
+                      "type": "_guide-kv-row",
+                      "settings": {
+                        "label": "Memory",
+                        "value": "32GB ROM / 3GB RAM"
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "kv-11",
+                    "kv-12",
+                    "kv-13",
+                    "kv-14",
+                    "kv-15",
+                    "kv-16",
+                    "kv-17",
+                    "kv-18",
+                    "kv-19",
+                    "kv-20",
+                    "kv-21",
+                    "kv-22"
+                  ]
+                }
+              },
+              "block_order": [
+                "kv-list-5"
+              ]
+            }
+          },
+          "block_order": [
+            "article-tech-specs"
+          ]
+        },
+        "help": {
+          "type": "_guide-help",
+          "settings": {
+            "title": "Get help",
+            "anchor": "help",
+            "heading": "Still need a hand?",
+            "text": "Support is available Monday–Friday, 6:00 a.m.–6:00 p.m. Eastern. Have the watch nearby when you get in touch.",
+            "signoff": "You got this. 🎒"
+          },
+          "blocks": {
+            "help-card-1": {
+              "type": "_guide-help-card",
+              "settings": {
+                "label": "Email",
+                "value": "support@cosmotogether.com",
+                "link": "mailto:support@cosmotogether.com"
+              }
+            },
+            "help-card-2": {
+              "type": "_guide-help-card",
+              "settings": {
+                "label": "Phone",
+                "value": "877-215-4741",
+                "link": "tel:8772154741"
+              }
+            },
+            "help-card-3": {
+              "type": "_guide-help-card",
+              "settings": {
+                "label": "Online",
+                "value": "cosmotogether.com",
+                "link": "https://cosmotogether.com"
+              }
+            }
+          },
+          "block_order": [
+            "help-card-1",
+            "help-card-2",
+            "help-card-3"
+          ]
+        }
+      },
+      "block_order": [
+        "chapter-setup",
+        "chapter-buttons",
+        "chapter-app",
+        "chapter-contacts",
+        "chapter-location",
+        "chapter-routines",
+        "chapter-messages",
+        "chapter-apps",
+        "chapter-alarms",
+        "chapter-sos",
+        "chapter-watch",
+        "chapter-account",
+        "chapter-specs",
+        "help"
+      ],
+      "settings": {
+        "show_topbar": true,
+        "brand_name": "JrTrack Pro",
+        "brand_label": "User Guide",
+        "header_offset": 0,
+        "search_label": "Search the guide",
+        "search_placeholder": "Search the guide",
+        "search_empty_title": "No matches for",
+        "search_empty_text": "Try a different word, or email support@cosmotogether.com",
+        "search_results_label": "results",
+        "contents_label": "Contents",
+        "jump_label": "Jump to section",
+        "side_help_title": "Still stuck?",
+        "side_help_text": "Support is available Monday–Friday, 6:00 a.m.–6:00 p.m. Eastern.",
+        "support_email": "support@cosmotogether.com",
+        "copy_link_label": "Copy link to this section",
+        "copied_label": "Link copied",
+        "back_to_top_label": "Back to top"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "guide"
+  ]
+}

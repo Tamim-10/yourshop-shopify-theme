@@ -1,0 +1,167 @@
+{%- comment -%}
+  Article: a card with a heading, content blocks and an optional figure.
+  The figure can sit beside the text or under it. Every article is searchable
+  and has its own copy-link anchor.
+{%- endcomment -%}
+{%- liquid
+  assign anchor = block.settings.anchor | handleize | default: block.id
+
+  assign has_figure = false
+  if block.settings.image != blank or block.settings.image_asset != blank
+    assign has_figure = true
+  endif
+
+  assign figure_beside = false
+  if has_figure and block.settings.figure_position == 'side'
+    assign figure_beside = true
+  endif
+
+  assign figure_below = false
+  if has_figure and figure_beside == false
+    assign figure_below = true
+  endif
+
+  assign layout_class = ''
+  if figure_beside
+    assign layout_class = 'pg-split'
+    if block.settings.figure_width != 'default'
+      assign layout_class = layout_class | append: ' is-' | append: block.settings.figure_width
+    endif
+  endif
+-%}
+<article class="pg-art" id="{{ anchor }}" data-pg-article {{ block.shopify_attributes }}>
+  <div{% if layout_class != blank %} class="{{ layout_class }}"{% endif %}>
+    <div class="pg-col">
+      <div class="pg-art-h">
+        <h3>{{ block.settings.title | escape }}</h3>
+        <a class="pg-anchor" href="#{{ anchor }}">
+          {% render 'guide-icon', name: 'link' %}
+        </a>
+      </div>
+
+      <div class="pg-body">
+        {% content_for 'blocks' %}
+      </div>
+
+      {%- if figure_below -%}
+        {% render 'guide-figure', settings: block.settings, below: true %}
+      {%- endif -%}
+    </div>
+
+    {%- if figure_beside -%}
+      {% render 'guide-figure', settings: block.settings, below: false %}
+    {%- endif -%}
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Article title"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor ID",
+      "info": "Used for links such as #add-contact and for the quick links. Letters, numbers and hyphens only. Leave blank to generate one."
+    },
+    {
+      "type": "header",
+      "content": "Figure (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Recommended: a transparent PNG or WebP about 700px wide. Leave empty to use the bundled image named below."
+    },
+    {
+      "type": "text",
+      "id": "image_asset",
+      "label": "Bundled image file",
+      "info": "Used only when no image is picked above. File name from this theme's assets folder, e.g. jrtrack-watch-hero-609x660.webp (the size is part of the file name)."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "info": "Describe the image for screen readers. Overrides the alt text stored with the image."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second image",
+      "info": "Optional. Two images are shown side by side."
+    },
+    {
+      "type": "text",
+      "id": "image_2_asset",
+      "label": "Second bundled image file"
+    },
+    {
+      "type": "text",
+      "id": "image_2_alt",
+      "label": "Second image alt text"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption"
+    },
+    {
+      "type": "select",
+      "id": "figure_position",
+      "label": "Figure position",
+      "options": [
+        { "value": "side", "label": "Beside the text" },
+        { "value": "below", "label": "Below the text" }
+      ],
+      "default": "side"
+    },
+    {
+      "type": "select",
+      "id": "figure_width",
+      "label": "Figure width (beside the text)",
+      "options": [
+        { "value": "default", "label": "Narrow" },
+        { "value": "wide", "label": "Medium" },
+        { "value": "extra-wide", "label": "Wide" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "select",
+      "id": "device",
+      "label": "Image type",
+      "options": [
+        { "value": "app", "label": "App screenshot" },
+        { "value": "watch", "label": "Watch screen (limits the height)" }
+      ],
+      "default": "app"
+    },
+    {
+      "type": "textarea",
+      "id": "callouts",
+      "label": "Callout labels",
+      "info": "Optional labels pinned on a single image, one per line: Label | dot left % | dot top % | label left % | label top %. Example: Power | 58 | 25 | 80 | 16"
+    }
+  ],
+  "blocks": [
+    { "type": "_guide-text" },
+    { "type": "_guide-note" },
+    { "type": "_guide-table" },
+    { "type": "_guide-kv" },
+    { "type": "_guide-levels" }
+  ],
+  "presets": [
+    {
+      "name": "Article"
+    }
+  ]
+}
+{% endschema %}

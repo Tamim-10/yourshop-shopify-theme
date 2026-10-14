@@ -1,0 +1,45 @@
+{%- comment -%}
+  A contact card inside the help panel (email, phone, website).
+{%- endcomment -%}
+{%- if block.settings.link != blank -%}
+  <a class="pg-help-card" href="{{ block.settings.link | escape }}" {{ block.shopify_attributes }}>
+    <span class="pg-help-label">{{ block.settings.label | escape }}</span>
+    <span class="pg-help-value">{{ block.settings.value | escape }}</span>
+  </a>
+{%- else -%}
+  <div class="pg-help-card" {{ block.shopify_attributes }}>
+    <span class="pg-help-label">{{ block.settings.label | escape }}</span>
+    <span class="pg-help-value">{{ block.settings.value | escape }}</span>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Help card",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "value",
+      "label": "Text shown",
+      "default": "support@example.com"
+    },
+    {
+      "type": "text",
+      "id": "link",
+      "label": "Link",
+      "info": "mailto:you@example.com, tel:8005551234 or https://example.com. Leave blank for no link."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help card"
+    }
+  ]
+}
+{% endschema %}

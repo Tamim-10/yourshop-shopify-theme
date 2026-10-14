@@ -1,0 +1,70 @@
+{%- comment -%}
+  Inline SVG icon for the product guide.
+
+  Accepts:
+  - name: icon name (see the `case` below)
+  - class: optional CSS class (default: pg-icon)
+
+  Usage: {% render 'guide-icon', name: 'info' %}
+{%- endcomment -%}
+{%- liquid
+  assign icon_class = class | default: 'pg-icon'
+-%}
+
+{%- if name == 'seal' -%}
+  <svg class="{{ icon_class }}" viewBox="0 0 96 112" fill="currentColor" aria-hidden="true" focusable="false">
+    <path d="M48 5 86 18.5v33.8c0 26.6-17.6 43.6-38 54.2C27.6 95.9 10 78.9 10 52.3V18.5Z"/>
+    <path d="M31 55.5 43.5 68 66 43" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+{%- else -%}
+  <svg class="{{ icon_class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    {%- case name -%}
+      {%- when 'watch' -%}
+        <rect x="6" y="4" width="12" height="16" rx="3"/><path d="M12 8v4l2.5 1.5"/>
+      {%- when 'buttons' -%}
+        <rect x="4" y="4" width="13" height="16" rx="3"/><path d="M20 8v2.5M20 13.5V16"/>
+      {%- when 'user-plus' -%}
+        <path d="M15 20v-1.5a4 4 0 00-4-4H6a4 4 0 00-4 4V20"/><circle cx="8.5" cy="7" r="3.5"/><path d="M19 8v6M22 11h-6"/>
+      {%- when 'school' -%}
+        <path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11.5V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4.5"/>
+      {%- when 'battery' -%}
+        <rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10.5v3"/><path d="M6 10.5v3"/>
+      {%- when 'alert' -%}
+        <path d="M12 3l8.5 15H3.5L12 3z"/><path d="M12 9.5v4M12 16.2v.1"/>
+      {%- when 'info' -%}
+        <circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.6v.1"/>
+      {%- when 'lightbulb' -%}
+        <path d="M9 18h6M10 21.5h4"/><path d="M12 2.5a6.5 6.5 0 00-3.7 11.8c.5.4.7.9.7 1.5V16h6v-.2c0-.6.2-1.1.7-1.5A6.5 6.5 0 0012 2.5z"/>
+      {%- when 'search' -%}
+        <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+      {%- when 'link' -%}
+        <path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/>
+      {%- when 'arrow-up' -%}
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      {%- when 'phone' -%}
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+      {%- when 'message' -%}
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      {%- when 'map-pin' -%}
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+      {%- when 'shield' -%}
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      {%- when 'bell' -%}
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      {%- when 'camera' -%}
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+      {%- when 'clock' -%}
+        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+      {%- when 'help' -%}
+        <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+      {%- when 'music' -%}
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      {%- when 'book' -%}
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      {%- when 'mail' -%}
+        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/>
+      {%- else -%}
+        <circle cx="12" cy="12" r="9.5"/>
+    {%- endcase -%}
+  </svg>
+{%- endif -%}

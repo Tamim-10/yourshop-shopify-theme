@@ -1,0 +1,76 @@
+{%- comment -%}
+  Figure (one or two images, optional caption and callout labels) for a guide article.
+
+  Accepts:
+  - settings: the article block's settings
+  - below: true when the figure sits under the text instead of beside it
+{%- endcomment -%}
+{%- liquid
+  assign has_second = false
+  if settings.image_2 != blank or settings.image_2_asset != blank
+    assign has_second = true
+  endif
+
+  assign figure_class = 'pg-fig'
+  if settings.device == 'watch'
+    assign figure_class = figure_class | append: ' is-watch'
+  endif
+  if below
+    assign figure_class = figure_class | append: ' pg-fig-below'
+  endif
+
+  case settings.figure_width
+    when 'wide'
+      assign figure_px = 276
+    when 'extra-wide'
+      assign figure_px = 372
+    else
+      assign figure_px = 208
+  endcase
+
+  if below and has_second
+    assign image_sizes = '(min-width: 681px) 220px, 45vw'
+  elsif below
+    assign image_sizes = '(min-width: 681px) 620px, 100vw'
+  else
+    assign image_sizes = '(min-width: 681px) ' | append: figure_px | append: 'px, 250px'
+  endif
+
+  assign show_callouts = false
+  if settings.callouts != blank and has_second == false
+    assign show_callouts = true
+    assign callout_lines = settings.callouts | newline_to_br | split: '<br />'
+  endif
+-%}
+<figure class="{{ figure_class }}">
+  {%- if has_second -%}
+    <div class="pg-fig-row">
+      {% render 'guide-image', image: settings.image, asset: settings.image_asset, alt: settings.image_alt, sizes: image_sizes %}
+      {% render 'guide-image', image: settings.image_2, asset: settings.image_2_asset, alt: settings.image_2_alt, sizes: image_sizes %}
+    </div>
+  {%- elsif show_callouts -%}
+    <div class="pg-hot">
+      {% render 'guide-image', image: settings.image, asset: settings.image_asset, alt: settings.image_alt, sizes: image_sizes %}
+      <svg class="pg-hot-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        {%- for line in callout_lines -%}
+          {%- assign parts = line | strip | split: '|' -%}
+          {%- if parts.size >= 5 -%}
+            <line x1="{{ parts[1] | strip | plus: 0 }}" y1="{{ parts[2] | strip | plus: 0 }}" x2="{{ parts[3] | strip | plus: 0 }}" y2="{{ parts[4] | strip | plus: 0 }}" vector-effect="non-scaling-stroke"/>
+          {%- endif -%}
+        {%- endfor -%}
+      </svg>
+      {%- for line in callout_lines -%}
+        {%- assign parts = line | strip | split: '|' -%}
+        {%- if parts.size >= 5 -%}
+          <span class="pg-hot-dot" aria-hidden="true" style="left: {{ parts[1] | strip | plus: 0 }}%; top: {{ parts[2] | strip | plus: 0 }}%"></span>
+          <span class="pg-hot-label" aria-hidden="true" style="left: {{ parts[3] | strip | plus: 0 }}%; top: {{ parts[4] | strip | plus: 0 }}%">{{ parts[0] | strip | escape }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    {% render 'guide-image', image: settings.image, asset: settings.image_asset, alt: settings.image_alt, sizes: image_sizes %}
+  {%- endif -%}
+  {%- if settings.caption != blank -%}
+    <figcaption>{{ settings.caption | escape }}</figcaption>
+  {%- endif -%}
+</figure>

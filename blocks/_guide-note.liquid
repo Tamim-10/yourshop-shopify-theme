@@ -1,0 +1,58 @@
+{%- comment -%}
+  Callout box: a note, tip, highlight or warning with an icon.
+{%- endcomment -%}
+{%- liquid
+  assign icon = 'info'
+  case block.settings.style
+    when 'tip'
+      assign icon = 'lightbulb'
+    when 'warn'
+      assign icon = 'alert'
+  endcase
+-%}
+<div class="pg-note is-{{ block.settings.style }}" {{ block.shopify_attributes }}>
+  {% render 'guide-icon', name: icon %}
+  <span>
+    {%- if block.settings.title != blank -%}
+      <b>{{ block.settings.title | escape }}</b>{{ ' ' }}
+    {%- endif -%}
+    {{ block.settings.text }}
+  </span>
+</div>
+
+{% schema %}
+{
+  "name": "Callout",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "note", "label": "Note (grey)" },
+        { "value": "info", "label": "Info (blue)" },
+        { "value": "tip", "label": "Tip (green)" },
+        { "value": "warn", "label": "Warning (red)" }
+      ],
+      "default": "note"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Bold lead-in",
+      "default": "Good to know."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Add the rest of the message here."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Callout"
+    }
+  ]
+}
+{% endschema %}

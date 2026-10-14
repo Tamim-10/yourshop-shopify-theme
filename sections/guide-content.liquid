@@ -1,0 +1,266 @@
+{%- comment -%}
+  Guide content: sticky brand and search bar, contents sidebar (mobile: a
+  section picker), the chapters, a help panel and a back-to-top button.
+
+  Chapters and the help panel are blocks. Each chapter holds articles, and each
+  article holds content blocks (rich text, callouts, tables, lists, ...).
+{%- endcomment -%}
+{{ 'product-guide.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-guide.js' | asset_url }}" type="module"></script>
+<noscript><style>.pg-search { display: none; }</style></noscript>
+
+<product-guide
+  class="pg"
+  style="--pg-header-offset: {{ section.settings.header_offset }}px; {%- render 'guide-colors', settings: section.settings -%}"
+  data-copy-label="{{ section.settings.copy_link_label | escape }}"
+  data-copied-label="{{ section.settings.copied_label | escape }}"
+>
+  {%- if section.settings.show_topbar -%}
+    <div class="pg-top">
+      <div class="pg-top-in">
+        <div class="pg-brand">
+          <b>{{ section.settings.brand_name | escape }}</b>
+          {%- if section.settings.brand_label != blank -%}
+            <span>{{ section.settings.brand_label | escape }}</span>
+          {%- endif -%}
+        </div>
+        <div class="pg-top-spacer"></div>
+        {%- render 'guide-search',
+          uid: section.id,
+          label: section.settings.search_label,
+          placeholder: section.settings.search_placeholder,
+          empty_title: section.settings.search_empty_title,
+          empty_text: section.settings.search_empty_text,
+          results_label: section.settings.search_results_label,
+          shortcut: true
+        -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 1 -%}
+    <div class="pg-mobnav">
+      <label class="pg-visually-hidden" for="pg-mobnav-{{ section.id }}">{{ section.settings.jump_label | escape }}</label>
+      <select id="pg-mobnav-{{ section.id }}" data-pg-mobnav>
+        {%- for block in section.blocks -%}
+          {%- assign anchor = block.settings.anchor | handleize | default: block.id -%}
+          <option value="{{ anchor }}">{{ block.settings.title | escape }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endif -%}
+
+  <div class="pg-shell">
+    <aside class="pg-side">
+      <nav aria-label="{{ section.settings.contents_label | escape }}">
+        <p class="pg-side-h">{{ section.settings.contents_label | escape }}</p>
+        <ul class="pg-nav" data-pg-nav>
+          {%- for block in section.blocks -%}
+            {%- assign anchor = block.settings.anchor | handleize | default: block.id -%}
+            <li><a href="#{{ anchor }}" data-pg-nav-link="{{ anchor }}">{{ block.settings.title | escape }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      {%- if section.settings.side_help_title != blank or section.settings.side_help_text != blank -%}
+        <div class="pg-side-help">
+          {%- if section.settings.side_help_title != blank -%}
+            <b>{{ section.settings.side_help_title | escape }}</b>
+          {%- endif -%}
+          {{ section.settings.side_help_text }}
+          {%- if section.settings.support_email != blank -%}
+            <a href="mailto:{{ section.settings.support_email | escape }}">{{ section.settings.support_email | escape }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </aside>
+
+    <div class="pg-main">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+
+  <button class="pg-totop" type="button" data-pg-totop aria-label="{{ section.settings.back_to_top_label | escape }}">
+    {% render 'guide-icon', name: 'arrow-up' %}
+  </button>
+
+  <p class="pg-visually-hidden" role="status" aria-live="polite" data-pg-live></p>
+</product-guide>
+
+{% schema %}
+{
+  "name": "Guide content",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sticky bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_topbar",
+      "label": "Show sticky bar with search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Product"
+    },
+    {
+      "type": "text",
+      "id": "brand_label",
+      "label": "Brand label",
+      "default": "User Guide"
+    },
+    {
+      "type": "range",
+      "id": "header_offset",
+      "label": "Sticky header offset",
+      "info": "If your theme's header stays fixed while scrolling, set its height here so the guide's bar sits underneath it.",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "text",
+      "id": "search_label",
+      "label": "Search label (screen readers)",
+      "default": "Search the guide"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Placeholder",
+      "default": "Search the guide"
+    },
+    {
+      "type": "text",
+      "id": "search_empty_title",
+      "label": "No results heading",
+      "default": "No matches for",
+      "info": "The search term is added after this text."
+    },
+    {
+      "type": "text",
+      "id": "search_empty_text",
+      "label": "No results text",
+      "default": "Try a different word."
+    },
+    {
+      "type": "text",
+      "id": "search_results_label",
+      "label": "Results count word (screen readers)",
+      "default": "results"
+    },
+    {
+      "type": "header",
+      "content": "Contents sidebar"
+    },
+    {
+      "type": "text",
+      "id": "contents_label",
+      "label": "Contents heading",
+      "default": "Contents"
+    },
+    {
+      "type": "text",
+      "id": "jump_label",
+      "label": "Mobile section picker label (screen readers)",
+      "default": "Jump to section"
+    },
+    {
+      "type": "text",
+      "id": "side_help_title",
+      "label": "Help box heading",
+      "default": "Still stuck?"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "side_help_text",
+      "label": "Help box text"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support email",
+      "info": "Shown as a link in the help box."
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "copy_link_label",
+      "label": "Copy link button label",
+      "default": "Copy link to this section"
+    },
+    {
+      "type": "text",
+      "id": "copied_label",
+      "label": "Link copied message (screen readers)",
+      "default": "Link copied"
+    },
+    {
+      "type": "text",
+      "id": "back_to_top_label",
+      "label": "Back to top button label",
+      "default": "Back to top"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "ink",
+      "label": "Text",
+      "default": "#655b50"
+    },
+    {
+      "type": "color",
+      "id": "muted",
+      "label": "Secondary text",
+      "default": "#7a7166"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Accent",
+      "default": "#0068ff"
+    },
+    {
+      "type": "color",
+      "id": "highlight",
+      "label": "Highlight",
+      "default": "#c7800c"
+    },
+    {
+      "type": "color",
+      "id": "dark",
+      "label": "Dark",
+      "default": "#052b5d"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_guide-chapter"
+    },
+    {
+      "type": "_guide-help"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guide content"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,11 @@
+{%- comment -%}
+  Outputs the color custom properties for a guide section. Used inside a style attribute.
+
+  Accepts:
+  - settings: the section's settings object (needs ink, muted, accent, highlight, dark)
+{%- endcomment -%}
+{%- if settings.ink != blank -%}--pg-ink: {{ settings.ink }};{%- endif -%}
+{%- if settings.muted != blank -%}--pg-muted: {{ settings.muted }};{%- endif -%}
+{%- if settings.accent != blank -%}--pg-pulse: {{ settings.accent }};{%- endif -%}
+{%- if settings.highlight != blank -%}--pg-spark: {{ settings.highlight }};{%- endif -%}
+{%- if settings.dark != blank -%}--pg-orbit: {{ settings.dark }};{%- endif -%}

@@ -1,0 +1,42 @@
+{%- comment -%}
+  Search box for the product guide. Behaviour lives in assets/product-guide.js
+  (<guide-search>), which searches every article on the page.
+
+  Accepts:
+  - uid: unique string used to build element ids (section id + a suffix)
+  - label: accessible name for the input
+  - placeholder: placeholder text
+  - empty_title: heading shown when nothing matches (the query is appended)
+  - empty_text: helper text shown when nothing matches
+  - results_label: word announced after the count, e.g. "results"
+  - shortcut: true to show the "/" keyboard hint
+{%- endcomment -%}
+<guide-search
+  class="pg-search"
+  data-empty-title="{{ empty_title | escape }}"
+  data-empty-text="{{ empty_text | escape }}"
+  data-results-label="{{ results_label | escape }}"
+>
+  <div class="pg-search-field">
+    {% render 'guide-icon', name: 'search' %}
+    <input
+      type="search"
+      id="pg-search-{{ uid }}"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="pg-results-{{ uid }}"
+      aria-autocomplete="list"
+      aria-label="{{ label | escape }}"
+      placeholder="{{ placeholder | escape }}"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      enterkeyhint="search"
+    >
+    {%- if shortcut -%}
+      <kbd class="pg-kbd" aria-hidden="true">/</kbd>
+    {%- endif -%}
+  </div>
+  <div class="pg-results" id="pg-results-{{ uid }}" role="listbox" aria-label="{{ label | escape }}" hidden></div>
+  <p class="pg-visually-hidden" role="status" aria-live="polite" data-pg-status></p>
+</guide-search>

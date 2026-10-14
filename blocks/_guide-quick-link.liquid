@@ -1,0 +1,70 @@
+{%- comment -%}
+  Quick link card in the hero. Jumps to a chapter or article on the page.
+{%- endcomment -%}
+{%- liquid
+  assign target = block.settings.target | handleize
+-%}
+<a class="pg-qcard" href="#{{ target }}" {{ block.shopify_attributes }}>
+  <span class="pg-qicon">{% render 'guide-icon', name: block.settings.icon %}</span>
+  <span>
+    <span class="pg-qtitle">{{ block.settings.title | escape }}</span>
+    {%- if block.settings.description != blank -%}
+      <span class="pg-qdesc">{{ block.settings.description | escape }}</span>
+    {%- endif -%}
+  </span>
+</a>
+
+{% schema %}
+{
+  "name": "Quick link",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Quick link"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "target",
+      "label": "Anchor ID to jump to",
+      "info": "The Anchor ID of a chapter or article, without the #. Example: add-contact"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "options": [
+        { "value": "watch", "label": "Watch" },
+        { "value": "buttons", "label": "Buttons" },
+        { "value": "user-plus", "label": "Add person" },
+        { "value": "school", "label": "School" },
+        { "value": "battery", "label": "Battery" },
+        { "value": "alert", "label": "Warning" },
+        { "value": "phone", "label": "Phone" },
+        { "value": "message", "label": "Message" },
+        { "value": "map-pin", "label": "Location" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "bell", "label": "Bell" },
+        { "value": "camera", "label": "Camera" },
+        { "value": "clock", "label": "Clock" },
+        { "value": "music", "label": "Music" },
+        { "value": "book", "label": "Book" },
+        { "value": "mail", "label": "Mail" },
+        { "value": "help", "label": "Help" }
+      ],
+      "default": "watch"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quick link"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,324 @@
+{%- comment -%}
+  jrtrack-wiki-part-1 - part of jrtrack-wiki. Use inside the
+  template-jrtrack-wiki wrapper (it holds the styles, scripts and layout
+  containers).
+{%- endcomment -%}
+
+<div class="cw-top">
+  <div class="cw-top-in">
+    <div class="cw-brand">{{ section.settings.page_01 }}</div>
+    <div class="cw-top-spacer"></div>
+    <div class="cw-search" data-cw-search>
+      <div class="cw-search-field">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-3.5-3.5" />
+        </svg>
+        <input
+          type="text"
+          placeholder="Search features and answers"
+          aria-label="Search"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <kbd class="cw-kbd">/</kbd>
+      </div>
+      <div class="cw-results" role="listbox"></div>
+    </div>
+    <a
+      class="cw-top-cta"
+      href="{{ section.settings.shop_product.url | default: '/products/jrtrack-pro' }}"
+    >  
+      {{ section.settings.page_02 }}
+    </a>
+  </div>
+</div>
+
+<header class="cw-hero">
+  <div class="cw-hero-in">
+    <div>
+      <div class="cw-eyebrow">{{ section.settings.hero_eyebrow }}</div>
+      <h1>{{ section.settings.hero_heading }}</h1>
+      <p class="cw-hero-sub">{{ section.settings.cw_hero_03 }}</p>
+      <div class="cw-hero-search">
+        <div class="cw-search" data-cw-search>
+          <div class="cw-search-field">
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Try &ldquo;SOS&rdquo;, &ldquo;accuracy&rdquo;, &ldquo;school&rdquo;, &ldquo;water&rdquo;&hellip;"
+              aria-label="Search"
+              autocomplete="off"
+              spellcheck="false"
+            >
+          </div>
+          <div class="cw-results" role="listbox"></div>
+        </div>
+      </div>
+            <div class="cw-hero-meta">
+        {% for block in section.blocks %}
+          {% if block.type == 'meta_chip' %}
+            <span class="cw-meta" {{ block.shopify_attributes }}>
+              {{ block.settings.chip_text }}
+            </span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <figure class="cw-hero-img">
+      {% if section.settings.hero_image != blank %}
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1600 }}"
+          srcset="
+            {{ section.settings.hero_image | image_url: width: 800 }} 800w,
+            {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.hero_image | image_url: width: 1600 }} 1600w
+          "
+          sizes="(min-width: 900px) 50vw, 100vw"
+          alt="{{ section.settings.hero_image_alt | escape }}"
+          width="{{ section.settings.hero_image.width }}"
+          height="{{ section.settings.hero_image.height }}"
+          fetchpriority="high"
+        >
+      {% endif %}
+      <figcaption>{{ section.settings.cw_hero_07 }}</figcaption>
+    </figure>  
+  </div>
+</header>
+
+<section class="cw-feat">
+  <div class="cw-feat-h">
+    <h2>{{ section.settings.cw_feat_01 }}</h2>
+    <span class="cw-feat-sub">{{ section.settings.cw_feat_02 }}</span>
+  </div>
+
+  <div class="cw-feat-grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'feature_card' %}
+      <a
+        class="cw-fcard"
+        href="{{ block.settings.card_link }}"
+        {{ block.shopify_attributes }}
+      >
+
+      <div class="cw-fcard-img">
+        {% if block.settings.card_image != blank %}
+          <img
+            src="{{ block.settings.card_image | image_url: width: 800 }}"
+            alt="{{ block.settings.card_title | escape }}"
+            width="{{ block.settings.card_image.width }}"
+            height="{{ block.settings.card_image.height }}"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>  
+
+        <div class="cw-fcard-b">
+          <b class="cw-fcard-t">
+            {{ block.settings.card_title }}
+          </b>
+          <i class="cw-fcard-d">
+            {{ block.settings.card_description }}
+          </i>
+        </div>
+      </a>
+      
+        {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<div class="cw-mobnav">
+  <select aria-label="Jump to feature" data-cw-mobnav></select>
+</div>
+
+{% schema %}
+{
+  "name": "jrtrack-wiki 1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "PAGE"
+    },
+    {
+      "type": "html",
+      "id": "page_01",
+      "label": "JrTrackWiki",
+      "default": "<b>JrTrack</b><span>Wiki</span>"
+    },
+    {
+      "type": "text",
+      "id": "page_02",
+      "label": "Shop JrTrack",
+      "default": "Shop JrTrack"
+    },
+    {
+      "type": "product",
+      "id": "shop_product",
+      "label": "Shop JrTrack product"
+    },
+    {
+      "type": "header",
+      "content": "CW HERO"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "All the details"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "info": "Bold text will be styled as the main word",
+      "default": "<strong>JrTrack</strong> Wiki"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "info": "Describe the image for screen readers and SEO",
+      "default": "Three kids lying in the grass at sunset, one wearing a JrTrack"
+    },
+    {
+      "type": "textarea",
+      "id": "cw_hero_03",
+      "label": "Every feature on the watch and in the app",
+      "default": "Every feature on the watch and in the app, taken apart and put back together. How HaloGPS finds them, what SafeCore does in an emergency, how School-Fi knows it is a school day, what Cosmo Mobile costs. Read the parts you care about, or all of it."
+    },
+    {
+      "type": "text",
+      "id": "cw_hero_07",
+      "label": "Freedom for them, a line back to you",
+      "default": "Freedom for them, a line back to you"
+    },
+    {
+      "type": "header",
+      "content": "CW FEAT"
+    },
+    {
+      "type": "text",
+      "id": "cw_feat_01",
+      "label": "Explore by feature",
+      "default": "Explore by feature"
+    },
+    {
+      "type": "text",
+      "id": "cw_feat_02",
+      "label": "Feature section subtitle",
+      "default": "Each one goes deep. Pick where to start."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "card_description",
+          "label": "Card description",
+          "default": "Feature description"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card link"
+        }
+      ]
+    },
+    {
+      "type": "meta_chip",
+      "name": "Hero chip",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "chip_text",
+          "label": "Chip text",
+          "info": "Use bold for the highlighted part",
+          "default": "<strong>12</strong> features"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "jrtrack-wiki part 1",
+      "blocks": [
+        { "type": "meta_chip", "settings": { "chip_text": "<strong>12</strong> features" } },
+        { "type": "meta_chip", "settings": { "chip_text": "<strong>50+</strong> answers" } },
+        { "type": "meta_chip", "settings": { "chip_text": "Everything in <strong>JrTrack Pro</strong>" } },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "HaloGPS",
+            "card_description": "115 satellite signals, Active Tracking, SafeZones",
+            "card_link": "#halogps"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "SafeCore",
+            "card_description": "SOS, Guardians, optional 911, approved contacts",
+            "card_link": "#safecore"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "Texting",
+            "card_description": "TrueTexting, group chats, photos, voice notes, talk to text",
+            "card_link": "#texting"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "School-Fi",
+            "card_description": "Distraction-free from bell to bell, automatically",
+            "card_link": "#schoolfi"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

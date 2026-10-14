@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
          * ============================================================
          */
 
-        const productDataEl = configurator.querySelector(
+        const productDataEl = document.querySelector(
             '[data-config-product]'
         );
 

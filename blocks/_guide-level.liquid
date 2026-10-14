@@ -1,0 +1,82 @@
+{%- comment -%}
+  One comparison card: a title plus lists of what works and what does not.
+  The check and cross icons are decorative, so each list gets a visually hidden
+  prefix for screen readers.
+{%- endcomment -%}
+{%- liquid
+  assign allowed_lines = block.settings.allowed | newline_to_br | split: '<br />'
+  assign blocked_lines = block.settings.blocked | newline_to_br | split: '<br />'
+-%}
+<div class="pg-lvl is-{{ block.settings.tone }}" {{ block.shopify_attributes }}>
+  <div class="pg-lvl-t">
+    <span class="pg-lvl-dot" aria-hidden="true"></span>
+    <h4>{{ block.settings.title | escape }}</h4>
+  </div>
+  <ul>
+    {%- for line in allowed_lines -%}
+      {%- assign item = line | strip -%}
+      {%- if item != blank -%}
+        <li class="is-yes"><span class="pg-visually-hidden">{{ block.settings.allowed_label | escape }} </span>{{ item | escape }}</li>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- for line in blocked_lines -%}
+      {%- assign item = line | strip -%}
+      {%- if item != blank -%}
+        <li class="is-no"><span class="pg-visually-hidden">{{ block.settings.blocked_label | escape }} </span>{{ item | escape }}</li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Level card",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Level"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Color",
+      "options": [
+        { "value": "red", "label": "Red" },
+        { "value": "amber", "label": "Amber" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "green"
+    },
+    {
+      "type": "textarea",
+      "id": "allowed",
+      "label": "Works (one per line)",
+      "default": "Everything"
+    },
+    {
+      "type": "textarea",
+      "id": "blocked",
+      "label": "Does not work (one per line)"
+    },
+    {
+      "type": "text",
+      "id": "allowed_label",
+      "label": "Screen reader label: works",
+      "default": "Works:"
+    },
+    {
+      "type": "text",
+      "id": "blocked_label",
+      "label": "Screen reader label: does not work",
+      "default": "Does not work:"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Level card"
+    }
+  ]
+}
+{% endschema %}

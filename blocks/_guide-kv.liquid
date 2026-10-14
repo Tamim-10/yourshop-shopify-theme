@@ -1,0 +1,20 @@
+{%- comment -%}
+  Label and value list (specs, plan prices, definitions). Add "List row" blocks.
+{%- endcomment -%}
+<dl class="pg-kv" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</dl>
+
+{% schema %}
+{
+  "name": "Label and value list",
+  "blocks": [
+    { "type": "_guide-kv-row" }
+  ],
+  "presets": [
+    {
+      "name": "Label and value list"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{%- comment -%}
+  Keeps the guide page out of search engines (the original static site did the
+  same with a meta tag, robots.txt and a response header).
+
+  Add this ONE line inside <head> in layout/theme.liquid:
+
+    {% render 'guide-noindex' %}
+
+  It only does anything on pages that use the "jrtrack-guide" page template, so
+  it is safe to leave in. Delete the snippet or the line if you want the guide
+  to be indexed.
+{%- endcomment -%}
+{%- if template.name == 'page' and template.suffix == 'jrtrack-guide' -%}
+  <meta name="robots" content="noindex, nofollow">
+{%- endif -%}

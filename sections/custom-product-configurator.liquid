@@ -15,6 +15,10 @@
   assign screen_protector_product = all_products[section.settings.screen_protector_handle]
   assign charging_stand_product = all_products[section.settings.charging_stand_handle]
 
+  assign payment_plan_product = all_products[section.settings.payment_plan_handle]
+  assign plan_variant = payment_plan_product.selected_or_first_available_variant
+  assign plan_alloc = plan_variant.selling_plan_allocations.first
+
   assign product_price = variant.price
   assign product_compare_price = variant.compare_at_price
 
@@ -46,7 +50,7 @@
   <header class="cp-configurator__header">
 
     <a
-      href="javascript:history.back()"
+      href="{{ routes.root_url }}"
       class="cp-configurator__back"
       aria-label="Go back"
     >
@@ -265,34 +269,25 @@
           </button>
 
 
-          <button
-            type="button"
-            class="cp-configurator__payment-card"
-            data-payment-option="monthly"
-            aria-pressed="false"
-          >
+         {% if payment_plan_product != blank %}
+<button
+  type="button"
+  class="cp-configurator__payment-card"
+  data-payment-option="monthly"
+  aria-pressed="false"
+>
+  <span class="cp-configurator__radio"><span></span></span>
 
-            <span class="cp-configurator__radio">
-              <span></span>
-            </span>
+  <span class="cp-configurator__payment-content">
+    <strong>Pay over time</strong>
+    <small>12 monthly payments.</small>
+  </span>
 
-            <span class="cp-configurator__payment-content">
-
-              <strong>
-                Pay over time
-              </strong>
-
-              <small>
-                12 monthly payments.
-              </small>
-
-            </span>
-
-            <span class="cp-configurator__payment-price">
-              $9.99/mo
-            </span>
-
-          </button>
+  <span class="cp-configurator__payment-price" data-payment-monthly-price>
+    {% if plan_alloc %}{{ plan_alloc.price | money }}/mo{% endif %}
+  </span>
+</button>
+{% endif %}
 
         </div>
 
@@ -895,7 +890,7 @@
         </div>
 
 
-        <label class="cp-configurator__terms">
+        <label class="cp-configurator__terms" data-monthly-only hidden>
 
           <input
             type="checkbox"
@@ -904,7 +899,7 @@
           >
 
           <span>
-            I understand I am purchasing this device on a payment contract and will be charged $9.99/mo on the 21st of each month for 12 months and that I am responsible for the full cost of the device. I understand that I will purchase a {{ membership_plan | default: 'Cosmo Membership' }} plan once I receive my device in order to unlock all features and activate service.
+            I understand I am purchasing this device on a payment contract and will be charged <span data-terms-monthly-price>{% if plan_alloc %}{{ plan_alloc.price | money }}{% endif %}</span>/mo on the 21st of each month for 12 months and that I am responsible for the full cost of the device. I understand that I will purchase a {{ membership_plan | default: 'Cosmo Membership' }} plan once I receive my device in order to unlock all features and activate service.
 
             <a
               href="{{ section.settings.terms_url | default: '#' }}"
@@ -985,7 +980,22 @@
 
     ]
   },
-
+  "paymentPlan": {
+    "productId": {{ payment_plan_product.id | default: 0 | json }},
+    "requiresSellingPlan": {{ payment_plan_product.requires_selling_plan | default: false | json }},
+    "variants": [
+      {% for pv in payment_plan_product.variants %}
+        {% assign pv_alloc = pv.selling_plan_allocations.first %}
+        {
+          "id": {{ pv.id | json }},
+          "title": {{ pv.title | json }},
+          "available": {{ pv.available | json }},
+          "sellingPlanId": {{ pv_alloc.selling_plan.id | default: 0 | json }},
+          "price": {{ pv_alloc.price | default: pv.price | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  },
   "screenProtector": {
     "productId": {{ screen_protector_product.id | default: 0 | json }},
     "variantId": {{ screen_protector_product.selected_or_first_available_variant.id | default: 0 | json }},
@@ -1047,6 +1057,12 @@
       "id": "charging_stand_handle",
       "label": "Charging Stand product handle",
       "default": "charging-stand"
+    },
+    {
+      "type": "text",
+      "id": "payment_plan_handle",
+      "label": "Payment Plan product handle (Recharge)",
+      "default": "jrtrack-5-se-payment-plan"
     },
     {
       "type": "url",

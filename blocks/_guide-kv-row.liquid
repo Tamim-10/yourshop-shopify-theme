@@ -1,0 +1,32 @@
+{%- comment -%}
+  One row of a label and value list.
+{%- endcomment -%}
+<div class="pg-kv-row" {{ block.shopify_attributes }}>
+  <dt>{{ block.settings.label | escape }}</dt>
+  <dd>{{ block.settings.value }}</dd>
+</div>
+
+{% schema %}
+{
+  "name": "List row",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "value",
+      "label": "Value",
+      "default": "Value"
+    }
+  ],
+  "presets": [
+    {
+      "name": "List row"
+    }
+  ]
+}
+{% endschema %}

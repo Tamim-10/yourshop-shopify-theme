@@ -1,0 +1,41 @@
+{%- comment -%}
+  One row of a guide table. The first cell is the row heading.
+{%- endcomment -%}
+<tr {{ block.shopify_attributes }}>
+  <th scope="row">{{ block.settings.cell_1 }}</th>
+  <td>{{ block.settings.cell_2 }}</td>
+  {%- if block.settings.cell_3 != blank -%}
+    <td>{{ block.settings.cell_3 }}</td>
+  {%- endif -%}
+</tr>
+
+{% schema %}
+{
+  "name": "Table row",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "cell_1",
+      "label": "Column 1",
+      "default": "First cell"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cell_2",
+      "label": "Column 2",
+      "default": "Second cell"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cell_3",
+      "label": "Column 3",
+      "info": "Only used when the table has 3 columns."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table row"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+{%- comment -%}
+  Table with two or three columns. Add "Table row" blocks for the rows.
+{%- endcomment -%}
+{%- liquid
+  assign three = false
+  if block.settings.columns == '3'
+    assign three = true
+  endif
+-%}
+<table class="pg-table{% if three %} is-three{% endif %}" {{ block.shopify_attributes }}>
+  <thead>
+    <tr>
+      <th scope="col">{{ block.settings.head_1 | escape }}</th>
+      <th scope="col">{{ block.settings.head_2 | escape }}</th>
+      {%- if three -%}
+        <th scope="col">{{ block.settings.head_3 | escape }}</th>
+      {%- endif -%}
+    </tr>
+  </thead>
+  <tbody>
+    {% content_for 'blocks' %}
+  </tbody>
+</table>
+
+{% schema %}
+{
+  "name": "Table",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns",
+      "options": [
+        { "value": "2", "label": "2 columns" },
+        { "value": "3", "label": "3 columns" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "text",
+      "id": "head_1",
+      "label": "Column 1 heading",
+      "default": "Press"
+    },
+    {
+      "type": "text",
+      "id": "head_2",
+      "label": "Column 2 heading",
+      "default": "What it does"
+    },
+    {
+      "type": "text",
+      "id": "head_3",
+      "label": "Column 3 heading",
+      "info": "Only used with 3 columns."
+    }
+  ],
+  "blocks": [
+    { "type": "_guide-table-row" }
+  ],
+  "presets": [
+    {
+      "name": "Table"
+    }
+  ]
+}
+{% endschema %}
