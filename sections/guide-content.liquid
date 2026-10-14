@@ -12,16 +12,27 @@
 <script>
   (function () {
     var root = document.documentElement;
+
+    // 1. No animated scrolling while the page loads (overrides theme CSS, even !important)
     root.style.setProperty('scroll-behavior', 'auto', 'important');
-    var restore = function () {
+
+    // 2. Don't let the browser restore an old scroll position on reload / back
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+    // 3. If the URL has #something, land on it after images and layout settle
+    var id = decodeURIComponent(location.hash.slice(1));
+    var settle = function () {
+      var target = id && document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           root.style.removeProperty('scroll-behavior');
         });
       });
     };
-    if (document.readyState === 'complete') restore();
-    else window.addEventListener('load', restore, { once: true });
+
+    if (document.readyState === 'complete') settle();
+    else window.addEventListener('load', settle, { once: true });
   })();
 </script>
 
