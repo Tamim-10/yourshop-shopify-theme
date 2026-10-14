@@ -9,6 +9,19 @@
  */
 {
   "sections": {
+    "topbar": {
+      "type": "guide-topbar",
+      "settings": {
+        "brand_name": "JrTrack Pro",
+        "brand_label": "User Guide",
+        "header_offset": 0,
+        "search_label": "Search the guide",
+        "search_placeholder": "Search the guide",
+        "search_empty_title": "No matches for",
+        "search_empty_text": "Try a different word, or email support@cosmotogether.com",
+        "search_results_label": "results"
+      }
+    },
     "hero": {
       "type": "guide-hero",
       "blocks": {
@@ -2250,7 +2263,7 @@
         "help"
       ],
       "settings": {
-        "show_topbar": true,
+        "show_topbar": false,
         "brand_name": "JrTrack Pro",
         "brand_label": "User Guide",
         "header_offset": 0,
@@ -2271,6 +2284,7 @@
     }
   },
   "order": [
+    "topbar",
     "hero",
     "guide"
   ]

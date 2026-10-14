@@ -1,0 +1,72 @@
+{%- comment -%}
+  Guide top bar: brand name and search, pinned to the top of the page.
+  Place this section FIRST on the guide template (above "Guide hero").
+  The section wrapper itself is made sticky, so the bar stays pinned
+  for the whole page, not just inside one section.
+{%- endcomment -%}
+{% render 'guide-fonts' %}
+{{ 'product-guide.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-guide.js' | asset_url }}" type="module"></script>
+<noscript><style>.pg-search { display: none; }</style></noscript>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    position: sticky;
+    top: {{ section.settings.header_offset }}px;
+    z-index: 60;
+  }
+  #shopify-section-{{ section.id }} .pg-topbar {
+    background: transparent;
+  }
+</style>
+
+<div class="pg pg-topbar" style="{%- render 'guide-colors', settings: section.settings -%}">
+  <div class="pg-top">
+    <div class="pg-top-in">
+      <div class="pg-brand">
+        <b>{{ section.settings.brand_name | escape }}</b>
+        {%- if section.settings.brand_label != blank -%}
+          <span>{{ section.settings.brand_label | escape }}</span>
+        {%- endif -%}
+      </div>
+      <div class="pg-top-spacer"></div>
+      {%- render 'guide-search',
+        uid: section.id,
+        label: section.settings.search_label,
+        placeholder: section.settings.search_placeholder,
+        empty_title: section.settings.search_empty_title,
+        empty_text: section.settings.search_empty_text,
+        results_label: section.settings.search_results_label,
+        shortcut: true
+      -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Guide top bar",
+  "settings": [
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Product" },
+    { "type": "text", "id": "brand_label", "label": "Brand label", "default": "User Guide" },
+    {
+      "type": "range", "id": "header_offset", "label": "Sticky header offset",
+      "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0,
+      "info": "Height of the theme header if it stays fixed. Use the same value in the Guide content section."
+    },
+    { "type": "header", "content": "Search" },
+    { "type": "text", "id": "search_label", "label": "Search label (screen readers)", "default": "Search the guide" },
+    { "type": "text", "id": "search_placeholder", "label": "Placeholder", "default": "Search the guide" },
+    { "type": "text", "id": "search_empty_title", "label": "No results heading", "default": "No matches for" },
+    { "type": "text", "id": "search_empty_text", "label": "No results text", "default": "Try a different word." },
+    { "type": "text", "id": "search_results_label", "label": "Results count word (screen readers)", "default": "results" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "ink", "label": "Text", "default": "#655b50" },
+    { "type": "color", "id": "muted", "label": "Secondary text", "default": "#7a7166" },
+    { "type": "color", "id": "accent", "label": "Accent", "default": "#0068ff" },
+    { "type": "color", "id": "highlight", "label": "Highlight", "default": "#c7800c" },
+    { "type": "color", "id": "dark", "label": "Dark", "default": "#052b5d" }
+  ],
+  "presets": [{ "name": "Guide top bar" }]
+}
+{% endschema %}
