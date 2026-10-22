@@ -1,0 +1,49 @@
+{%- comment -%}
+  JrTrack Wiki — footnotes. Reference them in any text as [^1], [^2] … or [^†].
+{%- endcomment -%}
+{{ 'cosmo-wiki.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cosmo-wiki.js' | asset_url }}" defer="defer"></script>
+<div class="cw cw-part">
+  <div class="cw-shell">
+    <div class="cw-side-slot" aria-hidden="true"></div>
+    <div class="cw-main cw-main--part cw-main--last">
+      <div class="cw-foot">
+        {% render 'cw-rich', html: section.settings.notes %}
+        {%- if section.settings.disclaimer != blank %}<p>{% render 'cw-rich', html: section.settings.disclaimer %}</p>{% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Wiki footnotes",
+  "tag": "div",
+  "class": "cw-footnotes-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "notes",
+      "label": "Numbered notes",
+      "info": "Use a numbered list. Note 1 matches [^1] in the text.",
+      "default": "<ol><li>First footnote.</li></ol>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "disclaimer",
+      "label": "Disclaimer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wiki footnotes"
+    }
+  ]
+}
+{% endschema %}

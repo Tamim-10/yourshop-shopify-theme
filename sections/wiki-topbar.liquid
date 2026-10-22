@@ -1,0 +1,133 @@
+{%- comment -%}
+  JrTrack Wiki — top bar. Its section wrapper is sticky (class cw-topbar-section), so the bar
+stays pinned under the theme header while the visitor scrolls through every wiki section.
+Also holds the page-wide wiki settings read by assets/cosmo-wiki.js and the back-to-top button.
+{%- endcomment -%}
+{{ 'cosmo-wiki.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cosmo-wiki.js' | asset_url }}" defer="defer"></script>
+<div
+  class="cw cw-part"
+  data-cw-config
+  data-help-phone="{{ section.settings.help_phone | escape }}"
+  data-slash-shortcut="{{ section.settings.slash_shortcut }}"
+  data-header-selector="{{ section.settings.header_selector | escape }}"
+  data-faq-schema="{{ section.settings.faq_schema }}"
+  style="--cw-totop-bottom: {{ section.settings.totop_bottom }}px;"
+>
+  <div class="cw-top">
+    <div class="cw-top-in">
+      <div class="cw-brand"><b>{{ section.settings.brand }}</b><span>{{ section.settings.brand_suffix }}</span></div>
+      <div class="cw-top-spacer"></div>
+      {% render 'cw-search', placeholder: section.settings.search_placeholder, show_key: section.settings.slash_shortcut %}
+      {%- if section.settings.cta_label != blank -%}
+        <a class="cw-top-cta" href="{{ section.settings.cta_link | default: '#' }}">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_totop -%}
+    <button class="cw-totop" type="button" data-cw-totop aria-label="Back to top">{% render 'cw-icon', name: 'totop' %}</button>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Wiki top bar",
+  "tag": "div",
+  "class": "cw-topbar-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand",
+      "label": "Brand",
+      "default": "JrTrack"
+    },
+    {
+      "type": "text",
+      "id": "brand_suffix",
+      "label": "Brand suffix",
+      "default": "Wiki"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search features and answers"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop JrTrack"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "slash_shortcut",
+      "label": "Press / to focus search",
+      "default": true,
+      "info": "Turn off if the theme search also uses the / key"
+    },
+    {
+      "type": "text",
+      "id": "help_phone",
+      "label": "Phone shown when search finds nothing",
+      "default": "877-215-4741"
+    },
+    {
+      "type": "header",
+      "content": "Page behaviour"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_totop",
+      "label": "Show back-to-top button",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "totop_bottom",
+      "label": "Back-to-top distance from bottom",
+      "min": 16,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 24,
+      "info": "Raise it if a chat widget sits bottom-right"
+    },
+    {
+      "type": "checkbox",
+      "id": "faq_schema",
+      "label": "Add FAQ structured data",
+      "default": true,
+      "info": "Builds FAQPage data from every FAQ block on the page"
+    },
+    {
+      "type": "text",
+      "id": "header_selector",
+      "label": "Theme sticky header selector",
+      "default": ".shopify-section-group-header-group, sticky-header, .shopify-section-header-sticky, #shopify-section-header",
+      "info": "The wiki bar sticks below these elements. The default suits Dawn-based themes."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wiki top bar"
+    }
+  ]
+}
+{% endschema %}

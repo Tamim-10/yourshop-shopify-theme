@@ -1,0 +1,143 @@
+{%- comment -%}
+  JrTrack Wiki — hero (heading, search, image) and the "Explore by feature" grid built from Feature card blocks.
+{%- endcomment -%}
+{{ 'cosmo-wiki.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cosmo-wiki.js' | asset_url }}" defer="defer"></script>
+<div class="cw cw-part">
+  <header class="cw-hero">
+    <div class="cw-hero-in">
+      <div>
+        {%- if section.settings.eyebrow != blank %}<div class="cw-eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+        <h1>{{ section.settings.heading }} <span>{{ section.settings.heading_accent }}</span></h1>
+        <p class="cw-hero-sub">{{ section.settings.intro }}</p>
+        <div class="cw-hero-search">
+          {% render 'cw-search', placeholder: section.settings.search_placeholder, large: true %}
+        </div>
+        <div class="cw-hero-meta">
+          {%- if section.settings.meta_1 != blank %}<span class="cw-meta">{% render 'cw-rich', html: section.settings.meta_1, bold_b: true %}</span>{% endif %}
+          {%- if section.settings.meta_2 != blank %}<span class="cw-meta">{% render 'cw-rich', html: section.settings.meta_2, bold_b: true %}</span>{% endif %}
+          {%- if section.settings.meta_3 != blank %}<span class="cw-meta">{% render 'cw-rich', html: section.settings.meta_3, bold_b: true %}</span>{% endif %}
+        </div>
+      </div>
+      <figure class="cw-hero-img">
+        {% render 'cw-img', image: section.settings.image, alt: section.settings.image_alt, sizes: '(min-width: 900px) 50vw, 100vw', eager: true %}
+        {%- if section.settings.caption != blank %}<figcaption>{{ section.settings.caption }}</figcaption>{% endif %}
+      </figure>
+    </div>
+  </header>
+
+  <section class="cw-feat">
+    <div class="cw-feat-h"><h2>{{ section.settings.features_heading }}</h2><span class="cw-feat-sub">{{ section.settings.features_sub }}</span></div>
+    <div class="cw-feat-grid">
+      {% content_for 'blocks' %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Wiki hero",
+  "tag": "div",
+  "class": "cw-hero-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "All the details"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "JrTrack"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent",
+      "default": "Wiki"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Every feature on the watch and in the app, taken apart and put back together. How HaloGPS finds them, what SafeCore does in an emergency, how School-Fi knows it is a school day, what Cosmo Mobile costs. Read the parts you care about, or all of it."
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Try “SOS”, “accuracy”, “school”, “water”…"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "meta_1",
+      "label": "Fact 1",
+      "default": "<strong>12</strong> features"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "meta_2",
+      "label": "Fact 2",
+      "default": "<strong>50+</strong> answers"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "meta_3",
+      "label": "Fact 3",
+      "default": "Everything in <strong>JrTrack Pro</strong>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Three kids lying in the grass at sunset, one wearing a JrTrack"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Image caption",
+      "default": "Freedom for them, a line back to you"
+    },
+    {
+      "type": "header",
+      "content": "Feature grid"
+    },
+    {
+      "type": "text",
+      "id": "features_heading",
+      "label": "Heading",
+      "default": "Explore by feature"
+    },
+    {
+      "type": "text",
+      "id": "features_sub",
+      "label": "Subheading",
+      "default": "Each one goes deep. Pick where to start."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_wiki-feature-card"
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Wiki hero"
+    }
+  ]
+}
+{% endschema %}

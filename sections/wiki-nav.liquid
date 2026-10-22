@@ -1,0 +1,87 @@
+{%- comment -%}
+  JrTrack Wiki — navigation. Desktop: the sidebar (links are built by JS from every Wiki topic).
+Mobile: the "Jump to feature" picker. The section wrapper is sticky (class cw-nav-section);
+on desktop it has zero height so the sidebar floats beside the topics.
+Place it directly after the Wiki hero and before the first Wiki topic.
+{%- endcomment -%}
+{{ 'cosmo-wiki.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cosmo-wiki.js' | asset_url }}" defer="defer"></script>
+<div class="cw cw-part cw-navpart">
+  <div class="cw-mobnav">
+    <select aria-label="{{ section.settings.picker_label | escape }}" data-cw-mobnav></select>
+  </div>
+  <div class="cw-shell">
+    <aside class="cw-side">
+      <div class="cw-side-h">{{ section.settings.heading }}</div>
+      <ul class="cw-nav" data-cw-nav></ul>
+      {%- if section.settings.help_title != blank -%}
+        <div class="cw-side-help">
+          <b>{{ section.settings.help_title }}</b>
+          {{ section.settings.help_text }}
+          {%- if section.settings.help_phone != blank %}
+            <a href="tel:{{ section.settings.help_phone | remove: '-' | remove: ' ' | remove: '(' | remove: ')' | remove: '.' }}">{{ section.settings.help_phone }}</a>
+          {%- endif %}
+        </div>
+      {%- endif -%}
+    </aside>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Wiki navigation",
+  "tag": "div",
+  "class": "cw-nav-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Links are created automatically from the Wiki topic sections and their articles."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Sidebar heading",
+      "default": "Features"
+    },
+    {
+      "type": "text",
+      "id": "picker_label",
+      "label": "Mobile picker label (screen readers)",
+      "default": "Jump to feature"
+    },
+    {
+      "type": "header",
+      "content": "Help box"
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Title",
+      "default": "Rather just ask?"
+    },
+    {
+      "type": "text",
+      "id": "help_text",
+      "label": "Text",
+      "default": "Real humans, seven days a week."
+    },
+    {
+      "type": "text",
+      "id": "help_phone",
+      "label": "Phone",
+      "default": "877-215-4741"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wiki navigation"
+    }
+  ]
+}
+{% endschema %}
