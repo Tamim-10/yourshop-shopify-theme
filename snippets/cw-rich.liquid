@@ -1,0 +1,17 @@
+{%- comment -%}
+  cw-rich — outputs rich text from a setting.
+  - Footnote markers typed as [^1] … [^9] or [^†] become superscripts.
+  - lists: true adds the wiki list styles (ul → cw-list, ol → cw-steps).
+  - bold_b: true outputs <b> instead of <strong> (for spots styled with `b`).
+Params: html (string), lists (bool), bold_b (bool)
+{%- endcomment -%}
+{%- liquid
+  assign out = html | replace: '[^1]', '<sup>1</sup>' | replace: '[^2]', '<sup>2</sup>' | replace: '[^3]', '<sup>3</sup>' | replace: '[^4]', '<sup>4</sup>' | replace: '[^5]', '<sup>5</sup>' | replace: '[^6]', '<sup>6</sup>' | replace: '[^7]', '<sup>7</sup>' | replace: '[^8]', '<sup>8</sup>' | replace: '[^9]', '<sup>9</sup>' | replace: '[^†]', '<sup>†</sup>'
+  if lists
+    assign out = out | replace: '<ul>', '<ul class="cw-list">' | replace: '<ol>', '<ol class="cw-steps">'
+  endif
+  if bold_b
+    assign out = out | replace: '<strong>', '<b>' | replace: '</strong>', '</b>'
+  endif
+  echo out
+-%}

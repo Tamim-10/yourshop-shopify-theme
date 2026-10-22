@@ -1,0 +1,37 @@
+{%- comment -%}
+  cw-img — responsive image (Shopify CDN, srcset, width/height, lazy loading).
+Params: image (image object, required), alt, sizes, widths (comma list), eager (bool), class, style.
+In the Theme Editor a blank image shows Shopify's placeholder.
+{%- endcomment -%}
+{%- liquid
+  assign widths_list = widths | default: '360, 540, 720, 960, 1200, 1600, 2000' | remove: ' ' | split: ','
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+{%- if image != blank -%}
+  {%- capture srcset -%}
+    {%- for w in widths_list -%}
+      {%- assign w_num = w | plus: 0 -%}
+      {%- if w_num < image.width -%}{{ image | image_url: width: w_num }} {{ w_num }}w, {% endif -%}
+    {%- endfor -%}
+    {{- image | image_url }} {{ image.width }}w
+  {%- endcapture -%}
+  {%- assign src_width = image.width | at_most: 1600 -%}
+  <img
+    src="{{ image | image_url: width: src_width }}"
+    srcset="{{ srcset | strip }}"
+    sizes="{{ sizes | default: '100vw' }}"
+    width="{{ image.width }}"
+    height="{{ image.height }}"
+    alt="{{ alt | escape }}"
+    loading="{{ loading }}"
+    {% if eager %}fetchpriority="high"{% endif %}
+    {% if class != blank %}class="{{ class }}"{% endif %}
+    {% if style != blank %}style="{{ style | escape }}"{% endif %}
+    decoding="async"
+  >
+{%- elsif request.design_mode -%}
+  {{- 'image' | placeholder_svg_tag: 'cw-placeholder' -}}
+{%- endif -%}

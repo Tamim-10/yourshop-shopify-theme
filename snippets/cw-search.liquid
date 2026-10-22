@@ -1,0 +1,11 @@
+{%- comment -%}
+  Wiki search box. Params: placeholder, large (bool, hero version), show_key (bool, shows the / hint).
+{%- endcomment -%}
+<div class="cw-search" data-cw-search>
+  <div class="cw-search-field">
+    {%- if large -%}{% render 'cw-icon', name: 'search-lg' %}{%- else -%}{% render 'cw-icon', name: 'search' %}{%- endif -%}
+    <input type="text" placeholder="{{ placeholder | escape }}" aria-label="Search" autocomplete="off" spellcheck="false">
+    {%- if show_key %}<kbd class="cw-kbd">/</kbd>{% endif %}
+  </div>
+  <div class="cw-results" role="listbox"></div>
+</div>
