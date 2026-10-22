@@ -1,0 +1,32 @@
+{%- comment -%}
+  One FAQ question and answer. Opens automatically when selected in the Theme Editor.
+{%- endcomment -%}
+<details {{ block.shopify_attributes }}>
+  <summary>{{ block.settings.question }}</summary>
+  <div class="cw-acc-body">{% render 'cw-rich', html: block.settings.answer %}</div>
+</details>
+
+{% schema %}
+{
+  "name": "FAQ item",
+  "settings": [
+    {
+      "type": "text",
+      "id": "question",
+      "label": "Question",
+      "default": "Question?"
+    },
+    {
+      "type": "richtext",
+      "id": "answer",
+      "label": "Answer",
+      "default": "<p>Answer.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ item"
+    }
+  ]
+}
+{% endschema %}

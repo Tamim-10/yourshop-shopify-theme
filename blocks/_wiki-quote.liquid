@@ -1,0 +1,32 @@
+{%- comment -%}
+  Customer quote.
+{%- endcomment -%}
+<div class="cw-quote" {{ block.shopify_attributes }}>
+  {{ block.settings.quote }}
+  <cite>{{ block.settings.cite }}</cite>
+</div>
+
+{% schema %}
+{
+  "name": "Quote",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "“Quote text.”"
+    },
+    {
+      "type": "text",
+      "id": "cite",
+      "label": "Name",
+      "default": "Customer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quote"
+    }
+  ]
+}
+{% endschema %}

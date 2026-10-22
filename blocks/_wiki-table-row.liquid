@@ -1,0 +1,130 @@
+{%- comment -%}
+  One table row: a label and up to 3 cells (text or image, optionally highlighted).
+{%- endcomment -%}
+<tr {{ block.shopify_attributes }}>
+  <th>{{ block.settings.label | default: '&nbsp;' }}</th>
+  {%- assign count = block.settings.cell_count | plus: 0 -%}
+  {%- for i in (1..count) -%}
+    {%- assign cell_key = 'cell_' | append: i -%}
+    {%- assign hi_key = 'hi_' | append: i -%}
+    {%- assign img_key = 'image_' | append: i -%}
+    {%- assign alt_key = 'image_alt_' | append: i -%}
+    <td{% if block.settings[hi_key] %} class="is-hi"{% endif %}>
+      {%- if block.settings[img_key] != blank -%}
+        {% render 'cw-img', image: block.settings[img_key], alt: block.settings[alt_key], class: 'cw-table-img', sizes: '110px', widths: '110, 220, 330' %}
+      {%- else -%}
+        {% render 'cw-rich', html: block.settings[cell_key] %}
+      {%- endif -%}
+    </td>
+  {%- endfor -%}
+</tr>
+
+{% schema %}
+{
+  "name": "Table row",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Row label"
+    },
+    {
+      "type": "select",
+      "id": "cell_count",
+      "label": "Columns",
+      "default": "3",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ],
+      "info": "Match the table's column headings"
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cell_1",
+      "label": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "hi_1",
+      "label": "Highlight",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image (replaces text)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt_1",
+      "label": "Image alt text"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cell_2",
+      "label": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "hi_2",
+      "label": "Highlight",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image (replaces text)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt_2",
+      "label": "Image alt text"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cell_3",
+      "label": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "hi_3",
+      "label": "Highlight",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image (replaces text)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt_3",
+      "label": "Image alt text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table row"
+    }
+  ]
+}
+{% endschema %}

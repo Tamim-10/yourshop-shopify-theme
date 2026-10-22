@@ -1,0 +1,35 @@
+{%- comment -%}
+  One row of a Key-value list. Optional link on the label (e.g. #halogps).
+{%- endcomment -%}
+<div class="cw-kv-row" {{ block.shopify_attributes }}><b>{%- if block.settings.link != blank -%}<a href="{{ block.settings.link | escape }}">{{ block.settings.label }}</a>{%- else -%}{{ block.settings.label }}{%- endif -%}</b><span>{% render 'cw-rich', html: block.settings.value %}</span></div>
+
+{% schema %}
+{
+  "name": "Key-value row",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Label"
+    },
+    {
+      "type": "text",
+      "id": "link",
+      "label": "Label link",
+      "info": "Optional, e.g. #halogps or /pages/compare"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "value",
+      "label": "Value",
+      "default": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Key-value row"
+    }
+  ]
+}
+{% endschema %}

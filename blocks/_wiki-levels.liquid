@@ -1,0 +1,25 @@
+{%- comment -%}
+  Graded levels (e.g. GPS accuracy outdoors / covered / indoors).
+{%- endcomment -%}
+<div class="cw-levels" {{ block.shopify_attributes }}>{% content_for 'blocks' %}</div>
+
+{% schema %}
+{
+  "name": "Levels",
+  "blocks": [
+    {
+      "type": "_wiki-level"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Levels",
+      "blocks": [
+        {
+          "type": "_wiki-level"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

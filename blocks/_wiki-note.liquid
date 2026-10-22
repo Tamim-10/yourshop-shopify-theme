@@ -1,0 +1,51 @@
+{%- comment -%}
+  Callout box: note, tip or info, with an icon and a bold lead-in.
+{%- endcomment -%}
+<div class="cw-note {{ block.settings.style }}" {{ block.shopify_attributes }}>
+  {% render 'cw-icon', name: block.settings.style %}
+  <span class="cw-note-t">{% if block.settings.lead != blank %}<b>{{ block.settings.lead }}</b> {% endif %}{% render 'cw-rich', html: block.settings.text %}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Callout",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "default": "is-note",
+      "options": [
+        {
+          "value": "is-note",
+          "label": "Note"
+        },
+        {
+          "value": "is-tip",
+          "label": "Tip"
+        },
+        {
+          "value": "is-info",
+          "label": "Info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "lead",
+      "label": "Bold lead-in"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Callout text."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Callout"
+    }
+  ]
+}
+{% endschema %}

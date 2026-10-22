@@ -1,0 +1,44 @@
+{%- comment -%}
+  Two-column comparison: things that are fine vs. things to avoid.
+{%- endcomment -%}
+<div class="cw-vs" {{ block.shopify_attributes }}>
+  <div class="yes"><h4>{{ block.settings.yes_title }}</h4>{% render 'cw-rich', html: block.settings.yes_items %}</div>
+  <div class="no"><h4>{{ block.settings.no_title }}</h4>{% render 'cw-rich', html: block.settings.no_items %}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Do and don't",
+  "settings": [
+    {
+      "type": "text",
+      "id": "yes_title",
+      "label": "Left title",
+      "default": "Fine"
+    },
+    {
+      "type": "richtext",
+      "id": "yes_items",
+      "label": "Left list",
+      "default": "<ul><li>Item</li></ul>"
+    },
+    {
+      "type": "text",
+      "id": "no_title",
+      "label": "Right title",
+      "default": "Avoid"
+    },
+    {
+      "type": "richtext",
+      "id": "no_items",
+      "label": "Right list",
+      "default": "<ul><li>Item</li></ul>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Do and don't"
+    }
+  ]
+}
+{% endschema %}

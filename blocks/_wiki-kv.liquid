@@ -1,0 +1,25 @@
+{%- comment -%}
+  Key-value list (label on the left, description on the right).
+{%- endcomment -%}
+<div class="cw-kv" {{ block.shopify_attributes }}>{% content_for 'blocks' %}</div>
+
+{% schema %}
+{
+  "name": "Key-value list",
+  "blocks": [
+    {
+      "type": "_wiki-kv-row"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Key-value list",
+      "blocks": [
+        {
+          "type": "_wiki-kv-row"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

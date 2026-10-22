@@ -1,0 +1,55 @@
+{%- comment -%}
+  Comparison table. Column headings here; each row is a Table row block.
+{%- endcomment -%}
+<div class="cw-tablewrap" {{ block.shopify_attributes }}>
+  <table class="cw-table">
+    <thead><tr><th>{{ block.settings.corner | default: '&nbsp;' }}</th><th>{{ block.settings.col_1 }}</th><th>{{ block.settings.col_2 }}</th>{% if block.settings.col_3 != blank %}<th>{{ block.settings.col_3 }}</th>{% endif %}</tr></thead>
+    <tbody>{% content_for 'blocks' %}</tbody>
+  </table>
+</div>
+
+{% schema %}
+{
+  "name": "Table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "corner",
+      "label": "Top-left cell"
+    },
+    {
+      "type": "text",
+      "id": "col_1",
+      "label": "Column 1 heading",
+      "default": "Column 1"
+    },
+    {
+      "type": "text",
+      "id": "col_2",
+      "label": "Column 2 heading",
+      "default": "Column 2"
+    },
+    {
+      "type": "text",
+      "id": "col_3",
+      "label": "Column 3 heading",
+      "info": "Leave blank for a 2-column table"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_wiki-table-row"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table",
+      "blocks": [
+        {
+          "type": "_wiki-table-row"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

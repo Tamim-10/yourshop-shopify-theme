@@ -1,0 +1,48 @@
+{%- comment -%}
+  One gallery image with an optional caption.
+{%- endcomment -%}
+<figure {{ block.shopify_attributes }}>
+  {%- render 'cw-img', image: block.settings.image, alt: block.settings.image_alt, style: block.settings.image_style, sizes: '(min-width: 900px) 320px, 50vw' -%}
+  {%- if block.settings.title != blank or block.settings.text != blank -%}
+    <figcaption>{% if block.settings.title != blank %}<b>{{ block.settings.title }}</b>{% endif %}{% render 'cw-rich', html: block.settings.text %}</figcaption>
+  {%- endif -%}
+</figure>
+
+{% schema %}
+{
+  "name": "Gallery item",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Caption title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Caption text"
+    },
+    {
+      "type": "text",
+      "id": "image_style",
+      "label": "Image CSS (advanced)",
+      "info": "Optional, e.g. object-position: 30% center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery item"
+    }
+  ]
+}
+{% endschema %}

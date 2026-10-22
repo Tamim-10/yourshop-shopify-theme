@@ -1,0 +1,29 @@
+{%- comment -%}
+  One stat inside an Image band.
+{%- endcomment -%}
+<div class="cw-stat" {{ block.shopify_attributes }}><b>{{ block.settings.value }}</b><span>{% render 'cw-rich', html: block.settings.label %}</span></div>
+
+{% schema %}
+{
+  "name": "Stat",
+  "settings": [
+    {
+      "type": "text",
+      "id": "value",
+      "label": "Value",
+      "default": "100%"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "label",
+      "label": "Label",
+      "default": "label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stat"
+    }
+  ]
+}
+{% endschema %}

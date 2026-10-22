@@ -1,0 +1,24 @@
+{%- comment -%}
+  Paragraphs and lists. Bulleted lists get the wiki list style, numbered lists the step style.
+{%- endcomment -%}
+<div class="cw-text" {{ block.shopify_attributes }}>{% render 'cw-rich', html: block.settings.text, lists: true %}</div>
+
+{% schema %}
+{
+  "name": "Text",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Write your content here.</p>",
+      "info": "Footnote markers: [^1], [^2] … [^†]"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text"
+    }
+  ]
+}
+{% endschema %}

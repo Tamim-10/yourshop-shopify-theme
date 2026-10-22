@@ -1,0 +1,29 @@
+{%- comment -%}
+  "In short" summary box.
+{%- endcomment -%}
+<div class="cw-answer" {{ block.shopify_attributes }}><em>{{ block.settings.label }}</em>{% render 'cw-rich', html: block.settings.text %}</div>
+
+{% schema %}
+{
+  "name": "Short answer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "In short"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "The one-sentence answer."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Short answer"
+    }
+  ]
+}
+{% endschema %}

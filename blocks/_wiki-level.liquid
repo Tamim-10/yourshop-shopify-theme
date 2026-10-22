@@ -1,0 +1,71 @@
+{%- comment -%}
+  One level. Colour comes from the state.
+{%- endcomment -%}
+<div class="cw-lvl {{ block.settings.state }}" {{ block.shopify_attributes }}>
+  <div class="cw-lvl-t"><span class="cw-lvl-dot"></span><h4>{{ block.settings.title }}</h4></div>
+  {%- if block.settings.text != blank %}<p>{% render 'cw-rich', html: block.settings.text %}</p>{% endif %}
+  {%- if block.settings.checklist != blank -%}
+    <ul>
+      {%- assign lines = block.settings.checklist | newline_to_br | split: '<br />' -%}
+      {%- for line in lines -%}
+        {%- assign item = line | strip -%}
+        {%- if item == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign mark = item | slice: 0 -%}
+        {%- if mark == '+' -%}<li class="yes">{{ item | remove_first: '+' | strip }}</li>
+        {%- elsif mark == '-' -%}<li class="no">{{ item | remove_first: '-' | strip }}</li>
+        {%- else -%}<li>{{ item }}</li>{%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Level",
+  "settings": [
+    {
+      "type": "select",
+      "id": "state",
+      "label": "State",
+      "default": "open",
+      "options": [
+        {
+          "value": "open",
+          "label": "Good (green)"
+        },
+        {
+          "value": "part",
+          "label": "Partial (amber)"
+        },
+        {
+          "value": "full",
+          "label": "Limited (red)"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Level"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "checklist",
+      "label": "Checklist (instead of text)",
+      "info": "One item per line. Start with + for a tick or - for a cross, e.g. + SOS still works"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Level"
+    }
+  ]
+}
+{% endschema %}

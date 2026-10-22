@@ -1,0 +1,62 @@
+{%- comment -%}
+  Image gallery with Gallery item blocks.
+{%- endcomment -%}
+<div class="cw-gallery {{ block.settings.columns }}{% if block.settings.tall %} is-tall{% endif %}{% if block.settings.shot %} is-shot{% endif %}" {{ block.shopify_attributes }}>{% content_for 'blocks' %}</div>
+
+{% schema %}
+{
+  "name": "Gallery",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns",
+      "default": "is-3",
+      "options": [
+        {
+          "value": "is-2",
+          "label": "2"
+        },
+        {
+          "value": "is-3",
+          "label": "3"
+        },
+        {
+          "value": "is-4",
+          "label": "4"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "tall",
+      "label": "Tall images",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "shot",
+      "label": "App screenshots (fit, not crop)",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_wiki-gallery-item"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery",
+      "blocks": [
+        {
+          "type": "_wiki-gallery-item"
+        },
+        {
+          "type": "_wiki-gallery-item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+{%- comment -%}
+  Contact card in the Wiki help section. Link can be tel:, mailto: or a page.
+{%- endcomment -%}
+<a class="cw-help-card" href="{{ block.settings.link | escape }}" {{ block.shopify_attributes }}><b class="cw-hc-l">{{ block.settings.label }}</b><span class="cw-hc-v">{{ block.settings.value }}</span></a>
+
+{% schema %}
+{
+  "name": "Help card",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "value",
+      "label": "Value",
+      "default": "877-215-4741"
+    },
+    {
+      "type": "text",
+      "id": "link",
+      "label": "Link",
+      "default": "tel:8772154741",
+      "info": "tel:…, mailto:… or a page URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help card"
+    }
+  ]
+}
+{% endschema %}

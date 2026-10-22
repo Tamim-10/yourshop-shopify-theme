@@ -1,0 +1,43 @@
+{%- comment -%}
+  Feature card in the hero grid. Links to a topic by its Anchor ID.
+{%- endcomment -%}
+<a class="cw-fcard" href="#{{ block.settings.target | handleize }}" {{ block.shopify_attributes }}>
+  <div class="cw-fcard-img">{% render 'cw-img', image: block.settings.image, alt: '', sizes: '(min-width: 1120px) 300px, (min-width: 680px) 50vw, 100vw' %}</div>
+  <div class="cw-fcard-b"><b class="cw-fcard-t">{{ block.settings.title }}</b><i class="cw-fcard-d">{{ block.settings.description }}</i></div>
+</a>
+
+{% schema %}
+{
+  "name": "Feature card",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "target",
+      "label": "Links to topic (Anchor ID)",
+      "default": "overview",
+      "info": "e.g. halogps"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature card"
+    }
+  ]
+}
+{% endschema %}

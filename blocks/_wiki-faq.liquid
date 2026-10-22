@@ -1,0 +1,25 @@
+{%- comment -%}
+  FAQ accordion. Each question is a FAQ item block; they feed search and FAQ structured data.
+{%- endcomment -%}
+<div class="cw-acc" {{ block.shopify_attributes }}>{% content_for 'blocks' %}</div>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "blocks": [
+    {
+      "type": "_wiki-faq-item"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "_wiki-faq-item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
